@@ -23,8 +23,8 @@ public class Section {
     @Column(nullable = false)
     private Float temperature;
 
-    @OneToOne(mappedBy = "id")
-    @JsonIgnoreProperties("id")
+    @OneToOne
+    @JoinColumn(name = "category_id")
     private Category type;
 }
 
