@@ -1,8 +1,11 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,4 +23,10 @@ public class Category {
 
     @Column(nullable = false)
     private float temperature;
+
+    @OneToMany(mappedBy = "category")
+    @JsonIgnoreProperties("category")
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<Annoucement> annoucements;
 }
