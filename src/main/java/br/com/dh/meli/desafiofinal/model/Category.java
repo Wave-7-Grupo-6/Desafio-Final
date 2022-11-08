@@ -29,4 +29,10 @@ public class Category {
     @JsonManagedReference
     @ToString.Exclude
     private List<Annoucement> annoucements;
+
+    @OneToMany(mappedBy = "category")
+    @JsonIgnoreProperties("category")
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<Section> sections;
 }
