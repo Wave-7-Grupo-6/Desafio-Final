@@ -2,14 +2,13 @@ package br.com.dh.meli.desafiofinal.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -33,4 +32,10 @@ public class Annoucement {
     @JsonIgnoreProperties("annoucements")
     @JsonBackReference
     private Category category;
+
+    @OneToMany(mappedBy = "annoucement")
+    @JsonIgnoreProperties("annoucement")
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<CartItem> cartItems;
 }
