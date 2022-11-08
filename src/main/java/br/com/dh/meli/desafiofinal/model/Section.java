@@ -28,5 +28,3 @@ public class Section {
     @JoinColumn(name = "category_id")
     private Category type;
 }
-
-
