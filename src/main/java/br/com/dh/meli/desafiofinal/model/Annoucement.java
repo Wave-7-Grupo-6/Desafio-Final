@@ -33,4 +33,8 @@ public class Annoucement {
     @JsonIgnoreProperties("annoucements")
     @JsonBackReference
     private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private Seller seller;
 }

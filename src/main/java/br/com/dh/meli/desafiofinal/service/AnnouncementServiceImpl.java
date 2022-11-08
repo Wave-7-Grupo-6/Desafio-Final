@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.exception.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Annoucement;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,11 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 
     @Override
     public Annoucement findById(Long id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow(() -> new NotFoundException("Announcement not found."));
+    }
+
+    @Override
+    public Annoucement save(Annoucement annoucement) {
+        return repository.save(annoucement);
     }
 }
