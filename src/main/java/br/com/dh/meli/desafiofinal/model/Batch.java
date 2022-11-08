@@ -2,42 +2,46 @@ package br.com.dh.meli.desafiofinal.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Annoucement {
+public class Batch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String description;
+    private Float currentTemperature;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private int productQuantity;
 
-    @NotNull
+    @Column(nullable = false)
+    private LocalDate manufacturingDate;
+
+    @Column(nullable = false)
+    private LocalDateTime manufacturingTime;
+
+    @Column(nullable = false)
+    private Float volume;
+
+    @Column(nullable = false)
+    private LocalDate dueDate;
+
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties("annoucements")
+    @JoinColumn(name = "annoucement_id")
+    @JsonIgnoreProperties("batchs")
     @JsonBackReference
-    private Category category;
-
-    @OneToMany(mappedBy = "annoucement")
-    @JsonIgnoreProperties("annoucement")
-    @JsonManagedReference
-    private List<Batch> batchs;
+    private Annoucement annoucement;
 }
