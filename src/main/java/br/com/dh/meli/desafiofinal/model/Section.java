@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,11 +10,9 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 public class Section {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(nullable = false)
     private String name;
@@ -24,9 +23,9 @@ public class Section {
     @Column(nullable = false)
     private Float temperature;
 
-    // @Column(nullable = false)
-    // @JsonIgnoreProperties(...)
-    // private Category type;
+    @OneToOne(mappedBy = "id")
+    @JsonIgnoreProperties("id")
+    private Category type;
 }
 
 
