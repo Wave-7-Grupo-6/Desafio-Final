@@ -1,6 +1,5 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -9,8 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,26 +16,17 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Annoucement {
+public class InboundOrder {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String description;
+    private LocalDate orderDate;
 
-    @Column(nullable = false)
-    private BigDecimal price;
-
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    @JsonIgnoreProperties("annoucements")
-    @JsonBackReference
-    private Category category;
-
-    @OneToMany(mappedBy = "annoucement")
-    @JsonIgnoreProperties("annoucement")
+    @OneToMany(mappedBy = "inboundOrder")
+    @JsonIgnoreProperties("inboundOrder")
     @JsonManagedReference
     private List<Batch> batchs;
 }
