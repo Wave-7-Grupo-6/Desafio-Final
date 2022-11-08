@@ -1,0 +1,23 @@
+{
+  "name": "desafio-final",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wave-7-Grupo-6/Desafio-Final.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wave-7-Grupo-6/Desafio-Final/issues"
+  },
+  "homepage": "https://github.com/Wave-7-Grupo-6/Desafio-Final#readme",
+  "devDependencies": {
+    "semantic-release": "^19.0.5"
+  }
+}
