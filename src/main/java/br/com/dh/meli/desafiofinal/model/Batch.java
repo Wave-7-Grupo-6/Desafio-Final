@@ -44,4 +44,10 @@ public class Batch {
     @JsonIgnoreProperties("batchs")
     @JsonBackReference
     private Annoucement annoucement;
+
+    @ManyToOne
+    @JoinColumn(name = "inboundOrder")
+    @JsonIgnoreProperties("batchs")
+    @JsonBackReference
+    private InboundOrder inboundOrder;
 }
