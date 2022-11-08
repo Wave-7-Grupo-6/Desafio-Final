@@ -32,6 +32,12 @@ public class CartItem {
     @JsonBackReference
     private Annoucement annoucement;
 
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    @JsonIgnoreProperties("cartItems")
+    @JsonBackReference
+    private Cart cart;
+
     public void calculateValue(){
         value = annoucement.getPrice().multiply(BigDecimal.valueOf(this.quantity));
     }
