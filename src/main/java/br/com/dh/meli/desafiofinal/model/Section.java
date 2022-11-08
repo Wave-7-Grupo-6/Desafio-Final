@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -24,7 +25,9 @@ public class Section {
     @Column(nullable = false)
     private Float temperature;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties("sections")
+    @JsonBackReference
     private Category type;
 }
