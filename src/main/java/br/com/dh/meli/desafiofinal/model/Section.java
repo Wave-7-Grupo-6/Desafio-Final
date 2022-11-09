@@ -40,15 +40,15 @@ public class Section {
     @JsonBackReference
     private Warehouse warehouse;
 
+    @OneToMany(mappedBy = "section")
+    @JsonIgnoreProperties("section")
+    @JsonManagedReference
+    private List<InboundOrder> inboundOrders;
+
     @ManyToOne
     @JoinColumn(name = "seller_id")
     @JsonIgnoreProperties("sections")
     @JsonBackReference
     private Seller seller;
 
-    @OneToMany(mappedBy = "section")
-    @JsonIgnoreProperties("section")
-    @JsonManagedReference
-    @ToString.Exclude
-    private List<Batch> batchs;
 }

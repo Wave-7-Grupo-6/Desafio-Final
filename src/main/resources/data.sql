@@ -20,7 +20,7 @@ INSERT INTO section VALUES
 INSERT INTO client VALUES
                        (null, 'Williamns');
 
-INSERT INTO inbound_order VALUES (1,'2022-11-09');
+INSERT INTO inbound_order VALUES (1,'2022-11-09', 1234, 1);
 
 INSERT INTO batch VALUES
                       (null, 20, '2022-12-01', '2022-11-09', '2022-11-09 00:00:00', 10, 0.5, 1, 1, 1),
