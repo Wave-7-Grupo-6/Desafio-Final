@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -29,5 +30,11 @@ public class Section {
     @JoinColumn(name = "category_id")
     @JsonIgnoreProperties("sections")
     @JsonBackReference
-    private Category type;
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "warehouse_id")
+    @JsonIgnoreProperties("sections")
+    @JsonBackReference
+    private Warehouse warehouse;
 }

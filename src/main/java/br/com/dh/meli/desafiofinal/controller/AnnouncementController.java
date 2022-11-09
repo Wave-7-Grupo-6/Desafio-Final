@@ -4,9 +4,9 @@ import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
 import br.com.dh.meli.desafiofinal.model.Annoucement;
 import br.com.dh.meli.desafiofinal.model.Category;
 import br.com.dh.meli.desafiofinal.model.Seller;
-import br.com.dh.meli.desafiofinal.service.AnnouncementService;
-import br.com.dh.meli.desafiofinal.service.CategoryService;
-import br.com.dh.meli.desafiofinal.service.SellerService;
+import br.com.dh.meli.desafiofinal.service.IAnnouncement;
+import br.com.dh.meli.desafiofinal.service.ICategory;
+import br.com.dh.meli.desafiofinal.service.ISeller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.*;
 public class AnnouncementController {
 
     @Autowired
-    private AnnouncementService announcementService;
+    private IAnnouncement announcementService;
     @Autowired
-    private SellerService sellerService;
+    private ISeller sellerService;
 
     @Autowired
-    private CategoryService categoryService;
+    private ICategory categoryService;
 
     @PostMapping
     public ResponseEntity<Annoucement> save(@RequestBody AnnouncementDTO announcementDTO){

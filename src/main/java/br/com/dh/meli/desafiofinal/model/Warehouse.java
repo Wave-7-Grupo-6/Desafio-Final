@@ -1,14 +1,11 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,10 +20,11 @@ public class Warehouse {
     @Column(nullable = false)
     private String name;
 
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "provider_id")
+    @OneToMany(mappedBy = "warehouse")
     @JsonIgnoreProperties("warehouse")
-    @JsonBackReference
-    private Provider provider;
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<Section> sections;
+
+    // TODO: Relação com o Representante/Vendedor.
 }
