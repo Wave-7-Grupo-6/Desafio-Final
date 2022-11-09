@@ -1,8 +1,14 @@
 package br.com.dh.meli.desafiofinal.service;
 
-import br.com.dh.meli.desafiofinal.model.Annoucement;
+import br.com.dh.meli.desafiofinal.model.Announcement;
+
+import java.util.List;
+
+import java.util.List;
 
 public interface IAnnouncement {
-    Annoucement findById(Long id);
-    Annoucement save(Annoucement annoucement);
+    Announcement findById(Long id);
+    Announcement save(Announcement announcement);
+    List<Announcement> findAll();
+    List<Announcement> findByCategory(String category);
 }

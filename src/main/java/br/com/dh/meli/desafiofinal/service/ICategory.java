@@ -4,4 +4,5 @@ import br.com.dh.meli.desafiofinal.model.Category;
 
 public interface ICategory {
     Category findById(Long id);
+    Category findByName(String name);
 }

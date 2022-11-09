@@ -28,7 +28,7 @@ public class Category {
     @JsonIgnoreProperties("category")
     @JsonManagedReference
     @ToString.Exclude
-    private List<Annoucement> annoucements;
+    private List<Announcement> announcements;
 
     @OneToMany(mappedBy = "category")
     @JsonIgnoreProperties("category")

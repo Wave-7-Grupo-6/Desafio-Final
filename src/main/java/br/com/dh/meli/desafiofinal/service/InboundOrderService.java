@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+
 public class InboundOrderService implements IInboundOrder{
      private final InboundOrderRepository repository;
      private final ISection section;
