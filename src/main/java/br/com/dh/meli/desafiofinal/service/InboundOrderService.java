@@ -27,9 +27,8 @@ public class InboundOrderService implements IInboundOrder{
      private InboundOrder createAtributes(InboundOrderDTO inboundOrderDTO){
 
           System.out.println(inboundOrderDTO.getBatchStockDTOList());
-          List<Annoucement> annoucements = inboundOrderDTO.getBatchStockDTOList().stream()
+          List<Announcement> annoucements = inboundOrderDTO.getBatchStockDTOList().stream()
                   .map(batch -> announcement.findById(batch.getProductId())).collect(Collectors.toList());
-          annoucements.add(new Annoucement("texto qq", new BigDecimal(25.00), new Category(1L, "Frios", 5f, null, null),new Seller(1L, "vendedor",null)));
           InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()).get(), annoucements);
           return inboundOrder;
      }

@@ -42,7 +42,7 @@ public class InboundOrder {
     @JsonBackReference
     private Section section;
 
-    public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section, List<Annoucement> annoucements) {
+    public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section, List<Announcement> annoucements) {
         this.orderDate = inboundOrderDTO.getOrderDate();
         this.orderNumber = inboundOrderDTO.getOrderNumber();
         this.section = section;

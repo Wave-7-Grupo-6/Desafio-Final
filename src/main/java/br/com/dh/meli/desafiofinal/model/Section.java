@@ -45,4 +45,10 @@ public class Section {
     @JsonManagedReference
     private List<InboundOrder> inboundOrders;
 
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    @JsonIgnoreProperties("sections")
+    @JsonBackReference
+    private Seller seller;
+
 }
