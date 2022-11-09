@@ -20,11 +20,8 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
+    @Transient
     private BigDecimal totalPrice;
-
-    @Enumerated(EnumType.STRING)
-    private OrderStatus cartStatus;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
