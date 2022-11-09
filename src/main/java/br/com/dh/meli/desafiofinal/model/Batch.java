@@ -43,7 +43,7 @@ public class Batch {
     @JoinColumn(name = "annoucement_id")
     @JsonIgnoreProperties("batchs")
     @JsonBackReference
-    private Annoucement annoucement;
+    private Announcement announcement;
 
     @ManyToOne
     @JoinColumn(name = "inboundOrder")

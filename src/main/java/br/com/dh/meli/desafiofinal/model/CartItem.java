@@ -30,7 +30,7 @@ public class CartItem {
     @JoinColumn(name = "annoucement_id")
     @JsonIgnoreProperties("cartItems")
     @JsonBackReference
-    private Annoucement annoucement;
+    private Announcement announcement;
 
     @ManyToOne
     @JoinColumn(name = "cart_id")
@@ -39,6 +39,6 @@ public class CartItem {
     private Cart cart;
 
     public void calculateValue(){
-        value = annoucement.getPrice().multiply(BigDecimal.valueOf(this.quantity));
+        value = announcement.getPrice().multiply(BigDecimal.valueOf(this.quantity));
     }
 }

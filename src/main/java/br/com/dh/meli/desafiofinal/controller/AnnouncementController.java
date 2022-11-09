@@ -1,7 +1,7 @@
 package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
-import br.com.dh.meli.desafiofinal.model.Annoucement;
+import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Category;
 import br.com.dh.meli.desafiofinal.model.Seller;
 import br.com.dh.meli.desafiofinal.service.IAnnouncement;
@@ -12,35 +12,47 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/announcement")
+@RequestMapping("/api/v1/fresh-products")
 public class AnnouncementController {
 
     @Autowired
     private IAnnouncement announcementService;
     @Autowired
     private ISeller sellerService;
-
     @Autowired
     private ICategory categoryService;
 
     @PostMapping
-    public ResponseEntity<Annoucement> save(@RequestBody AnnouncementDTO announcementDTO){
+    public ResponseEntity<AnnouncementDTO> save(@RequestBody AnnouncementDTO announcementDTO){
         Seller seller = sellerService.findById(announcementDTO.getSellerId());
         Category category = categoryService.findById(announcementDTO.getCategoryId());
-        Annoucement annoucement = new Annoucement(announcementDTO.getDescription(),
+        Announcement announcement = new Announcement(announcementDTO.getDescription(),
                 announcementDTO.getPrice(), category, seller);
 
-        return new ResponseEntity<>(announcementService.save(annoucement), HttpStatus.CREATED);
+        Announcement savedAnnouncement = announcementService.save(announcement);
+
+        return new ResponseEntity<>(new AnnouncementDTO(savedAnnouncement), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Annoucement> findById(@PathVariable Long id){
-        Annoucement annoucement = announcementService.findById(id);
-        if(annoucement!=null){
-            return ResponseEntity.ok(annoucement);
+    public ResponseEntity<Announcement> findById(@PathVariable Long id){
+        Announcement announcement = announcementService.findById(id);
+        if(announcement !=null){
+            return ResponseEntity.ok(announcement);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Announcement>> findAll(){
+        List<Announcement> announcements = announcementService.findAll();
+        if(announcements.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(announcements);
     }
 
 }
