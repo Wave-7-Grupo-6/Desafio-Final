@@ -30,7 +30,7 @@ public class Section {
     @JoinColumn(name = "category_id")
     @JsonIgnoreProperties("sections")
     @JsonBackReference
-    private Category type;
+    private Category category;
 
     @NotNull
     @ManyToOne
