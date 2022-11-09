@@ -1,7 +1,6 @@
 package br.com.dh.meli.desafiofinal.exceptions;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -9,14 +8,44 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 @ControllerAdvice
 public class HandlerExceptions {
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ExceptionDetails> handleMethodArgumentNotValidException (MethodArgumentNotValidException ex){
+        List<FieldError> errors = ex.getFieldErrors();
+        Map<String, String> fieldErrors = new HashMap<>();
+        errors.forEach(
+                err -> fieldErrors.put(err.getField(), err.getDefaultMessage())
+        );
+
+        return new ResponseEntity<>(
+                ExceptionDetails.builder()
+                        .title("Parâmetros inválidos")
+                        .message("Um ou mais campos com valor inválido.")
+                        .status(HttpStatus.BAD_REQUEST.value())
+                        .fieldErrors(fieldErrors)
+                        .timestamp(LocalDateTime.now())
+                        .build(),
+                HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ExceptionDetails> handleDataIntegrityViolationException (DataIntegrityViolationException ex){
+        return new ResponseEntity<>(
+                ExceptionDetails.builder()
+                        .title("Dados inválidos")
+                        .message("Um ou mais valores fornecidos são inválidos")
+                        .status(HttpStatus.BAD_GATEWAY.value())
+                        .timestamp(LocalDateTime.now())
+                        .build(),
+                HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ExceptionDetails> handlerNotFoundException(NotFoundException ex){
@@ -24,7 +53,7 @@ public class HandlerExceptions {
                 .title("Objeto não encontrado")
                 .message(ex.getMessage())
                 .status(HttpStatus.NOT_FOUND.value())
-                .timeStamp(LocalDateTime.now())
+                .timestamp(LocalDateTime.now())
                 .build();
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);

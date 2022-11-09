@@ -24,7 +24,7 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("seller")
-    private Set<Annoucement> annoucements;
+    private Set<Announcement> announcements;
 
     @OneToMany(mappedBy = "seller")
     @JsonIgnoreProperties("seller")

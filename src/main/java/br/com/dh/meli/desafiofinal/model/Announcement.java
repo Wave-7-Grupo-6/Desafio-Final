@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Annoucement {
+public class Announcement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,12 +33,12 @@ public class Annoucement {
     @JsonBackReference
     private Category category;
 
-    @OneToMany(mappedBy = "annoucement")
+    @OneToMany(mappedBy = "announcement")
     @JsonIgnoreProperties("annoucement")
     @JsonManagedReference
     private List<Batch> batchs;
 
-    @OneToMany(mappedBy = "annoucement")
+    @OneToMany(mappedBy = "announcement")
     @JsonIgnoreProperties("annoucement")
     @JsonManagedReference
     @ToString.Exclude
@@ -46,9 +46,10 @@ public class Annoucement {
 
     @ManyToOne
     @JoinColumn(name = "seller_id")
+    @JsonIgnoreProperties("announcements")
     private Seller seller;
 
-    public Annoucement(String description, BigDecimal price, Category category, Seller seller) {
+    public Announcement(String description, BigDecimal price, Category category, Seller seller) {
         this.description = description;
         this.price = price;
         this.category = category;
