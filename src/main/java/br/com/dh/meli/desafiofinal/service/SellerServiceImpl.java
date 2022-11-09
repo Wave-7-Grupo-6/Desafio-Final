@@ -1,12 +1,10 @@
 package br.com.dh.meli.desafiofinal.service;
 
-import br.com.dh.meli.desafiofinal.exception.NotFoundException;
+import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Seller;
 import br.com.dh.meli.desafiofinal.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

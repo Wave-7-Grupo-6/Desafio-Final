@@ -1,6 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
-import br.com.dh.meli.desafiofinal.exception.NotFoundException;
+import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Annoucement;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
 import lombok.RequiredArgsConstructor;
