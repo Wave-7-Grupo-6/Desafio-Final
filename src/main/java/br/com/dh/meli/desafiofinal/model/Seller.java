@@ -1,8 +1,10 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -17,5 +19,9 @@ public class Seller {
 
     @Column (nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("seller")
+    private Set<Annoucement> annoucements;
 
 }

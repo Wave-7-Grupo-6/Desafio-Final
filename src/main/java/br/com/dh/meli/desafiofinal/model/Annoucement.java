@@ -43,4 +43,15 @@ public class Annoucement {
     @JsonManagedReference
     @ToString.Exclude
     private List<CartItem> cartItems;
+
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    private Seller seller;
+
+    public Annoucement(String description, BigDecimal price, Category category, Seller seller) {
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.seller = seller;
+    }
 }
