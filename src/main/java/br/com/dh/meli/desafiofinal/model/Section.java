@@ -2,10 +2,12 @@ package br.com.dh.meli.desafiofinal.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Getter
@@ -43,4 +45,10 @@ public class Section {
     @JsonIgnoreProperties("sections")
     @JsonBackReference
     private Seller seller;
+
+    @OneToMany(mappedBy = "section")
+    @JsonIgnoreProperties("section")
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<Batch> batchs;
 }
