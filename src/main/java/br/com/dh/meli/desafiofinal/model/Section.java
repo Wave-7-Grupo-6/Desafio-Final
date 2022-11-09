@@ -29,5 +29,12 @@ public class Section {
     @JoinColumn(name = "category_id")
     @JsonIgnoreProperties("sections")
     @JsonBackReference
-    private Category category;
+    private Category type;
+
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "warehouse_id")
+    @JsonIgnoreProperties("warehouse")
+    @JsonBackReference
+    private Warehouse warehouse;
 }
