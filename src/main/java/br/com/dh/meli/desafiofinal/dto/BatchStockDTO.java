@@ -1,5 +1,8 @@
 package br.com.dh.meli.desafiofinal.dto;
 
+import br.com.dh.meli.desafiofinal.model.Annoucement;
+import br.com.dh.meli.desafiofinal.model.Batch;
+import br.com.dh.meli.desafiofinal.model.InboundOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,4 +26,20 @@ public class BatchStockDTO {
     private Float volume;
     private LocalDate dueDate;
     private BigDecimal price;
+
+
+    public Batch createBatch(Annoucement annoucement, InboundOrder inboundOrder){
+        Batch batch = new Batch();
+        batch.setId(id);
+        batch.setCurrentTemperature(currentTemperature);
+        batch.setProductQuantity(productQuantity);
+        batch.setManufacturingTime(manufactoringTime);
+        batch.setManufacturingDate(manufactoringDate);
+        batch.setVolume(volume);
+        batch.setDueDate(dueDate);
+        batch.setAnnoucement(annoucement);
+        batch.setInboundOrder(inboundOrder);
+        return batch;
+    }
 }
+
