@@ -55,4 +55,8 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcements);
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<Announcement>> findByCategory(@RequestParam String queryType){
+        return new ResponseEntity<>(announcementService.findByCategory(queryType), HttpStatus.OK);
+    }
 }
