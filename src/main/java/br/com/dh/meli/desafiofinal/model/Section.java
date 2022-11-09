@@ -37,4 +37,10 @@ public class Section {
     @JsonIgnoreProperties("sections")
     @JsonBackReference
     private Warehouse warehouse;
+
+    @ManyToOne
+    @JoinColumn(name = "seller_id")
+    @JsonIgnoreProperties("sections")
+    @JsonBackReference
+    private Seller seller;
 }
