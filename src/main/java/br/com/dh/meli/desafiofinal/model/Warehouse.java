@@ -1,9 +1,8 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,7 +20,10 @@ public class Warehouse {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "warehouse", cascade = CascadeType.REFRESH)
+    @OneToMany(mappedBy = "warehouse")
+    @JsonIgnoreProperties("warehouse")
+    @JsonManagedReference
+    @ToString.Exclude
     private List<Section> sections;
 
     // TODO: Relação com o Representante/Vendedor.
