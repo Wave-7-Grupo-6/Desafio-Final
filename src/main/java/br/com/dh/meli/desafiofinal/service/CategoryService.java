@@ -16,4 +16,13 @@ public class CategoryService implements ICategory {
     public Category findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Category not found."));
     }
+
+    @Override
+    public Category findByName(String name) {
+        Category category = repository.findByName(name);
+
+        if(category == null) throw new NotFoundException("Category not found");
+
+        return category;
+    }
 }
