@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class BatchStockDTO {
     private Long id;
-    private Long annoucementId;
+    private Long productId;
     private Float currentTemperature;
     private int productQuantity;
     private LocalDate manufactoringDate;

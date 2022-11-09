@@ -42,11 +42,12 @@ public class InboundOrder {
     @JsonBackReference
     private Section section;
 
-
-    public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section, Annoucement  annoucement) {
+    public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section, List<Annoucement> annoucements) {
         this.orderDate = inboundOrderDTO.getOrderDate();
         this.orderNumber = inboundOrderDTO.getOrderNumber();
         this.section = section;
-        this.batchs = inboundOrderDTO.getBatchStockDTOList().stream().map(batchDTO->batchDTO.createBatch(annoucement,this)).collect(Collectors.toList());
+        for(int i = 0; i < inboundOrderDTO.getBatchStockDTOList().size(); i++){
+            this.batchs.add(inboundOrderDTO.getBatchStockDTOList().get(i).createBatch(annoucements.get(i), this));
+        }
     }
 }
