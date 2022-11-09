@@ -1,11 +1,13 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,4 +20,9 @@ public class Client {
     @Column(nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "client")
+    @JsonIgnoreProperties("client")
+    @JsonManagedReference
+    @ToString.Exclude
+    private List<Cart> carts;
 }
