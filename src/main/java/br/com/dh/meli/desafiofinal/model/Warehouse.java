@@ -25,6 +25,4 @@ public class Warehouse {
     @JsonManagedReference
     @ToString.Exclude
     private List<Section> sections;
-
-    // TODO: Relação com o Representante/Vendedor.
 }
