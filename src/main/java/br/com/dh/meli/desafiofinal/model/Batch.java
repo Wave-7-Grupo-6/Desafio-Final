@@ -50,4 +50,10 @@ public class Batch {
     @JsonIgnoreProperties("batchs")
     @JsonBackReference
     private InboundOrder inboundOrder;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id")
+    @JsonIgnoreProperties("batchs")
+    @JsonBackReference
+    private Section section;
 }
