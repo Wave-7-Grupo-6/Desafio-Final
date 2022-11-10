@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -43,7 +44,12 @@ class ClientServiceTest {
     }
 
     @Test
-    void findAll() {
+    void findAll_returnClient_whenSuccess() {
+        when(repository.findAll()).thenReturn(List.of(getClient()));
+
+        List<Client> clientList = service.findAll();
+        assertThat(clientList).isNotEmpty();
+        assertThat(clientList).hasSize(1);
     }
 
     @Test
