@@ -11,7 +11,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import br.com.dh.meli.desafiofinal.dto.CategoryDTO;
 import br.com.dh.meli.desafiofinal.model.Category;
-import br.com.dh.meli.desafiofinal.service.ICategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -36,7 +35,7 @@ import org.hamcrest.CoreMatchers;
 
 import java.util.List;
 
-@WebMvcTest(CategoryController.class)
+@WebMvcTest(WarehouseController.class)
 public class WarehouseControllerTest {
 
     @Autowired
