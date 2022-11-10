@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.model.Warehouse;
 import br.com.dh.meli.desafiofinal.repository.SellerRepository;
 import br.com.dh.meli.desafiofinal.repository.WarehouseRepo;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
+import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+
+import java.util.*;
 
 @ExtendWith(MockitoExtension.class)
 public class WarehouseServiceTest {
@@ -25,7 +32,15 @@ public class WarehouseServiceTest {
 
     @Test
     void findById_returnWarehouse_whenWarehouseExists() {
-        //TODO
+        Warehouse warehouse = getWarehouse();
+
+        when(warehouseRepo.findById(anyLong())).thenReturn(Optional.of(warehouse));
+
+        Warehouse warehouseFound = warehouseService.findById(1L);
+
+        assertThat(warehouseFound).isNotNull();
+        assertThat(warehouseFound.getId()).isEqualTo(warehouse.getId());
+        assertThat(warehouseFound.getName()).isEqualTo(warehouse.getName());
     }
 
     @Test
