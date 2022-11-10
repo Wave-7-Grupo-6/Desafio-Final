@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.model.Client;
 import br.com.dh.meli.desafiofinal.repository.ClientRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.getClient;
 import static org.mockito.Mockito.when;
@@ -30,7 +32,14 @@ class ClientServiceTest {
     }
 
     @Test
-    void save() {
+    void save_returnClient_whenSuccess() {
+        Client client = getClient();
+        when(repository.save(any())).thenReturn(client);
+
+        Client savedClient = service.save(new ClientDTO(client));
+
+        assertThat(savedClient.getId()).isEqualTo(getClient().getId());
+        assertThat(savedClient.getName()).isEqualTo(getClient().getName());
     }
 
     @Test

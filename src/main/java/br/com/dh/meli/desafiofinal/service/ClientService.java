@@ -15,8 +15,8 @@ public class ClientService implements IClient{
     private final ClientRepository repo;
 
     @Override
-    public void save(ClientDTO clientDTO) {
-        repo.save(new Client(null, clientDTO.getName(), null));
+    public Client save(ClientDTO clientDTO) {
+        return repo.save(new Client(null, clientDTO.getName(), null));
     }
 
     @Override
