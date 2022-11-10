@@ -29,7 +29,7 @@ public class InboundOrderService implements IInboundOrder{
           System.out.println(inboundOrderDTO.getBatchStockDTOList());
           List<Announcement> annoucements = inboundOrderDTO.getBatchStockDTOList().stream()
                   .map(batch -> announcement.findById(batch.getProductId())).collect(Collectors.toList());
-          InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()).get(), annoucements);
+          InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()), annoucements);
           return inboundOrder;
      }
 

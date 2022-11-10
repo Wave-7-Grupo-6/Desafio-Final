@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 public class SectionService implements ISection{
-    private SectionRepo repo;
+    private final SectionRepo repo;
 
     @Override
     public Section findById(Long id) {
