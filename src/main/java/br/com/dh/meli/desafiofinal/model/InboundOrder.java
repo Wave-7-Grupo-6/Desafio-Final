@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,6 +12,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +33,7 @@ public class InboundOrder {
     @Column(nullable = false, unique = true)
     private Long orderNumber;
 
-    @OneToMany(mappedBy = "inboundOrder")
+    @OneToMany(mappedBy = "inboundOrder", cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("inboundOrder")
     @JsonManagedReference
     private List<Batch> batchs;
@@ -46,8 +48,10 @@ public class InboundOrder {
         this.orderDate = inboundOrderDTO.getOrderDate();
         this.orderNumber = inboundOrderDTO.getOrderNumber();
         this.section = section;
+        this.batchs = new ArrayList<>();
         for(int i = 0; i < inboundOrderDTO.getBatchStockDTOList().size(); i++){
-            this.batchs.add(inboundOrderDTO.getBatchStockDTOList().get(i).createBatch(annoucements.get(i), this));
+            BatchStockDTO batchStockDTO = inboundOrderDTO.getBatchStockDTOList().get(i);
+            this.batchs.add(batchStockDTO.createBatch(batchStockDTO, annoucements.get(i), this));
         }
     }
 }
