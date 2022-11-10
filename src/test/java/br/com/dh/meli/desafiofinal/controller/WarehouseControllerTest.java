@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.controller;
 
+import br.com.dh.meli.desafiofinal.dto.WarehouseDTO;
 import br.com.dh.meli.desafiofinal.model.Warehouse;
 import br.com.dh.meli.desafiofinal.service.ICategory;
 import br.com.dh.meli.desafiofinal.service.IWarehouse;
@@ -74,6 +75,23 @@ public class WarehouseControllerTest {
                         .contentType(MediaType.APPLICATION_JSON));
 
         resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", CoreMatchers.is(warehouse.getId().intValue())))
+                .andExpect(jsonPath("$.name", CoreMatchers.is(warehouse.getName())));
+    }
+
+    @Test
+    void save_returnsWarehouse_whenSuccess() throws Exception {
+        Warehouse warehouse = getWarehouse();
+        WarehouseDTO warehouseDTO = new WarehouseDTO(warehouse);
+
+        when(warehouseService.save(warehouseDTO)).thenReturn(warehouse);
+
+        ResultActions resultActions = mockMvc.perform(
+                post("/api/v1/warehouse")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(warehouse)));
+
+        resultActions.andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", CoreMatchers.is(warehouse.getId().intValue())))
                 .andExpect(jsonPath("$.name", CoreMatchers.is(warehouse.getName())));
     }

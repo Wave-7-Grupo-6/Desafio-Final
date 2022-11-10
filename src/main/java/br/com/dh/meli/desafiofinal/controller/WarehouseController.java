@@ -18,8 +18,10 @@ public class WarehouseController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody WarehouseDTO warehouse){
-        service.save(warehouse);
+    public ResponseEntity<Warehouse> save(@RequestBody WarehouseDTO warehouse){
+        Warehouse warehouseCreated = service.save(warehouse);
+
+        return new ResponseEntity<>(warehouseCreated, HttpStatus.CREATED);
     }
 
     @GetMapping

@@ -25,8 +25,8 @@ public class WarehouseService implements IWarehouse{
     }
 
     @Override
-    public void save(WarehouseDTO warehouse) {
-        repo.save(new Warehouse(null, warehouse.getName(), null));
+    public Warehouse save(WarehouseDTO warehouse) {
+        return repo.save(new Warehouse(null, warehouse.getName(), null));
     }
 
     @Override
