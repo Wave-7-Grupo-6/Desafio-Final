@@ -52,4 +52,19 @@ public class CategoryControllerTest {
                 .andExpect(jsonPath("$[0].name", CoreMatchers.is("Category 1")))
                 .andExpect(jsonPath("$[0].temperature", CoreMatchers.is(10.0)));
     }
+
+    @Test
+    void findById_returnCategory_whenValid() throws Exception {
+        Category category = getCategory();
+        when(categoryService.findById(anyLong())).thenReturn(category);
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/v1/category/1")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", CoreMatchers.is(1)))
+                .andExpect(jsonPath("$.name", CoreMatchers.is("Category 1")))
+                .andExpect(jsonPath("$.temperature", CoreMatchers.is(10.0)));
+    }
 }
