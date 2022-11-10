@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.WarehouseDTO;
 import br.com.dh.meli.desafiofinal.model.Warehouse;
 import br.com.dh.meli.desafiofinal.repository.SellerRepository;
 import br.com.dh.meli.desafiofinal.repository.WarehouseRepo;
@@ -45,7 +46,16 @@ public class WarehouseServiceTest {
 
     @Test
     void save_returnWarehouse_whenWarehouseIsSaved() {
-        //TODO
+        Warehouse warehouse = getWarehouse();
+        WarehouseDTO warehouseDTO = new WarehouseDTO(warehouse);
+
+        when(warehouseRepo.save(warehouse)).thenReturn(warehouse);
+
+        Warehouse warehouseSaved = warehouseService.save(warehouseDTO);
+
+        assertThat(warehouseSaved).isNotNull();
+        assertThat(warehouseSaved.getId()).isEqualTo(warehouse.getId());
+        assertThat(warehouseSaved.getName()).isEqualTo(warehouse.getName());
     }
 
     @Test
