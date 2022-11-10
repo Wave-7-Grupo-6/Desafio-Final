@@ -9,7 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -18,8 +18,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Batch {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+
+    //TODO acrescentar batchNumber (retorno da atividade) - agora está retornando null
 
     @Column(nullable = false)
     private Float currentTemperature;
@@ -31,7 +33,7 @@ public class Batch {
     private LocalDate manufacturingDate;
 
     @Column(nullable = false)
-    private LocalDateTime manufacturingTime;
+    private LocalTime manufacturingTime;
 
     @Column(nullable = false)
     private Float volume;
@@ -43,7 +45,7 @@ public class Batch {
     @JoinColumn(name = "annoucement_id")
     @JsonIgnoreProperties("batchs")
     @JsonBackReference
-    private Annoucement annoucement;
+    private Announcement announcement;
 
     @ManyToOne
     @JoinColumn(name = "inboundOrder")

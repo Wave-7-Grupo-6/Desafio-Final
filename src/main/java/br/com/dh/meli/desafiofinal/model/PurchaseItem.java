@@ -1,6 +1,5 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +26,7 @@ public class PurchaseItem {
 
     @ManyToOne
     @JoinColumn(name = "annoucement_id", nullable = false)
-    private Annoucement annoucement;
+    private Announcement announcement;
 
     @ManyToOne
     @JoinColumn(name = "purchase_order_id", nullable = false)

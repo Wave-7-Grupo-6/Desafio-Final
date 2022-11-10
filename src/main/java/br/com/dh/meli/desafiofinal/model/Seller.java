@@ -24,7 +24,7 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller", fetch = FetchType.LAZY)
     @JsonIgnoreProperties("seller")
-    private Set<Annoucement> annoucements;
+    private Set<Announcement> announcements;
 
     @OneToMany(mappedBy = "seller")
     @JsonIgnoreProperties("seller")
@@ -32,4 +32,8 @@ public class Seller {
     @ToString.Exclude
     private List<Section> sections;
 
+    public Seller(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

@@ -1,15 +1,19 @@
 package br.com.dh.meli.desafiofinal.exceptions;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
-@Data
 @Builder
+@Getter
+@Setter
 public class ExceptionDetails {
     private String title;
-    private int status;
     private String message;
-    private LocalDateTime timeStamp;
+    private Integer status;
+    private Map<String, String> fieldErrors;
+    private LocalDateTime timestamp;
 }

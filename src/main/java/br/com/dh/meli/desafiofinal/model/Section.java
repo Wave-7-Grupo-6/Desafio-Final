@@ -40,15 +40,24 @@ public class Section {
     @JsonBackReference
     private Warehouse warehouse;
 
+    @OneToMany(mappedBy = "section")
+    @JsonIgnoreProperties("section")
+    @JsonManagedReference
+    private List<InboundOrder> inboundOrders;
+
     @ManyToOne
     @JoinColumn(name = "seller_id")
     @JsonIgnoreProperties("sections")
     @JsonBackReference
     private Seller seller;
 
-    @OneToMany(mappedBy = "section")
-    @JsonIgnoreProperties("section")
-    @JsonManagedReference
-    @ToString.Exclude
-    private List<Batch> batchs;
+    public Section(Long id, String name, Float volumeMax, Float temperature, Category category, Warehouse warehouse, Seller seller) {
+        this.id = id;
+        this.name = name;
+        this.volumeMax = volumeMax;
+        this.temperature = temperature;
+        this.category = category;
+        this.warehouse = warehouse;
+        this.seller = seller;
+    }
 }

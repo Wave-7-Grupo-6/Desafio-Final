@@ -25,4 +25,9 @@ public class Warehouse {
     @JsonManagedReference
     @ToString.Exclude
     private List<Section> sections;
+
+    public Warehouse(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
