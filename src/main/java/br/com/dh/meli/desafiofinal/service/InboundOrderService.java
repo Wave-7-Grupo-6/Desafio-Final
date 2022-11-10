@@ -6,7 +6,6 @@ import br.com.dh.meli.desafiofinal.repository.InboundOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,13 +23,29 @@ public class InboundOrderService implements IInboundOrder{
           return createAtributes(inboundOrderDTO).getBatchs();
      }
 
-     private InboundOrder createAtributes(InboundOrderDTO inboundOrderDTO){
+     @Override
+     public InboundOrder findById(Long id) {
+          return repository.findById(id).orElse(null);
+     }
 
-          System.out.println(inboundOrderDTO.getBatchStockDTOList());
+     private InboundOrder createAtributes(InboundOrderDTO inboundOrderDTO){
           List<Announcement> annoucements = inboundOrderDTO.getBatchStockDTOList().stream()
                   .map(batch -> announcement.findById(batch.getProductId())).collect(Collectors.toList());
           InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()), annoucements);
           return inboundOrder;
      }
+
+     @Override
+     public List<Batch> update(Long id, InboundOrderDTO inboundOrderDTO){
+          System.out.println(id);
+          System.out.println("-------> TESTE <------");
+          System.out.println(inboundOrderDTO);
+          if(repository.existsById(id)){
+               repository.save(createAtributes(inboundOrderDTO));
+               return createAtributes(inboundOrderDTO).getBatchs();
+          }
+          return null;
+     }
+
 
 }
