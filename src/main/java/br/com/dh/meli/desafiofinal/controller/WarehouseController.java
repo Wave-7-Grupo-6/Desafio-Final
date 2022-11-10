@@ -29,6 +29,6 @@ public class WarehouseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Warehouse> getById(@PathVariable Long id){
-        return new ResponseEntity<>(service.findById(id).get(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 }

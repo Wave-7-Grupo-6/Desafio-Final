@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IWarehouse {
-    Optional<Warehouse> findById(Long id);
+    Warehouse findById(Long id);
     void save(WarehouseDTO warehouse);
     List<Warehouse> findAll();
 }
