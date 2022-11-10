@@ -10,4 +10,6 @@ public interface IPurchaseOrder {
     BigDecimal save(PurchaseOrderDTO purchaseOrderDTO);
     List<PurchaseOrder> getAll();
     PurchaseOrder findById(Long id);
+
+    PurchaseOrder update(Long id);
 }
