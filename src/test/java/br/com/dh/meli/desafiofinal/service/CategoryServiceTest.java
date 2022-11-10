@@ -49,4 +49,17 @@ class CategoryServiceTest {
         assertThat(category.getName()).isEqualTo(getCategory().getName());
         assertThat(category.getTemperature()).isEqualTo(getCategory().getTemperature());
     }
+
+    @Test
+    void findAll_returnListCategory_whenCategoryExist() {
+        when(categoryRepository.findAll()).thenReturn(Collections.singletonList(getCategory()));
+
+        List<Category> categories = categoryService.findAll();
+
+        assertThat(categories).isNotNull();
+        assertThat(categories.size()).isEqualTo(1);
+        assertThat(categories.get(0).getId()).isEqualTo(getCategory().getId());
+        assertThat(categories.get(0).getName()).isEqualTo(getCategory().getName());
+        assertThat(categories.get(0).getTemperature()).isEqualTo(getCategory().getTemperature());
+    }
 }
