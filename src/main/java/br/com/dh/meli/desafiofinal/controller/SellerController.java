@@ -18,12 +18,16 @@ public class SellerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody SellerDTO sellerDTO){
-        service.save(sellerDTO);
+    public Seller save(@RequestBody SellerDTO sellerDTO){
+        return service.save(sellerDTO);
     }
 
     @GetMapping
     public ResponseEntity<List<Seller>> findAll(){
+        List<Seller> sellerList = service.findAll();
+        if(sellerList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 

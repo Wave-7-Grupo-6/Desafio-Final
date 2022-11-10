@@ -32,4 +32,11 @@ public class PurchaseItem {
     @JoinColumn(name = "purchase_order_id", nullable = false)
     @JsonIgnoreProperties("purchaseItems")
     private PurchaseOrder purchaseOrder;
+
+    public PurchaseItem(Integer quantity, Announcement announcement, PurchaseOrder purchaseOrder) {
+        this.quantity = quantity;
+        this.price = announcement.getPrice();
+        this.announcement = announcement;
+        this.purchaseOrder = purchaseOrder;
+    }
 }
