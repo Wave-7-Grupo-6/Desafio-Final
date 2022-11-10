@@ -28,9 +28,6 @@ public class AnnouncementController {
     @Autowired
     private ICategory categoryService;
 
-    @Autowired
-    private ISection sectionService;
-
     @PostMapping
     public ResponseEntity<AnnouncementDTO> save(@RequestBody AnnouncementDTO announcementDTO){
         Seller seller = sellerService.findById(announcementDTO.getSellerId());
