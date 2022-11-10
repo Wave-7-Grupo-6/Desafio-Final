@@ -51,4 +51,13 @@ public class Section {
     @JsonBackReference
     private Seller seller;
 
+    public Section(Long id, String name, Float volumeMax, Float temperature, Category category, Warehouse warehouse, Seller seller) {
+        this.id = id;
+        this.name = name;
+        this.volumeMax = volumeMax;
+        this.temperature = temperature;
+        this.category = category;
+        this.warehouse = warehouse;
+        this.seller = seller;
+    }
 }

@@ -35,4 +35,10 @@ public class Category {
     @JsonManagedReference
     @ToString.Exclude
     private List<Section> sections;
+
+    public Category(Long id, String name, float temperature) {
+        this.id = id;
+        this.name = name;
+        this.temperature = temperature;
+    }
 }
