@@ -49,7 +49,7 @@ public class WarehouseServiceTest {
         Warehouse warehouse = getWarehouse();
         WarehouseDTO warehouseDTO = new WarehouseDTO(warehouse);
 
-        when(warehouseRepo.save(warehouse)).thenReturn(warehouse);
+        when(warehouseRepo.save(any(Warehouse.class))).thenReturn(warehouse);
 
         Warehouse warehouseSaved = warehouseService.save(warehouseDTO);
 
@@ -60,7 +60,17 @@ public class WarehouseServiceTest {
 
     @Test
     void findAll_returnWarehouseList_whenWarehouseExists() {
-        //TODO
+        Warehouse warehouse = getWarehouse();
+        List<Warehouse> warehouseList = List.of(warehouse);
+
+        when(warehouseRepo.findAll()).thenReturn(warehouseList);
+
+        List<Warehouse> warehouseListFound = warehouseService.findAll();
+
+        assertThat(warehouseListFound).isNotNull();
+        assertThat(warehouseListFound.size()).isEqualTo(warehouseList.size());
+        assertThat(warehouseListFound.get(0).getId()).isEqualTo(warehouse.getId());
+        assertThat(warehouseListFound.get(0).getName()).isEqualTo(warehouse.getName());
     }
 
 }
