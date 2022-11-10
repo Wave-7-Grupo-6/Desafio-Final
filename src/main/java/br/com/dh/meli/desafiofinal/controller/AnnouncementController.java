@@ -1,11 +1,13 @@
 package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
-import br.com.dh.meli.desafiofinal.model.Announcement;
-import br.com.dh.meli.desafiofinal.model.Category;
-import br.com.dh.meli.desafiofinal.model.Seller;
+import br.com.dh.meli.desafiofinal.dto.BatchStockDTOResponse;
+import br.com.dh.meli.desafiofinal.dto.SectionDTO;
+import br.com.dh.meli.desafiofinal.dto.AnnouncementStockDTO;
+import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.service.IAnnouncement;
 import br.com.dh.meli.desafiofinal.service.ICategory;
+import br.com.dh.meli.desafiofinal.service.ISection;
 import br.com.dh.meli.desafiofinal.service.ISeller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/fresh-products")
@@ -55,8 +58,18 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcements);
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Announcement>> findByCategory(@RequestParam String queryType){
-        return new ResponseEntity<>(announcementService.findByCategory(queryType), HttpStatus.OK);
+    @GetMapping(value = "/list", params = "category")
+    public ResponseEntity<List<Announcement>> findByCategory(@RequestParam String category){
+        return new ResponseEntity<>(announcementService.findByCategory(category), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/list", params = "announcementId")
+    public AnnouncementStockDTO findStockByAnnouncement_Id(@RequestParam Long announcementId){
+        Announcement announcement = announcementService.findById(announcementId);
+        SectionDTO sectionDTO = new SectionDTO(announcement.getBatchs().get(0).getSection());
+        List<BatchStockDTOResponse> batchStockDTOResponse = announcement.getBatchs().stream()
+                .map(BatchStockDTOResponse::new)
+                .collect(Collectors.toList());
+        return new AnnouncementStockDTO(sectionDTO,announcementId, batchStockDTOResponse);
     }
 }
