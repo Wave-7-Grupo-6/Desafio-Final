@@ -49,7 +49,8 @@ public class Announcement {
     @JsonIgnoreProperties("announcements")
     private Seller seller;
 
-    public Announcement(String description, BigDecimal price, Category category, Seller seller) {
+    public Announcement(Long id, String description, BigDecimal price, Category category, Seller seller) {
+        this.id = id;
         this.description = description;
         this.price = price;
         this.category = category;

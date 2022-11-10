@@ -32,4 +32,8 @@ public class Seller {
     @ToString.Exclude
     private List<Section> sections;
 
+    public Seller(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
