@@ -52,6 +52,13 @@ class CategoryServiceTest {
     }
 
     @Test
+    void findById_throwsNotFound_whenCategoryDoesntExists() {
+        when(categoryRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+        assertThrows(NotFoundException.class, () -> categoryService.findById(1L));
+    }
+
+    @Test
     void findAll_returnListCategory_whenCategoryExist() {
         when(categoryRepository.findAll()).thenReturn(Collections.singletonList(getCategory()));
 
@@ -74,6 +81,13 @@ class CategoryServiceTest {
         assertThat(category.getId()).isEqualTo(getCategory().getId());
         assertThat(category.getName()).isEqualTo(getCategory().getName());
         assertThat(category.getTemperature()).isEqualTo(getCategory().getTemperature());
+    }
+
+    @Test
+    void findByName_throwsNotFound_whenCategoryDoesntExists() {
+        when(categoryRepository.findByName(anyString())).thenReturn(null);
+
+        assertThrows(NotFoundException.class, () -> categoryService.findByName("Category"));
     }
 
     @Test
