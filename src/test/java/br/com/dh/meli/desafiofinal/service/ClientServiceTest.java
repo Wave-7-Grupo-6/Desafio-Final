@@ -8,9 +8,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.getClient;
 import static org.mockito.Mockito.when;
@@ -36,7 +38,7 @@ class ClientServiceTest {
     }
 
     @Test
-    void findById() {
+    void findById_returnClient_whenClientExists() {
         when(repository.findById(anyLong())).thenReturn(Optional.of(getClient()));
 
         Client client = service.findById(1L);
@@ -45,5 +47,12 @@ class ClientServiceTest {
         assertThat(client.getId()).isEqualTo(getClient().getId());
         assertThat(client.getName()).isEqualTo(getClient().getName());
         assertThat(client.getCarts()).isNull();
+    }
+
+    @Test
+    void findById_throwsNotFoundException_whenClientDoesntExists(){
+        when(repository.findById(anyLong())).thenReturn(null);
+
+        assertThrows(NullPointerException.class, () -> service.findById(1L));
     }
 }
