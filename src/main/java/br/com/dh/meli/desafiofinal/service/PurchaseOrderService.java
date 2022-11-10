@@ -1,6 +1,7 @@
 package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
+import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Client;
 import br.com.dh.meli.desafiofinal.model.PurchaseOrder;
@@ -26,6 +27,16 @@ public class PurchaseOrderService implements IPurchaseOrder{
         repository.save(purchaseOrder);
 
         return purchaseOrder.getTotalPrice();
+    }
+
+    @Override
+    public PurchaseOrder update(Long id){
+        PurchaseOrder purchaseOrder = findById(id);
+
+        purchaseOrder.setOrderStatus(OrderStatus.DELIVERED);
+        repository.save(purchaseOrder);
+
+        return purchaseOrder;
     }
 
     @Override
