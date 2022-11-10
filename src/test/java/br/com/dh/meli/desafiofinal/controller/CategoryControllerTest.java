@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.controller;
 
+import br.com.dh.meli.desafiofinal.dto.CategoryDTO;
 import br.com.dh.meli.desafiofinal.model.Category;
 import br.com.dh.meli.desafiofinal.service.ICategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -37,6 +38,21 @@ public class CategoryControllerTest {
 
     @MockBean
     private ICategory categoryService;
+
+    @Test
+    void save_returnCategory_whenValid() throws Exception {
+        Category category = getCategory();
+        CategoryDTO categoryDTO = new CategoryDTO(category);
+        doNothing().when(categoryService).save(any());
+
+        ResultActions resultActions = mockMvc.perform(
+                 post("/api/v1/category")
+                            .content(mapper.writeValueAsString(categoryDTO))
+                            .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        resultActions.andExpect(status().isCreated());
+    }
 
     @Test
     void getAll_returnAllCategories_whenValid() throws Exception {
