@@ -8,5 +8,5 @@ import java.util.List;
 public interface ISeller {
     Seller findById(Long id);
     List<Seller> findAll();
-    void save(SellerDTO sellerDTO);
+    Seller save(SellerDTO sellerDTO);
 }
