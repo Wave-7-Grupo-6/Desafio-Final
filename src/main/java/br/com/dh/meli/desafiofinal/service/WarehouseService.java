@@ -16,12 +16,12 @@ public class WarehouseService implements IWarehouse{
     private final WarehouseRepo repo;
 
     @Override
-    public Optional<Warehouse> findById(Long id) {
+    public Warehouse findById(Long id) {
         Optional<Warehouse> opWarehouse = repo.findById(id);
 
         if(opWarehouse.isEmpty()) throw new NoSuchElementException("Warehouse not found!");
 
-        return opWarehouse;
+        return opWarehouse.get();
     }
 
     @Override
