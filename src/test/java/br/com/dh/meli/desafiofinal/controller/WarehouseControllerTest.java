@@ -89,10 +89,8 @@ public class WarehouseControllerTest {
         ResultActions resultActions = mockMvc.perform(
                 post("/api/v1/warehouse")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(warehouse)));
+                        .content(mapper.writeValueAsString(warehouseDTO)));
 
-        resultActions.andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id", CoreMatchers.is(warehouse.getId().intValue())))
-                .andExpect(jsonPath("$.name", CoreMatchers.is(warehouse.getName())));
+        resultActions.andExpect(status().isCreated());
     }
 }

@@ -17,7 +17,6 @@ public class WarehouseController {
     private IWarehouse service;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Warehouse> save(@RequestBody WarehouseDTO warehouse){
         Warehouse warehouseCreated = service.save(warehouse);
 
