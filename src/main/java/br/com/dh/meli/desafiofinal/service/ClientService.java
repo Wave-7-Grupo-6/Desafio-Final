@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,11 +25,7 @@ public class ClientService implements IClient{
     }
 
     @Override
-    public Optional<Client> findById(Long id) {
-        Optional<Client> opClient = repo.findById(id);
-
-        if(opClient.isEmpty()) throw new NoSuchElementException("Client not found!");
-
-        return opClient;
+    public Client findById(Long id) {
+        return repo.findById(id).orElseThrow(() -> new NoSuchElementException("Client not found"));
     }
 }
