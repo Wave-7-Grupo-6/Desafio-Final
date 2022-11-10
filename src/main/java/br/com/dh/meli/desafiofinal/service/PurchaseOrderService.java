@@ -52,7 +52,7 @@ public class PurchaseOrderService implements IPurchaseOrder{
     private PurchaseOrder createAttributes(PurchaseOrderDTO purchaseOrderDTO){
         List<Announcement> announcements = purchaseOrderDTO.getProducts().stream()
                 .map(productDTO -> annService.findById(productDTO.getProductId())).collect(Collectors.toList());
-        Client client = cliService.findById(purchaseOrderDTO.getBuyerId()).get();
+        Client client = cliService.findById(purchaseOrderDTO.getBuyerId());
 
         return new PurchaseOrder(purchaseOrderDTO, client, announcements);
     }

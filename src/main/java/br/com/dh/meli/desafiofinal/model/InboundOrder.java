@@ -14,7 +14,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Entity
 @Getter
@@ -24,16 +24,17 @@ import java.util.stream.Collectors;
 public class InboundOrder {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private LocalDate orderDate;
 
-    @Column(nullable = false, unique = true)
+
+    @Column(nullable = false)
     private Long orderNumber;
 
-    @OneToMany(mappedBy = "inboundOrder", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "inboundOrder")
     @JsonIgnoreProperties("inboundOrder")
     @JsonManagedReference
     private List<Batch> batchs;
