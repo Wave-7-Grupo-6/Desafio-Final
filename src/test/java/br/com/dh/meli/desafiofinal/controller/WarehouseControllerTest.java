@@ -62,4 +62,19 @@ public class WarehouseControllerTest {
                 .andExpect(jsonPath("$[0].id", CoreMatchers.is(getWarehouse().getId().intValue())))
                 .andExpect(jsonPath("$[0].name", CoreMatchers.is(getWarehouse().getName())));
     }
+
+    @Test
+    void findById_returnsWarehouse_whenSuccess() throws Exception {
+        Warehouse warehouse = getWarehouse();
+
+        when(warehouseService.findById(anyLong())).thenReturn(warehouse);
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/v1/warehouse/{id}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        resultActions.andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", CoreMatchers.is(warehouse.getId().intValue())))
+                .andExpect(jsonPath("$.name", CoreMatchers.is(warehouse.getName())));
+    }
 }
