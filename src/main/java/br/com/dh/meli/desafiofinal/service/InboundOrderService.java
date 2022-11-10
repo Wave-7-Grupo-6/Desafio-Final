@@ -1,8 +1,11 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
+import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.repository.InboundOrderRepository;
+import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +21,9 @@ public class InboundOrderService implements IInboundOrder{
      private final IAnnouncement announcement;
 
      @Override
-     public List<Batch> save(InboundOrderDTO inboundOrderDTO){
+     public List<BatchStockDTO> save(InboundOrderDTO inboundOrderDTO){
           repository.save(createAtributes(inboundOrderDTO));
-          return createAtributes(inboundOrderDTO).getBatchs();
+          return createAtributes(inboundOrderDTO).getBatchs().stream().map(batch -> new BatchStockDTO(batch)).collect(Collectors.toList());
      }
 
      @Override
@@ -36,16 +39,20 @@ public class InboundOrderService implements IInboundOrder{
      }
 
      @Override
-     public List<Batch> update(Long id, InboundOrderDTO inboundOrderDTO){
-          System.out.println(id);
-          System.out.println("-------> TESTE <------");
-          System.out.println(inboundOrderDTO);
+     public List<BatchStockDTO> update(Long id, InboundOrderDTO inboundOrderDTO){
           if(repository.existsById(id)){
-               repository.save(createAtributes(inboundOrderDTO));
-               return createAtributes(inboundOrderDTO).getBatchs();
+               System.out.println("------ TESTE ----- ");
+               delete(id);
+               System.out.println("---- teste ---- ");
+               return save(inboundOrderDTO);
           }
-          return null;
+          throw new NotFoundException("Inbound Order not found.");
      }
 
-
+     public void delete(Long id){
+          if(repository.existsById(id)){
+               repository.deleteById(id);
+          }
+          throw new NotFoundException("Inbound Order not found.");
+     }
 }

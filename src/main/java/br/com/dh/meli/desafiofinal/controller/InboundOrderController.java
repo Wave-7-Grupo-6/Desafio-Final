@@ -1,6 +1,7 @@
 package br.com.dh.meli.desafiofinal.controller;
 
 
+import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
 import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.service.IInboundOrder;
@@ -20,13 +21,13 @@ public class InboundOrderController {
     private IInboundOrder service;
 
     @PostMapping
-    public ResponseEntity<List<Batch>> saveOrder(@RequestBody InboundOrderDTO inboundOrderDTO){
+    public ResponseEntity<List<BatchStockDTO>> saveOrder(@RequestBody InboundOrderDTO inboundOrderDTO){
         return new ResponseEntity<>(service.save(inboundOrderDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<List<Batch>> updateInboundOrder(@PathVariable Long id, @RequestBody InboundOrderDTO inboundOrderDTO){
-        List<Batch> response = service.update(id, inboundOrderDTO);
+    public ResponseEntity<List<BatchStockDTO>> updateInboundOrder(@PathVariable Long id, @RequestBody InboundOrderDTO inboundOrderDTO){
+        List<BatchStockDTO> response = service.update(id, inboundOrderDTO);
         if (response == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

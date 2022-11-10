@@ -34,7 +34,7 @@ public class InboundOrder {
     @Column(nullable = false)
     private Long orderNumber;
 
-    @OneToMany(mappedBy = "inboundOrder", cascade={CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "inboundOrder", cascade=CascadeType.PERSIST)
     @JsonIgnoreProperties("inboundOrder")
     @JsonManagedReference
     private List<Batch> batchs;

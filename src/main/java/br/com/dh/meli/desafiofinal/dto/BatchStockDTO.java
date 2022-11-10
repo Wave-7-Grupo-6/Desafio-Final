@@ -31,7 +31,7 @@ public class BatchStockDTO {
     public Batch createBatch(BatchStockDTO batchStockDTO, Announcement annoucement, InboundOrder inboundOrder){
 
         Batch batch = new Batch();
-        batch.setId(batchStockDTO.getBatchNumber());
+        batch.setBatchNumber(batchStockDTO.getBatchNumber());
         batch.setProductId(batchStockDTO.getProductId());
         batch.setCurrentTemperature(batchStockDTO.getCurrentTemperature());
         batch.setProductQuantity(batchStockDTO.getProductQuantity());
@@ -45,5 +45,16 @@ public class BatchStockDTO {
         return batch;
     }
 
+    public BatchStockDTO(Batch batch) {
+        this.batchNumber = batch.getBatchNumber();
+        this.productId = batch.getProductId();
+        this.currentTemperature = batch.getCurrentTemperature();
+        this.productQuantity = batch.getProductQuantity();
+        this.manufacturingDate = batch.getManufacturingDate();
+        this.manufacturingTime = batch.getManufacturingTime();
+        this.volume = batch.getVolume();
+        this.dueDate = batch.getDueDate();
+        this.price = batch.getAnnouncement().getPrice();
+    }
 }
 
