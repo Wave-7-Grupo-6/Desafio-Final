@@ -19,7 +19,7 @@ public class Batch {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Long batchNumber;
 
     @Column

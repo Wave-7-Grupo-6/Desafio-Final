@@ -19,11 +19,13 @@ public class InboundOrderService implements IInboundOrder{
      private final InboundOrderRepository repository;
      private final ISection section;
      private final IAnnouncement announcement;
+     private final IBatch batch;
 
      @Override
      public List<BatchStockDTO> save(InboundOrderDTO inboundOrderDTO){
-          repository.save(createAtributes(inboundOrderDTO));
-          return createAtributes(inboundOrderDTO).getBatchs().stream().map(batch -> new BatchStockDTO(batch)).collect(Collectors.toList());
+         InboundOrder inboundOrder = repository.save(createAtributes(inboundOrderDTO));
+          inboundOrder.setBatchs(inboundOrder.getBatchs().stream().map(batchDTO -> batch.save(batchDTO)).collect(Collectors.toList()));
+          return inboundOrder.getBatchs().stream().map(batch -> new BatchStockDTO(batch)).collect(Collectors.toList());
      }
 
      @Override
@@ -42,7 +44,7 @@ public class InboundOrderService implements IInboundOrder{
      public List<BatchStockDTO> update(Long id, InboundOrderDTO inboundOrderDTO){
           if(repository.existsById(id)){
                System.out.println("------ TESTE ----- ");
-               delete(id);
+               //delete(id);
                System.out.println("---- teste ---- ");
                return save(inboundOrderDTO);
           }
