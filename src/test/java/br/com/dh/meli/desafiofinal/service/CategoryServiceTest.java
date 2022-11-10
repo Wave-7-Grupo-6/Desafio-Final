@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.CategoryDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Category;
@@ -22,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CategoryServiceTest {
@@ -61,5 +62,15 @@ class CategoryServiceTest {
         assertThat(categories.get(0).getId()).isEqualTo(getCategory().getId());
         assertThat(categories.get(0).getName()).isEqualTo(getCategory().getName());
         assertThat(categories.get(0).getTemperature()).isEqualTo(getCategory().getTemperature());
+    }
+
+    @Test
+    void save_returnVoid_whenCategoryIsSaved() {
+        doReturn(getCategory()).when(categoryRepository).save(any());
+
+        CategoryDTO categoryDTO = new CategoryDTO(getCategory());
+        categoryService.save(categoryDTO);
+
+        assertThat(categoryDTO).isNotNull();
     }
 }
