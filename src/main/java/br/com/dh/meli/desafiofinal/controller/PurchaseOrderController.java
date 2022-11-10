@@ -22,6 +22,11 @@ public class PurchaseOrderController {
         return service.save(purchaseOrderDTO);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<PurchaseOrder> update(@PathVariable Long id){
+        return new ResponseEntity<>(service.update(id), HttpStatus.CREATED);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<PurchaseOrder> getById(@PathVariable Long id){
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
