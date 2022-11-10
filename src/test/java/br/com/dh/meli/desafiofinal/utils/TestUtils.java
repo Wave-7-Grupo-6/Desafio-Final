@@ -3,6 +3,8 @@ package br.com.dh.meli.desafiofinal.utils;
 import br.com.dh.meli.desafiofinal.model.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -27,5 +29,9 @@ public class TestUtils {
 
     public static Announcement getAnnouncement(){
         return new Announcement(1L, "Announcement 1", new BigDecimal(50.0), getCategory(), getSeller());
+    }
+
+    public static Batch getBatch(){
+        return new Batch(1L,10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),getAnnouncement(), null, getSection() );
     }
 }

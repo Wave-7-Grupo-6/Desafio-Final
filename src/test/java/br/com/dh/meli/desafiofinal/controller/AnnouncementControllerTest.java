@@ -125,10 +125,30 @@ class AnnouncementControllerTest {
         String category = "Category 1";
 
         mockMvc.perform(
-                        get("/api/v1/fresh-products/list?queryType={category}", category)
+                        get("/api/v1/fresh-products/list?category={category}", category)
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    void findStockByAnnouncement_Id_returnAnnouncementStockDTO_whenSuccess() throws Exception {
+        Announcement announcement = getAnnouncement();
+        announcement.setBatchs(List.of(getBatch()));
+
+        when(announcementService.findById(anyLong())).thenReturn(announcement);
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/list?announcementId={announcementId}", announcement.getId())
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.section.id", CoreMatchers.is(announcement.getBatchs().get(0).getSection().getId().intValue())))
+                .andExpect(jsonPath("$.section.warehouseId", CoreMatchers.is(announcement.getBatchs().get(0).getSection().getWarehouse().getId().intValue())))
+                .andExpect(jsonPath("$.announcementId", CoreMatchers.is(announcement.getId().intValue())))
+                .andExpect(jsonPath("$.batchList[0].id", CoreMatchers.is(announcement.getBatchs().get(0).getId().intValue())))
+                .andExpect(jsonPath("$.batchList[0].productQuantity", CoreMatchers.is(announcement.getBatchs().get(0).getProductQuantity())))
+                .andExpect(jsonPath("$.batchList[0].dueDate", CoreMatchers.is(announcement.getBatchs().get(0).getDueDate().toString())));
     }
 }
