@@ -17,9 +17,10 @@ public class WarehouseController {
     private IWarehouse service;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody WarehouseDTO warehouse){
-        service.save(warehouse);
+    public ResponseEntity<Warehouse> save(@RequestBody WarehouseDTO warehouse){
+        Warehouse warehouseCreated = service.save(warehouse);
+
+        return new ResponseEntity<>(warehouseCreated, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -29,6 +30,6 @@ public class WarehouseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Warehouse> getById(@PathVariable Long id){
-        return new ResponseEntity<>(service.findById(id).get(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 }
