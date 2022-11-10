@@ -3,12 +3,14 @@ package br.com.dh.meli.desafiofinal.service;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,8 +31,12 @@ class AnnouncementServiceTest {
     @Mock
     private ICategory categoryService;
 
-    @InjectMocks
     private IAnnouncement announcementService;
+
+    @BeforeEach
+    void setUp() {
+        announcementService = new AnnouncementService(announcementRepository, categoryService);
+    }
 
     @Test
     void findById_returnAnnouncement_whenAnnouncementExists() {
@@ -80,5 +86,13 @@ class AnnouncementServiceTest {
         List<Announcement> announcementList = announcementService.findByCategory("Category 1");
         assertThat(announcementList).isNotEmpty();
         assertThat(announcementList.size()).isEqualTo(1);
+    }
+
+    @Test
+    void findByCategory_ThrowsNotFoundException_whenAnnouncementDoesntExists() {
+        when(announcementRepository.findByCategory_Id(anyLong())).thenReturn(Collections.emptyList());
+        when(categoryService.findByName(anyString())).thenReturn(getCategory());
+
+        assertThrows(NotFoundException.class, ()-> announcementService.findByCategory("Category 1"));
     }
 }

@@ -16,9 +16,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.Collections;
+import java.util.List;
+
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -91,10 +94,41 @@ class AnnouncementControllerTest {
     }
 
     @Test
-    void findAll() {
+    void findAll_ThrowsNotFoundException_whenAnnouncementDoesntExists() throws Exception {
+        when(announcementService.findAll()).thenReturn(Collections.emptyList());
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isNotFound());
     }
 
     @Test
-    void findByCategory() {
+    void findAll_returnAnnouncementList_whenSuccess() throws Exception {
+        Announcement announcement = getAnnouncement();
+        when(announcementService.findAll()).thenReturn(List.of(announcement));
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    void findByCategory_returnAnnouncementList_whenSuccess() throws Exception {
+        Announcement announcement = getAnnouncement();
+        when(announcementService.findByCategory(anyString())).thenReturn(List.of(announcement));
+
+        String category = "Category 1";
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/list?queryType={category}", category)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
     }
 }
