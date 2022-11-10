@@ -65,6 +65,18 @@ class CategoryServiceTest {
     }
 
     @Test
+    void findByName_returnCategory_whenCategoryExists() {
+        when(categoryRepository.findByName(anyString())).thenReturn(getCategory());
+
+        Category category = categoryService.findByName("Category");
+
+        assertThat(category).isNotNull();
+        assertThat(category.getId()).isEqualTo(getCategory().getId());
+        assertThat(category.getName()).isEqualTo(getCategory().getName());
+        assertThat(category.getTemperature()).isEqualTo(getCategory().getTemperature());
+    }
+
+    @Test
     void save_returnVoid_whenCategoryIsSaved() {
         doReturn(getCategory()).when(categoryRepository).save(any());
 
