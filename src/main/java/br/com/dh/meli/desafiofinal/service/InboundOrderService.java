@@ -76,8 +76,6 @@ public class InboundOrderService implements IInboundOrder{
 
      private void validateCategory(InboundOrder inboundOrder){
           for (Batch batch : inboundOrder.getBatchs()){
-               System.out.println(batch.getAnnouncement().getCategory().getId());
-               System.out.println(inboundOrder.getSection().getId());
                if(!Objects.equals(batch.getAnnouncement().getCategory().getId(), inboundOrder.getSection().getId()))
                     throw new NoCompatibleSectionException("Section no compatible of product's category");
           }
