@@ -46,14 +46,14 @@ public class InboundOrder {
     private Section section;
 
     public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section, List<Announcement> annoucements) {
-        this.id=inboundOrderDTO.getId();
+        this.id = inboundOrderDTO.getId();
         this.orderDate = inboundOrderDTO.getOrderDate();
         this.orderNumber = inboundOrderDTO.getOrderNumber();
         this.section = section;
         this.batchs = new ArrayList<>();
         for(int i = 0; i < inboundOrderDTO.getBatchStockDTOList().size(); i++){
             BatchStockDTO batchStockDTO = inboundOrderDTO.getBatchStockDTOList().get(i);
-            this.batchs.add(batchStockDTO.createBatch(batchStockDTO, annoucements.get(i), this));
+            this.batchs.add(batchStockDTO.createBatch(batchStockDTO, this, annoucements.get(i)));
         }
     }
 }

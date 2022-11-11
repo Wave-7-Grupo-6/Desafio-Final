@@ -24,8 +24,8 @@ public class InboundOrderService implements IInboundOrder{
      @Override
      public List<BatchStockDTO> save(InboundOrderDTO inboundOrderDTO){
          InboundOrder inboundOrder = repository.save(createAtributes(inboundOrderDTO));
-          inboundOrder.setBatchs(inboundOrder.getBatchs().stream().map(batchDTO -> batch.save(batchDTO)).collect(Collectors.toList()));
-          return inboundOrder.getBatchs().stream().map(batch -> new BatchStockDTO(batch)).collect(Collectors.toList());
+
+         return inboundOrder.getBatchs().stream().map(BatchStockDTO::new).collect(Collectors.toList());
      }
 
      @Override
@@ -36,25 +36,14 @@ public class InboundOrderService implements IInboundOrder{
      private InboundOrder createAtributes(InboundOrderDTO inboundOrderDTO){
           List<Announcement> annoucements = inboundOrderDTO.getBatchStockDTOList().stream()
                   .map(batch -> announcement.findById(batch.getProductId())).collect(Collectors.toList());
-          InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()), annoucements);
-          return inboundOrder;
+          return new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()), annoucements);
      }
 
      @Override
      public List<BatchStockDTO> update(Long id, InboundOrderDTO inboundOrderDTO){
           if(repository.existsById(id)){
                inboundOrderDTO.setId(id);
-               System.out.println("------ TESTE ----- ");
-               //delete(id);
-               System.out.println("---- teste ---- ");
                return save(inboundOrderDTO);
-          }
-          throw new NotFoundException("Inbound Order not found.");
-     }
-
-     public void delete(Long id){
-          if(repository.existsById(id)){
-               repository.deleteById(id);
           }
           throw new NotFoundException("Inbound Order not found.");
      }
