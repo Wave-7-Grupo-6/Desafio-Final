@@ -29,7 +29,7 @@ public class TestUtils {
     }
 
     public static Announcement getAnnouncement(){
-        return new Announcement(1L, "Announcement 1", new BigDecimal("50.0"), getCategory(), getSeller());
+        return new Announcement(1L, "Announcement 1", new BigDecimal("50"), getCategory(), getSeller());
     }
 
     public static Client getClient(){
