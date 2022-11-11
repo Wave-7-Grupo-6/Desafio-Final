@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
+import br.com.dh.meli.desafiofinal.exceptions.NoCompatibleSectionException;
 import br.com.dh.meli.desafiofinal.exceptions.NoSpaceAvailableException;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.*;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,10 +48,7 @@ public class InboundOrderService implements IInboundOrder{
                volumeTotal += batchStockDTO.getVolume();
           }
 
-          inboundOrder.getSection().setVolumeOccupied(0f);
-
-          if(inboundOrder.getSection().getVolumeOccupied() + volumeTotal <= inboundOrder.getSection().getVolumeMax())
-               throw new NoSpaceAvailableException("No space avaliable in this section");
+          validations(inboundOrder, volumeTotal);
 
           return inboundOrder;
      }
@@ -61,5 +60,26 @@ public class InboundOrderService implements IInboundOrder{
                return save(inboundOrderDTO);
           }
           throw new NotFoundException("Inbound Order not found.");
+     }
+
+     private void validations(InboundOrder inboundOrder, Float volumeTotal){
+          validateSpaceAvaliable(inboundOrder, volumeTotal);
+          validateCategory(inboundOrder);
+     }
+
+     private void validateSpaceAvaliable(InboundOrder inboundOrder, Float volumeTotal){
+          inboundOrder.getSection().setVolumeOccupied(0f);
+
+          if(inboundOrder.getSection().getVolumeOccupied() + volumeTotal > inboundOrder.getSection().getVolumeMax())
+               throw new NoSpaceAvailableException("No space avaliable in this section");
+     }
+
+     private void validateCategory(InboundOrder inboundOrder){
+          for (Batch batch : inboundOrder.getBatchs()){
+               System.out.println(batch.getAnnouncement().getCategory().getId());
+               System.out.println(inboundOrder.getSection().getId());
+               if(!Objects.equals(batch.getAnnouncement().getCategory().getId(), inboundOrder.getSection().getId()))
+                    throw new NoCompatibleSectionException("Section no compatible of product's category");
+          }
      }
 }

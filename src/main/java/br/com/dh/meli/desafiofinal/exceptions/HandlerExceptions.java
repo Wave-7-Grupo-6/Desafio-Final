@@ -72,6 +72,18 @@ public class HandlerExceptions {
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(NoCompatibleSectionException.class)
+    public ResponseEntity<ExceptionDetails> handlerNoCompatibleSectionException(NoCompatibleSectionException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("No compatible section")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ExceptionDetails> handlerNoSuchElementException(NoSuchElementException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
