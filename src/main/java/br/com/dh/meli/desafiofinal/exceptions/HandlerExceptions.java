@@ -60,6 +60,30 @@ public class HandlerExceptions {
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NoSpaceAvailableException.class)
+    public ResponseEntity<ExceptionDetails> handlerNoSpaceAvailableException(NoSpaceAvailableException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("No space avaliable")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoCompatibleException.class)
+    public ResponseEntity<ExceptionDetails> handlerNoCompatibleException(NoCompatibleException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("No compatible")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ExceptionDetails> handlerNoSuchElementException(NoSuchElementException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
