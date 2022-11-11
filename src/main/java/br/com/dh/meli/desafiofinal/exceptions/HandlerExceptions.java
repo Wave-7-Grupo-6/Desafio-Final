@@ -72,10 +72,10 @@ public class HandlerExceptions {
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(NoCompatibleSectionException.class)
-    public ResponseEntity<ExceptionDetails> handlerNoCompatibleSectionException(NoCompatibleSectionException ex){
+    @ExceptionHandler(NoCompatibleException.class)
+    public ResponseEntity<ExceptionDetails> handlerNoCompatibleException(NoCompatibleException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
-                .title("No compatible section")
+                .title("No compatible")
                 .message(ex.getMessage())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .timestamp(LocalDateTime.now())

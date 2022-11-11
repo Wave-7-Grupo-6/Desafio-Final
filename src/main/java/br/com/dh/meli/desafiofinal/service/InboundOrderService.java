@@ -2,16 +2,14 @@ package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
-import br.com.dh.meli.desafiofinal.exceptions.NoCompatibleSectionException;
+import br.com.dh.meli.desafiofinal.exceptions.NoCompatibleException;
 import br.com.dh.meli.desafiofinal.exceptions.NoSpaceAvailableException;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.repository.InboundOrderRepository;
-import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,7 +21,7 @@ public class InboundOrderService implements IInboundOrder{
      private final InboundOrderRepository repository;
      private final ISection section;
      private final IAnnouncement announcement;
-     private final IBatch batch;
+     private final IWarehouse warehouse;
 
      @Override
      public List<BatchStockDTO> save(InboundOrderDTO inboundOrderDTO){
@@ -48,7 +46,7 @@ public class InboundOrderService implements IInboundOrder{
                volumeTotal += batchStockDTO.getVolume();
           }
 
-          validations(inboundOrder, volumeTotal);
+          validations(inboundOrder, volumeTotal, inboundOrderDTO.getWarehouseId());
 
           return inboundOrder;
      }
@@ -62,9 +60,10 @@ public class InboundOrderService implements IInboundOrder{
           throw new NotFoundException("Inbound Order not found.");
      }
 
-     private void validations(InboundOrder inboundOrder, Float volumeTotal){
+     private void validations(InboundOrder inboundOrder, Float volumeTotal, Long warehouseId){
           validateSpaceAvaliable(inboundOrder, volumeTotal);
           validateCategory(inboundOrder);
+          validateSellerWarehouse(inboundOrder, warehouseId);
      }
 
      private void validateSpaceAvaliable(InboundOrder inboundOrder, Float volumeTotal){
@@ -77,7 +76,16 @@ public class InboundOrderService implements IInboundOrder{
      private void validateCategory(InboundOrder inboundOrder){
           for (Batch batch : inboundOrder.getBatchs()){
                if(!Objects.equals(batch.getAnnouncement().getCategory().getId(), inboundOrder.getSection().getId()))
-                    throw new NoCompatibleSectionException("Section no compatible of product's category");
+                    throw new NoCompatibleException("Section no compatible of product's category");
+          }
+     }
+
+     private void validateSellerWarehouse(InboundOrder inboundOrder, Long warehouseId){
+          for (Batch batch : inboundOrder.getBatchs()){
+               for(Section section : batch.getAnnouncement().getSeller().getSections()){
+                    if(!Objects.equals(section.getWarehouse().getId(), warehouse.findById(warehouseId).getId()))
+                         throw new NoCompatibleException("Section not compatible of warehouse");
+               }
           }
      }
 }
