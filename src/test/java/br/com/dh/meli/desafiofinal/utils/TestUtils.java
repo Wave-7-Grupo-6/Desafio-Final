@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.utils;
 
+import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import br.com.dh.meli.desafiofinal.model.*;
 
 import java.math.BigDecimal;
@@ -37,6 +38,19 @@ public class TestUtils {
     }
 
     public static Batch getBatch(){
+        return new Batch(2L, 1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),getAnnouncement(), null, getSection());
+    }
+
+    public static Batch getLowIdBatch(){
         return new Batch(1L, 1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),getAnnouncement(), null, getSection() );
+    }
+
+    public static PurchaseItem getPurchaseItem(){
+        return new PurchaseItem(1L,20, new BigDecimal(10.0), getAnnouncement(), null);
+    }
+
+    public static PurchaseOrder getPurchaseOrder(){
+        BigDecimal total = getPurchaseItem().getPrice().multiply(new BigDecimal(getPurchaseItem().getQuantity()));
+        return new PurchaseOrder(1L,LocalDate.now(), OrderStatus.PROCESSING,total, getClient(), Set.of(getPurchaseItem()));
     }
 }

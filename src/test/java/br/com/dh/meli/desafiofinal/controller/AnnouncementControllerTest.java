@@ -3,6 +3,7 @@ package br.com.dh.meli.desafiofinal.controller;
 import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
+import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.service.IAnnouncement;
 import br.com.dh.meli.desafiofinal.service.ICategory;
 import br.com.dh.meli.desafiofinal.service.IProductType;
@@ -17,6 +18,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -161,5 +164,27 @@ class AnnouncementControllerTest {
                 .andExpect(jsonPath("$.batchList[0].id", CoreMatchers.is(announcement.getBatchs().get(0).getBatchNumber().intValue())))
                 .andExpect(jsonPath("$.batchList[0].productQuantity", CoreMatchers.is(announcement.getBatchs().get(0).getProductQuantity())))
                 .andExpect(jsonPath("$.batchList[0].dueDate", CoreMatchers.is(announcement.getBatchs().get(0).getDueDate().toString())));
+    }
+
+    @Test
+    void findStockByAnnouncement_IdAndOrderBy_returnCorrectAnnouncementStockDTO_whenSuccess() throws Exception {
+        // Test ordering by Id.
+        Announcement announcement = getAnnouncement();
+        ArrayList<Batch> batchArray = new ArrayList<Batch>(Arrays.asList(getBatch(), getLowIdBatch()));
+        announcement.setBatchs(batchArray);
+
+        when(announcementService.findById(anyLong())).thenReturn(announcement);
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/list?announcementId={announcementId}&orderBy=L", announcement.getId())
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.section.id", CoreMatchers.is(announcement.getBatchs().get(0).getSection().getId().intValue())))
+                .andExpect(jsonPath("$.section.warehouseId", CoreMatchers.is(announcement.getBatchs().get(0).getSection().getWarehouse().getId().intValue())))
+                .andExpect(jsonPath("$.announcementId", CoreMatchers.is(announcement.getId().intValue())))
+                .andExpect(jsonPath("$.batchList[0].id", CoreMatchers.is(announcement.getBatchs().get(1).getBatchNumber().intValue())))
+                .andExpect(jsonPath("$.batchList[0].productQuantity", CoreMatchers.is(announcement.getBatchs().get(1).getProductQuantity())))
+                .andExpect(jsonPath("$.batchList[0].dueDate", CoreMatchers.is(announcement.getBatchs().get(1).getDueDate().toString())));
     }
 }
