@@ -9,6 +9,7 @@ import jdk.swing.interop.SwingInterOpUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,9 +35,14 @@ public class InboundOrderService implements IInboundOrder{
      }
 
      private InboundOrder createAtributes(InboundOrderDTO inboundOrderDTO){
-          List<Announcement> annoucements = inboundOrderDTO.getBatchStockDTOList().stream()
-                  .map(batch -> announcement.findById(batch.getProductId())).collect(Collectors.toList());
-          return new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()), annoucements);
+          InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()));
+
+          for(int i = 0; i < inboundOrderDTO.getBatchStockDTOList().size(); i++){
+               BatchStockDTO batchStockDTO = inboundOrderDTO.getBatchStockDTOList().get(i);
+               inboundOrder.getBatchs().add(batchStockDTO.createBatch(batchStockDTO, inboundOrder, announcement.findById(batchStockDTO.getProductId())));
+          }
+
+          return inboundOrder;
      }
 
      @Override
