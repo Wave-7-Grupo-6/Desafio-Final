@@ -17,7 +17,6 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @ToString
 public class BatchStockDTO {
-    private Long id;
     private Long batchNumber;
     private Long productId;
     private Float currentTemperature;
@@ -29,27 +28,24 @@ public class BatchStockDTO {
     private BigDecimal price;
 
 
-    public Batch createBatch(BatchStockDTO batchStockDTO, Announcement annoucement, InboundOrder inboundOrder){
+    public Batch createBatch(BatchStockDTO batchStockDTO, InboundOrder inboundOrder, Announcement announcement){
         Batch batch = new Batch();
-        batch.setId(batchStockDTO.id);
         batch.setBatchNumber(batchStockDTO.getBatchNumber());
-        batch.setProductId(batchStockDTO.getProductId());
         batch.setCurrentTemperature(batchStockDTO.getCurrentTemperature());
         batch.setProductQuantity(batchStockDTO.getProductQuantity());
         batch.setManufacturingTime(batchStockDTO.getManufacturingTime());
         batch.setManufacturingDate(batchStockDTO.getManufacturingDate());
         batch.setVolume(batchStockDTO.getVolume());
         batch.setDueDate(batchStockDTO.getDueDate());
-        batch.setAnnouncement(annoucement);
         batch.setInboundOrder(inboundOrder);
+        batch.setAnnouncement(announcement);
         batch.setSection(inboundOrder.getSection());
         return batch;
     }
 
     public BatchStockDTO(Batch batch) {
-        this.id = batch.getId();
         this.batchNumber = batch.getBatchNumber();
-        this.productId = batch.getProductId();
+        this.productId = batch.getAnnouncement().getId();
         this.currentTemperature = batch.getCurrentTemperature();
         this.productQuantity = batch.getProductQuantity();
         this.manufacturingDate = batch.getManufacturingDate();
