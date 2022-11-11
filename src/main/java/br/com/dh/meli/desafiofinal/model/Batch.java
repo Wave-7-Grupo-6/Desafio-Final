@@ -57,4 +57,5 @@ public class Batch {
     @JsonIgnoreProperties("batchs")
     @JsonBackReference
     private Section section;
+
 }
