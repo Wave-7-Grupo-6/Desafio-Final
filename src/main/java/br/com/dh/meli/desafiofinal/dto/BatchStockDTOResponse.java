@@ -18,7 +18,7 @@ public class BatchStockDTOResponse {
     private LocalDate dueDate;
 
     public BatchStockDTOResponse(Batch batch) {
-        this.id = batch.getId();
+        this.id = batch.getBatchNumber();
         this.productQuantity = batch.getProductQuantity();
         this.dueDate = batch.getDueDate();
     }

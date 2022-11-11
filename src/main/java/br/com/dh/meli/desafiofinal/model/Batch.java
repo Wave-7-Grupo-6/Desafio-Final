@@ -2,10 +2,7 @@ package br.com.dh.meli.desafiofinal.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,12 +13,14 @@ import java.time.LocalTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Batch {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long batchNumber;
 
-    //TODO acrescentar batchNumber (retorno da atividade) - agora está retornando null
+    @Column
+    private Long productId;
 
     @Column(nullable = false)
     private Float currentTemperature;

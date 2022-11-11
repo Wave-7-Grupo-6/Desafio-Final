@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InboundOrderDTO {
+    private Long id;
     private Long orderNumber;
     private LocalDate orderDate;
     private Long sectionId;
