@@ -24,10 +24,10 @@ INSERT INTO inbound_order VALUES (1,'2022-11-09', 1234, 1);
 INSERT INTO inbound_order VALUES (2,'2022-11-09', 1235, 2);
 INSERT INTO inbound_order VALUES (3,'2022-11-09', 1239, 3);
 
-INSERT INTO batch (id, batch_number, product_id, current_temperature, due_date, manufacturing_date, manufacturing_time, product_quantity, volume, annoucement_id, inbound_order, section_id) VALUES
-                      (null, 1, null, 20, '2022-12-01', '2022-11-09', '00:00:00', 10, 0.5, 1, 1, 1),
-                      (null, 2, null, 10, '2022-12-09', '2022-11-09', '00:00:00', 10, 0.5, 2, 2, 2),
-                      (null, 3, null, 0, '2023-01-10', '2022-11-09', '00:00:00', 10, 0.5, 3, 3, 3);
+INSERT INTO batch (batch_number, current_temperature, due_date, manufacturing_date, manufacturing_time, product_quantity, volume, annoucement_id, inbound_order, section_id) VALUES
+                      (1, 10, '2022-12-01', '2022-11-09', '00:00:00', 10, 0.5, 1, 1, 1),
+                      (2, 5, '2022-12-09', '2022-11-09', '00:00:00', 10, 0.5, 2, 2, 2),
+                      (3, -5, '2023-01-10', '2022-11-09', '00:00:00', 10, 0.5, 3, 3, 3);
 
 INSERT INTO cart VALUES (1, 1);
 
