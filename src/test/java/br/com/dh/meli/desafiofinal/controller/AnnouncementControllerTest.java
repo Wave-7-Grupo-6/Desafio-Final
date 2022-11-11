@@ -147,7 +147,7 @@ class AnnouncementControllerTest {
                 .andExpect(jsonPath("$.section.id", CoreMatchers.is(announcement.getBatchs().get(0).getSection().getId().intValue())))
                 .andExpect(jsonPath("$.section.warehouseId", CoreMatchers.is(announcement.getBatchs().get(0).getSection().getWarehouse().getId().intValue())))
                 .andExpect(jsonPath("$.announcementId", CoreMatchers.is(announcement.getId().intValue())))
-                .andExpect(jsonPath("$.batchList[0].id", CoreMatchers.is(announcement.getBatchs().get(0).getId().intValue())))
+                .andExpect(jsonPath("$.batchList[0].id", CoreMatchers.is(announcement.getBatchs().get(0).getBatchNumber().intValue())))
                 .andExpect(jsonPath("$.batchList[0].productQuantity", CoreMatchers.is(announcement.getBatchs().get(0).getProductQuantity())))
                 .andExpect(jsonPath("$.batchList[0].dueDate", CoreMatchers.is(announcement.getBatchs().get(0).getDueDate().toString())));
     }
