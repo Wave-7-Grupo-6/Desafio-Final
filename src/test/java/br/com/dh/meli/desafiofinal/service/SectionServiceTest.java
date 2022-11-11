@@ -42,7 +42,7 @@ public class SectionServiceTest {
     }
 
     @Test
-    void findById_throwsNotFoundException_whenReturnIsEmpty() {
+    void findById_throwsNoSuchElementException_whenReturnIsEmpty() {
         when(repository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> service.findById(1L));
