@@ -82,13 +82,13 @@ public class AnnouncementController {
         List<BatchStockDTOResponse> batchStockDTOResponse = announcement.getBatchs().stream()
                 .map(BatchStockDTOResponse::new)
                 .collect(Collectors.toList());
-        
+
         if(Objects.equals(orderBy, "L")){
             batchStockDTOResponse.sort(Comparator.comparing(BatchStockDTOResponse::getId));
         } else if (Objects.equals(orderBy, "Q")) {
             batchStockDTOResponse.sort(Comparator.comparing(BatchStockDTOResponse::getProductQuantity));
         } else if(Objects.equals(orderBy, "V")){
-            batchStockDTOResponse.sort(Comparator.comparing(BatchStockDTOResponse::getId));
+            batchStockDTOResponse.sort(Comparator.comparing(BatchStockDTOResponse::getDueDate));
         }
 
         return new AnnouncementStockDTO(sectionDTO,announcementId, batchStockDTOResponse);
