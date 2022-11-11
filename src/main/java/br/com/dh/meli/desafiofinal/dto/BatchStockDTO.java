@@ -17,6 +17,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @ToString
 public class BatchStockDTO {
+    private Long id;
     private Long batchNumber;
     private Long productId;
     private Float currentTemperature;
@@ -29,8 +30,8 @@ public class BatchStockDTO {
 
 
     public Batch createBatch(BatchStockDTO batchStockDTO, Announcement annoucement, InboundOrder inboundOrder){
-
         Batch batch = new Batch();
+        batch.setId(batchStockDTO.id);
         batch.setBatchNumber(batchStockDTO.getBatchNumber());
         batch.setProductId(batchStockDTO.getProductId());
         batch.setCurrentTemperature(batchStockDTO.getCurrentTemperature());
@@ -46,6 +47,7 @@ public class BatchStockDTO {
     }
 
     public BatchStockDTO(Batch batch) {
+        this.id = batch.getId();
         this.batchNumber = batch.getBatchNumber();
         this.productId = batch.getProductId();
         this.currentTemperature = batch.getCurrentTemperature();

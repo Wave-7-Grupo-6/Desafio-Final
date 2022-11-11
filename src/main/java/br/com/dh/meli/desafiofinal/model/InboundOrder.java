@@ -34,7 +34,7 @@ public class InboundOrder {
     @Column(nullable = false)
     private Long orderNumber;
 
-    @OneToMany(mappedBy = "inboundOrder")
+    @OneToMany(mappedBy = "inboundOrder", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JsonIgnoreProperties("inboundOrder")
     @JsonManagedReference
     private List<Batch> batchs;
@@ -46,6 +46,7 @@ public class InboundOrder {
     private Section section;
 
     public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section, List<Announcement> annoucements) {
+        this.id=inboundOrderDTO.getId();
         this.orderDate = inboundOrderDTO.getOrderDate();
         this.orderNumber = inboundOrderDTO.getOrderNumber();
         this.section = section;
