@@ -14,7 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -72,4 +74,25 @@ public class AnnouncementController {
                 .collect(Collectors.toList());
         return new AnnouncementStockDTO(sectionDTO,announcementId, batchStockDTOResponse);
     }
+
+    @GetMapping(value = "/list", params = {"announcementId", "orderBy"})
+    public AnnouncementStockDTO findStockByAnnouncement_IdAndOrdered(@RequestParam Long announcementId, @RequestParam String orderBy){
+        Announcement announcement = announcementService.findById(announcementId);
+        SectionDTO sectionDTO = new SectionDTO(announcement.getBatchs().get(0).getSection());
+        List<BatchStockDTOResponse> batchStockDTOResponse = announcement.getBatchs().stream()
+                .map(BatchStockDTOResponse::new)
+                .collect(Collectors.toList());
+        
+        if(Objects.equals(orderBy, "L")){
+            batchStockDTOResponse.sort(Comparator.comparing(BatchStockDTOResponse::getId));
+        } else if (Objects.equals(orderBy, "Q")) {
+            batchStockDTOResponse.sort(Comparator.comparing(BatchStockDTOResponse::getProductQuantity));
+        } else if(Objects.equals(orderBy, "V")){
+            batchStockDTOResponse.sort(Comparator.comparing(BatchStockDTOResponse::getId));
+        }
+
+        return new AnnouncementStockDTO(sectionDTO,announcementId, batchStockDTOResponse);
+    }
+
+
 }
