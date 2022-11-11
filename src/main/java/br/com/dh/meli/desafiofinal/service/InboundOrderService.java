@@ -43,6 +43,7 @@ public class InboundOrderService implements IInboundOrder{
      @Override
      public List<BatchStockDTO> update(Long id, InboundOrderDTO inboundOrderDTO){
           if(repository.existsById(id)){
+               inboundOrderDTO.setId(id);
                System.out.println("------ TESTE ----- ");
                //delete(id);
                System.out.println("---- teste ---- ");
