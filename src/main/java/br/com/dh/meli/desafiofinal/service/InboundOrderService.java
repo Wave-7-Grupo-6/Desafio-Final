@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
+import br.com.dh.meli.desafiofinal.exceptions.NoSpaceAvailableException;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.repository.InboundOrderRepository;
@@ -36,11 +37,19 @@ public class InboundOrderService implements IInboundOrder{
 
      private InboundOrder createAtributes(InboundOrderDTO inboundOrderDTO){
           InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()));
+          Float volumeTotal = 0f;
 
           for(int i = 0; i < inboundOrderDTO.getBatchStockDTOList().size(); i++){
                BatchStockDTO batchStockDTO = inboundOrderDTO.getBatchStockDTOList().get(i);
                inboundOrder.getBatchs().add(batchStockDTO.createBatch(batchStockDTO, inboundOrder, announcement.findById(batchStockDTO.getProductId())));
+
+               volumeTotal += batchStockDTO.getVolume();
           }
+
+          inboundOrder.getSection().setVolumeOccupied(0f);
+
+          if(inboundOrder.getSection().getVolumeOccupied() + volumeTotal <= inboundOrder.getSection().getVolumeMax())
+               throw new NoSpaceAvailableException("No space avaliable in this section");
 
           return inboundOrder;
      }
