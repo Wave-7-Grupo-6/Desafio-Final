@@ -56,7 +56,7 @@ class PurchaseOrderControllerTest {
     void update_returnUpdatedPurchaseOrder_whenSuccess() throws Exception {
         PurchaseOrder purchaseOrder = getPurchaseOrder();
         purchaseOrder.setOrderStatus(OrderStatus.DELIVERED);
-        when(purchaseOrderService.update(purchaseOrder.getId())).thenReturn(purchaseOrder);
+        when(purchaseOrderService.updateStatusToDelivered(purchaseOrder.getId())).thenReturn(purchaseOrder);
 
         mockMvc.perform(
                         put("/api/v1/purchase-order/{id}", purchaseOrder.getId())
@@ -80,7 +80,7 @@ class PurchaseOrderControllerTest {
                 .andExpect(jsonPath("$.date", CoreMatchers.is(purchaseOrder.getDate().toString())))
                 .andExpect(jsonPath("$.orderStatus", CoreMatchers.is(purchaseOrder.getOrderStatus().toString())))
                 .andExpect(jsonPath("$.totalPrice", CoreMatchers.is(purchaseOrder.getTotalPrice().intValue())))
-                .andExpect(jsonPath("$.client.id", CoreMatchers.is(purchaseOrder.getClient().getId().intValue())))
-                .andExpect(jsonPath("$.purchaseItems", hasSize(1)));
+                .andExpect(jsonPath("$.buyerId", CoreMatchers.is(purchaseOrder.getClient().getId().intValue())))
+                .andExpect(jsonPath("$.products", hasSize(1)));
     }
 }

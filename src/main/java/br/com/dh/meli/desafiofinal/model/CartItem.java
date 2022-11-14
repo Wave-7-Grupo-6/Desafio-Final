@@ -38,7 +38,4 @@ public class CartItem {
     @JsonBackReference
     private Cart cart;
 
-    public void calculateValue(){
-        value = announcement.getPrice().multiply(BigDecimal.valueOf(this.quantity));
-    }
 }

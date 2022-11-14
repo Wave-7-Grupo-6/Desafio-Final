@@ -11,5 +11,5 @@ public interface IPurchaseOrder {
     List<PurchaseOrder> getAll();
     PurchaseOrder findById(Long id);
 
-    PurchaseOrder update(Long id);
+    PurchaseOrder updateStatusToDelivered(Long id);
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IBatch {
     Batch save(Batch batch);
-    List<BatchDTO> findByDueDateIsBefore(int days, Long sectionId, Long sellerId);
+
 }

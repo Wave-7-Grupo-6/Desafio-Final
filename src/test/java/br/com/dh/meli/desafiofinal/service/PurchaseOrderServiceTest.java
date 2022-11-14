@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
+import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.model.PurchaseOrder;
 import br.com.dh.meli.desafiofinal.repository.PurchaseOrderRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,21 +32,23 @@ class PurchaseOrderServiceTest {
     private IAnnouncement announcementService;
     @Mock
     private IClient clientService;
-
+    @Mock
+    private IBatch batchService;
     private IPurchaseOrder purchaseOrderService;
 
     @BeforeEach
     void setUp() {
-        purchaseOrderService = new PurchaseOrderService(repository, announcementService, clientService);
+        purchaseOrderService = new PurchaseOrderService(repository, announcementService, clientService, batchService);
     }
 
     @Test
     void save_returnTotal_whenSuccess() {
         PurchaseOrder purchaseOrder = getPurchaseOrder();
-        PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO(purchaseOrder);
+        PurchaseOrderDTO purchaseOrderDTO = getPurchaseOrderDTO();
         when(repository.save(any(PurchaseOrder.class))).thenReturn(purchaseOrder);
         when(announcementService.findById(anyLong())).thenReturn(getAnnouncement());
         when(clientService.findById(anyLong())).thenReturn(getClient());
+        when(batchService.findById(anyLong())).thenReturn(getLowIdBatch());
 
         BigDecimal total = purchaseOrderService.save(purchaseOrderDTO);
 
@@ -57,7 +60,7 @@ class PurchaseOrderServiceTest {
         PurchaseOrder purchaseOrder = getPurchaseOrder();
         when(repository.findById(anyLong())).thenReturn(Optional.of(purchaseOrder));
 
-        assertThat(purchaseOrderService.update(1L).getOrderStatus()).isEqualTo(OrderStatus.DELIVERED);
+        assertThat(purchaseOrderService.updateStatusToDelivered(1L).getOrderStatus()).isEqualTo(OrderStatus.DELIVERED);
     }
 
     @Test
