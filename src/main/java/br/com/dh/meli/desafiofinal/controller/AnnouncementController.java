@@ -25,6 +25,8 @@ public class AnnouncementController {
     private ICategory categoryService;
     @Autowired
     private IProductType productTypeService;
+    @Autowired
+    private IBatch batchService;
 
     @PostMapping
     public ResponseEntity<AnnouncementDTO> save(@RequestBody AnnouncementDTO announcementDTO){
@@ -94,5 +96,10 @@ public class AnnouncementController {
     @GetMapping("/by_prod/{prod_id}")
     public ResponseEntity<ProductTypeDTO> findByProductType(@PathVariable Long prod_id){
         return new ResponseEntity<>(announcementService.findByProductTypeGroupByWarehouse(prod_id), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/due-date", params = {"days", "section", "seller"})
+    public ResponseEntity<List<BatchDTO>> findByDueDate(@RequestParam Integer days, @RequestParam Long section, @RequestParam Long seller){
+        return new ResponseEntity<>(batchService.findByDueDateIsBefore(days, section, seller), HttpStatus.OK);
     }
 }
