@@ -1,9 +1,6 @@
 package br.com.dh.meli.desafiofinal.controller;
 
-import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
-import br.com.dh.meli.desafiofinal.dto.BatchStockDTOResponse;
-import br.com.dh.meli.desafiofinal.dto.SectionDTO;
-import br.com.dh.meli.desafiofinal.dto.AnnouncementStockDTO;
+import br.com.dh.meli.desafiofinal.dto.*;
 import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,5 +91,8 @@ public class AnnouncementController {
         return new AnnouncementStockDTO(sectionDTO,announcementId, batchStockDTOResponse);
     }
 
-
+    @GetMapping("/by_prod/{prod_id}")
+    public ResponseEntity<ProductTypeDTO> findByProductType(@PathVariable Long prod_id){
+        return new ResponseEntity<>(announcementService.findByProductTypeGroupByWarehouse(prod_id), HttpStatus.OK);
+    }
 }
