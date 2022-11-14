@@ -68,9 +68,11 @@ public class Section {
 
     private void calculateVolumeOccupied(){
         this.volumeOccupied = 0f;
-        for(InboundOrder inboundOrder : inboundOrders){
-            for(Batch batch : inboundOrder.getBatchs()){
-                this.volumeOccupied += batch.getVolume();
+        if(inboundOrders != null){
+            for(InboundOrder inboundOrder : inboundOrders){
+                for(Batch batch : inboundOrder.getBatchs()){
+                    this.volumeOccupied += batch.getVolume();
+                }
             }
         }
     }

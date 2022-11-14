@@ -5,10 +5,7 @@ import br.com.dh.meli.desafiofinal.dto.BatchStockDTOResponse;
 import br.com.dh.meli.desafiofinal.dto.SectionDTO;
 import br.com.dh.meli.desafiofinal.dto.AnnouncementStockDTO;
 import br.com.dh.meli.desafiofinal.model.*;
-import br.com.dh.meli.desafiofinal.service.IAnnouncement;
-import br.com.dh.meli.desafiofinal.service.ICategory;
-import br.com.dh.meli.desafiofinal.service.ISection;
-import br.com.dh.meli.desafiofinal.service.ISeller;
+import br.com.dh.meli.desafiofinal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,12 +26,16 @@ public class AnnouncementController {
     private ISeller sellerService;
     @Autowired
     private ICategory categoryService;
+    @Autowired
+    private IProductType productTypeService;
 
     @PostMapping
     public ResponseEntity<AnnouncementDTO> save(@RequestBody AnnouncementDTO announcementDTO){
         Seller seller = sellerService.findById(announcementDTO.getSellerId());
         Category category = categoryService.findById(announcementDTO.getCategoryId());
-        Announcement announcement = new Announcement(null, announcementDTO.getDescription(), category, seller);
+        ProductType productType = productTypeService.findById(announcementDTO.getProductTypeId());
+        Announcement announcement = new Announcement(null, announcementDTO.getDescription(),
+                category, seller, productType);
 
         Announcement savedAnnouncement = announcementService.save(announcement);
 

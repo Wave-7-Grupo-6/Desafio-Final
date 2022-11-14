@@ -5,10 +5,12 @@ INSERT INTO category VALUES
                          (null, 'REFRIGERADO', 10),
                          (null, 'CONGELADO', 0);
 
-INSERT INTO announcement VALUES
-                             (null, 'tilápia', 1, 1),
-                             (null, 'presunto', 2, 1),
-                             (null, 'lasanha', 3, 1);
+INSERT INTO product_type VALUES (1, "laranja"), (2, "pera"), (3, "banana");
+
+INSERT INTO announcement (id, description, category_id, seller_id, product_type_id) VALUES
+                             (null, 'tilápia', 1, 1, 1),
+                             (null, 'presunto', 2, 1, 1),
+                             (null, 'lasanha', 3, 1, 3);
 
 INSERT INTO warehouse VALUES (null, 'Armazem Meli SP');
 

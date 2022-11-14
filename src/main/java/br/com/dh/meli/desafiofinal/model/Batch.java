@@ -20,9 +20,6 @@ public class Batch {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long batchNumber;
 
-    @Column
-    private Long productId;
-
     @Column(nullable = false)
     private Float currentTemperature;
 

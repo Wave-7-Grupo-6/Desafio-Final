@@ -45,4 +45,11 @@ public class PurchaseOrder {
         this.orderStatus = purchaseOrderDTO.getOrderStatus();
         this.client = client;
     }
+
+    public BigDecimal getTotalPrice() {
+        this.totalPrice = this.purchaseItems != null ? purchaseItems.stream()
+                .map(item -> item.getPrice().multiply(new BigDecimal(item.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add) : null;
+        return this.totalPrice;
+    }
 }

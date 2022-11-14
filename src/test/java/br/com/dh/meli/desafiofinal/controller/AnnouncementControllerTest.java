@@ -6,6 +6,7 @@ import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.service.IAnnouncement;
 import br.com.dh.meli.desafiofinal.service.ICategory;
+import br.com.dh.meli.desafiofinal.service.IProductType;
 import br.com.dh.meli.desafiofinal.service.ISeller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
@@ -49,11 +50,15 @@ class AnnouncementControllerTest {
     @MockBean
     private ICategory categoryService;
 
+    @MockBean
+    private IProductType productTypeService;
+
     @Test
     void save_returnAnnouncementAndCreatedStatus_whenAnnouncementValid() throws Exception {
         Announcement announcement = getAnnouncement();
         when(sellerService.findById(anyLong())).thenReturn(getSeller());
         when(categoryService.findById(anyLong())).thenReturn(getCategory());
+        when(productTypeService.findById(anyLong())).thenReturn(getProductType());
         when(announcementService.save(any())).thenReturn(getAnnouncement());
 
         AnnouncementDTO announcementDTO = new AnnouncementDTO(announcement);
@@ -72,6 +77,7 @@ class AnnouncementControllerTest {
     void findById_returnAnnouncementAndSuccess_whenAnnouncementExists() throws Exception {
         Announcement announcement = getAnnouncement();
         when(announcementService.findById(anyLong())).thenReturn(announcement);
+        when(productTypeService.findById(anyLong())).thenReturn(getProductType());
 
         mockMvc.perform(
                         get("/api/v1/fresh-products/{id}", announcement.getId())
@@ -86,6 +92,7 @@ class AnnouncementControllerTest {
     void findById_ThrowsNotFoundException_whenAnnouncementDoesntExists() throws Exception {
         Announcement announcement = getAnnouncement();
         when(announcementService.findById(anyLong())).thenThrow(NotFoundException.class);
+        when(productTypeService.findById(anyLong())).thenReturn(getProductType());
 
         mockMvc.perform(
                         get("/api/v1/fresh-products/{id}", announcement.getId())
@@ -97,6 +104,7 @@ class AnnouncementControllerTest {
     @Test
     void findAll_ThrowsNotFoundException_whenAnnouncementDoesntExists() throws Exception {
         when(announcementService.findAll()).thenReturn(Collections.emptyList());
+        when(productTypeService.findById(anyLong())).thenReturn(getProductType());
 
         mockMvc.perform(
                         get("/api/v1/fresh-products")
@@ -109,6 +117,7 @@ class AnnouncementControllerTest {
     void findAll_returnAnnouncementList_whenSuccess() throws Exception {
         Announcement announcement = getAnnouncement();
         when(announcementService.findAll()).thenReturn(List.of(announcement));
+        when(productTypeService.findById(anyLong())).thenReturn(getProductType());
 
         mockMvc.perform(
                         get("/api/v1/fresh-products")
@@ -122,6 +131,7 @@ class AnnouncementControllerTest {
     void findByCategory_returnAnnouncementList_whenSuccess() throws Exception {
         Announcement announcement = getAnnouncement();
         when(announcementService.findByCategory(anyString())).thenReturn(List.of(announcement));
+        when(productTypeService.findById(anyLong())).thenReturn(getProductType());
 
         String category = "Category 1";
 
@@ -139,6 +149,7 @@ class AnnouncementControllerTest {
         announcement.setBatchs(List.of(getBatch()));
 
         when(announcementService.findById(anyLong())).thenReturn(announcement);
+        when(productTypeService.findById(anyLong())).thenReturn(getProductType());
 
         mockMvc.perform(
                         get("/api/v1/fresh-products/list?announcementId={announcementId}", announcement.getId())
