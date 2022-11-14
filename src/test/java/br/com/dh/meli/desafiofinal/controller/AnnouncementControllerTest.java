@@ -4,10 +4,7 @@ import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Batch;
-import br.com.dh.meli.desafiofinal.service.IAnnouncement;
-import br.com.dh.meli.desafiofinal.service.ICategory;
-import br.com.dh.meli.desafiofinal.service.IProductType;
-import br.com.dh.meli.desafiofinal.service.ISeller;
+import br.com.dh.meli.desafiofinal.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
@@ -52,6 +49,9 @@ class AnnouncementControllerTest {
 
     @MockBean
     private IProductType productTypeService;
+
+    @MockBean
+    private IBatch batchService;
 
     @Test
     void save_returnAnnouncementAndCreatedStatus_whenAnnouncementValid() throws Exception {

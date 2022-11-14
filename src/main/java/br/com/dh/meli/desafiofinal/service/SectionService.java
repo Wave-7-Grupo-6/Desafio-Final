@@ -16,4 +16,9 @@ public class SectionService implements ISection{
     public Section findById(Long id) {
         return repo.findById(id).orElseThrow(() -> new NoSuchElementException("Section not found!"));
     }
+
+    @Override
+    public Section save(Section section) {
+        return repo.save(section);
+    }
 }
