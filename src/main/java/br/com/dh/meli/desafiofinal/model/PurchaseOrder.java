@@ -3,6 +3,7 @@ package br.com.dh.meli.desafiofinal.model;
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,23 +22,28 @@ import java.util.Set;
 public class PurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @ApiModelProperty(notes = "The database generated purchase order ID")
     private Long id;
 
+    @ApiModelProperty(notes = "The purchase order date")
     private LocalDate date;
 
     @Enumerated(EnumType.STRING)
+    @ApiModelProperty(notes = "The purchase order status")
     private OrderStatus orderStatus;
 
     @Transient
+    @ApiModelProperty(notes = "The purchase order total value")
     private BigDecimal totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
+    @ApiModelProperty(notes = "The purchase order client")
     private Client client;
 
     @OneToMany(mappedBy = "purchaseOrder", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("purchaseOrder")
+    @ApiModelProperty(notes = "The purchase order items")
     private Set<PurchaseItem> purchaseItems;
 
     public PurchaseOrder(PurchaseOrderDTO purchaseOrderDTO, Client client) {
