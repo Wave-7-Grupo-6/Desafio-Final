@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -64,11 +65,13 @@ public class BatchServiceTest {
         when(sectionService.findById(anyLong())).thenReturn(getSection());
         when(sellerService.findById(anyLong())).thenReturn(getSeller());
 
-        List<BatchDTO> batches = service.findByDueDateIsBefore(10, batch.getSection().getId(), batch.getAnnouncement().getSeller().getId());
+        int days = 30;
+
+        List<BatchDTO> batches = service.findByDueDateIsBefore(days, batch.getSection().getId(), batch.getAnnouncement().getSeller().getId());
 
         assertThat(batches).isNotNull();
         assertThat(batches).hasSize(1);
-        assertThat(batches.get(0).getDueDate()).isEqualTo(batch.getDueDate());
+        assertThat(batches.get(0).getDueDate().isBefore(LocalDate.now().plusDays(days + 1))).isTrue();
     }
 
     @Test
