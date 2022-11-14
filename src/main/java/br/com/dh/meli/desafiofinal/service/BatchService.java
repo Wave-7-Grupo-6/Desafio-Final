@@ -56,7 +56,8 @@ public class BatchService implements IBatch{
         Seller seller = sellerService.findById(sellerId);
         Section section = sectionService.findById(sectionId);
 
-        seller.getSections().stream().map(Section::getId).filter(section.getId()::equals).findFirst()
-                .orElseThrow(() -> new NoCompatibleException("Seller or section are not compatible"));
+        if(seller == null || section == null){
+            throw new NotFoundException("Seller or Section not found.");
+        }
     }
 }
