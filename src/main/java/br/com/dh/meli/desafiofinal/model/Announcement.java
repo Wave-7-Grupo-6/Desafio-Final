@@ -23,9 +23,6 @@ public class Announcement {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private BigDecimal price;
-
     @NotNull
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -49,10 +46,9 @@ public class Announcement {
     @JsonIgnoreProperties("announcements")
     private Seller seller;
 
-    public Announcement(Long id, String description, BigDecimal price, Category category, Seller seller) {
+    public Announcement(Long id, String description, Category category, Seller seller) {
         this.id = id;
         this.description = description;
-        this.price = price;
         this.category = category;
         this.seller = seller;
     }

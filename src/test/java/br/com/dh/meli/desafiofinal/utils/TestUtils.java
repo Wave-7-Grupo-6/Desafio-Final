@@ -29,7 +29,7 @@ public class TestUtils {
     }
 
     public static Announcement getAnnouncement(){
-        return new Announcement(1L, "Announcement 1", new BigDecimal("50"), getCategory(), getSeller());
+        return new Announcement(1L, "Announcement 1", getCategory(), getSeller());
     }
 
     public static Client getClient(){
@@ -37,11 +37,11 @@ public class TestUtils {
     }
 
     public static Batch getBatch(){
-        return new Batch(2L, 1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),getAnnouncement(), null, getSection());
+        return new Batch(2L, 1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0),getAnnouncement(), null, getSection());
     }
 
     public static Batch getLowIdBatch(){
-        return new Batch(1L, 1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),getAnnouncement(), null, getSection() );
+        return new Batch(1L, 1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0),getAnnouncement(), null, getSection() );
     }
 
     public static PurchaseItem getPurchaseItem(){

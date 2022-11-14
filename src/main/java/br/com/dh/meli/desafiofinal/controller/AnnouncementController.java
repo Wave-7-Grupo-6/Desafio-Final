@@ -34,8 +34,7 @@ public class AnnouncementController {
     public ResponseEntity<AnnouncementDTO> save(@RequestBody AnnouncementDTO announcementDTO){
         Seller seller = sellerService.findById(announcementDTO.getSellerId());
         Category category = categoryService.findById(announcementDTO.getCategoryId());
-        Announcement announcement = new Announcement(null, announcementDTO.getDescription(),
-                announcementDTO.getPrice(), category, seller);
+        Announcement announcement = new Announcement(null, announcementDTO.getDescription(), category, seller);
 
         Announcement savedAnnouncement = announcementService.save(announcement);
 

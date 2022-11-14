@@ -33,9 +33,9 @@ public class PurchaseItem {
     @JsonIgnoreProperties("purchaseItems")
     private PurchaseOrder purchaseOrder;
 
-    public PurchaseItem(Integer quantity, Announcement announcement, PurchaseOrder purchaseOrder) {
+    public PurchaseItem(Integer quantity, BigDecimal price, Announcement announcement, PurchaseOrder purchaseOrder) {
         this.quantity = quantity;
-        this.price = announcement.getPrice();
+        this.price = price;
         this.announcement = announcement;
         this.purchaseOrder = purchaseOrder;
     }

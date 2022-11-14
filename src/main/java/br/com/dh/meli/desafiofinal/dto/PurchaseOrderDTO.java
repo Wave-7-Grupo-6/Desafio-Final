@@ -26,7 +26,7 @@ public class PurchaseOrderDTO {
         this.buyerId = purchaseOrder.getClient().getId();
         this.orderStatus = purchaseOrder.getOrderStatus();
         this.products = purchaseOrder.getPurchaseItems().stream()
-                .map(item -> new ProductDTO(item.getAnnouncement().getId(), item.getQuantity()))
+                .map(item -> new ProductDTO(item.getAnnouncement().getId(), item.getQuantity(), null))
                 .collect(Collectors.toList());
     }
 }

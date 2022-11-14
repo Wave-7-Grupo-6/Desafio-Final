@@ -6,9 +6,9 @@ INSERT INTO category VALUES
                          (null, 'CONGELADO', 0);
 
 INSERT INTO announcement VALUES
-                             (null, 'tilápia', 44.0, 1, 1),
-                             (null, 'presunto', 10.0, 2, 1),
-                             (null, 'lasanha', 12.9, 3, 1);
+                             (null, 'tilápia', 1, 1),
+                             (null, 'presunto', 2, 1),
+                             (null, 'lasanha', 3, 1);
 
 INSERT INTO warehouse VALUES (null, 'Armazem Meli SP');
 
@@ -24,10 +24,10 @@ INSERT INTO inbound_order VALUES (1,'2022-11-09', 1234, 1);
 INSERT INTO inbound_order VALUES (2,'2022-11-09', 1235, 2);
 INSERT INTO inbound_order VALUES (3,'2022-11-09', 1239, 3);
 
-INSERT INTO batch (batch_number, current_temperature, due_date, manufacturing_date, manufacturing_time, product_quantity, volume, annoucement_id, inbound_order, section_id) VALUES
-                      (1, 10, '2022-12-01', '2022-11-09', '00:00:00', 10, 0.5, 1, 1, 1),
-                      (2, 5, '2022-12-09', '2022-11-09', '00:00:00', 10, 0.5, 2, 2, 2),
-                      (3, -5, '2023-01-10', '2022-11-09', '00:00:00', 10, 0.5, 3, 3, 3);
+INSERT INTO batch (batch_number, current_temperature, due_date, manufacturing_date, manufacturing_time, product_quantity, volume, annoucement_id, inbound_order, section_id, price) VALUES
+                      (1, 10, '2022-12-01', '2022-11-09', '00:00:00', 10, 0.5, 1, 1, 1, 44),
+                      (2, 5, '2022-12-09', '2022-11-09', '00:00:00', 10, 0.5, 2, 2, 2, 10.0),
+                      (3, -5, '2023-01-10', '2022-11-09', '00:00:00', 10, 0.5, 3, 3, 3, 12.9);
 
 INSERT INTO cart VALUES (1, 1);
 
