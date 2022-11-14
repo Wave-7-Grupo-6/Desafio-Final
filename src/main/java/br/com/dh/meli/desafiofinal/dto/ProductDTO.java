@@ -21,6 +21,5 @@ public class ProductDTO {
     private int quantity;
 
     @Positive(message = "Batch id must be positive.")
-    @NotNull(message = "Batch id must not be null.")
     private Long batchId;
 }
