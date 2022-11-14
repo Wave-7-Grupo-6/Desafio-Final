@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Section {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,9 @@ public class Section {
 
     @Column(nullable = false)
     private Float volumeMax;
+
+    @Transient
+    private Float volumeOccupied;
 
     @Column(nullable = false)
     private Float temperature;
@@ -59,5 +62,18 @@ public class Section {
         this.category = category;
         this.warehouse = warehouse;
         this.seller = seller;
+
+        calculateVolumeOccupied();
+    }
+
+    private void calculateVolumeOccupied(){
+        this.volumeOccupied = 0f;
+        if(inboundOrders != null){
+            for(InboundOrder inboundOrder : inboundOrders){
+                for(Batch batch : inboundOrder.getBatchs()){
+                    this.volumeOccupied += batch.getVolume();
+                }
+            }
+        }
     }
 }

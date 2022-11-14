@@ -49,11 +49,17 @@ public class Announcement {
     @JsonIgnoreProperties("announcements")
     private Seller seller;
 
-    public Announcement(Long id, String description, BigDecimal price, Category category, Seller seller) {
+    @ManyToOne
+    @JoinColumn(name = "product_type_id")
+    @JsonIgnoreProperties("announcements")
+    private ProductType productType;
+
+    public Announcement(Long id, String description, BigDecimal price, Category category, Seller seller, ProductType productType) {
         this.id = id;
         this.description = description;
         this.price = price;
         this.category = category;
         this.seller = seller;
+        this.productType = productType;
     }
 }
