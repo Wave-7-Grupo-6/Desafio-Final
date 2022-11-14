@@ -15,7 +15,6 @@ public class AnnouncementDTO {
 
     private Long id;
     private String description;
-    private BigDecimal price;
     private Long categoryId;
     private Long sellerId;
     private Long productTypeId;
@@ -23,7 +22,6 @@ public class AnnouncementDTO {
     public AnnouncementDTO(Announcement announcement) {
         this.id = announcement.getId();
         this.description = announcement.getDescription();
-        this.price = announcement.getPrice();
         this.categoryId = announcement.getCategory().getId();
         this.sellerId = announcement.getSeller().getId();
         this.productTypeId = announcement.getProductType().getId();
