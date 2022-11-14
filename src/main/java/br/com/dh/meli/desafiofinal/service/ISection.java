@@ -4,4 +4,5 @@ import br.com.dh.meli.desafiofinal.model.Section;
 
 public interface ISection {
     Section findById(Long id);
+    Section save(Section section);
 }
