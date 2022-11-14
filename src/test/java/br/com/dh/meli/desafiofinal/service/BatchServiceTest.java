@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.BatchDTO;
 import br.com.dh.meli.desafiofinal.dto.SellerDTO;
+import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.model.Section;
 import br.com.dh.meli.desafiofinal.model.Seller;
@@ -68,5 +69,19 @@ public class BatchServiceTest {
         assertThat(batches).isNotNull();
         assertThat(batches).hasSize(1);
         assertThat(batches.get(0).getDueDate()).isEqualTo(batch.getDueDate());
+    }
+
+    @Test
+    void findByDueDateIsBefore_whenSectionNotFound(){
+        Batch batch = getBatch();
+
+        assertThrows(NotFoundException.class, () -> service.findByDueDateIsBefore(10, batch.getSection().getId(), batch.getAnnouncement().getSeller().getId()));
+    }
+
+    @Test
+    void findByDueDateIsBefore_whenSellerNotFound(){
+        Batch batch = getBatch();
+
+        assertThrows(NotFoundException.class, () -> service.findByDueDateIsBefore(10, batch.getSection().getId(), batch.getAnnouncement().getSeller().getId()));
     }
 }
