@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,11 +26,17 @@ public class BatchServiceTest {
     @Mock
     private BatchRepository repository;
 
+    @MockBean
+    private ISection sectionService;
+
+    @MockBean
+    private ISeller sellerService;
+
     private IBatch service;
 
     @BeforeEach
     void setUp() {
-        service = new BatchService(repository);
+        service = new BatchService(repository, sellerService, sectionService);
     }
 
     @Test

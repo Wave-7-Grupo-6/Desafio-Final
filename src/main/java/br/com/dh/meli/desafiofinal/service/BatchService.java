@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BatchService implements IBatch{
     private final BatchRepository repo;
-    private final SellerService sellerService;
-    private final SectionService sectionService;
+    private final ISeller sellerService;
+    private final ISection sectionService;
 
     @Override
     public Batch save(Batch batch) {
