@@ -42,7 +42,7 @@ public class PurchaseOrder {
 
     public PurchaseOrder(PurchaseOrderDTO purchaseOrderDTO, Client client) {
         this.date = purchaseOrderDTO.getDate();
-        this.orderStatus = purchaseOrderDTO.getOrderStatus();
+        this.orderStatus = OrderStatus.valueOf(purchaseOrderDTO.getOrderStatus());
         this.client = client;
     }
 

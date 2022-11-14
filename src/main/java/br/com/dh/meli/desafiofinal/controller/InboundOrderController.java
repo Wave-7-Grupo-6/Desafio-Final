@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,12 +23,14 @@ public class InboundOrderController {
     private IInboundOrder service;
 
     @PostMapping
-    public ResponseEntity<List<BatchStockDTO>> saveOrder(@RequestBody InboundOrderDTO inboundOrderDTO){
+    public ResponseEntity<List<BatchStockDTO>> saveOrder(@RequestBody @Valid InboundOrderDTO inboundOrderDTO){
+        inboundOrderDTO.setOrderDate(LocalDate.now());
         return new ResponseEntity<>(service.save(inboundOrderDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<List<BatchStockDTO>> updateInboundOrder(@PathVariable Long id, @RequestBody InboundOrderDTO inboundOrderDTO){
+    public ResponseEntity<List<BatchStockDTO>> updateInboundOrder(@PathVariable Long id, @RequestBody @Valid InboundOrderDTO inboundOrderDTO){
+        inboundOrderDTO.setOrderDate(LocalDate.now());
         List<BatchStockDTO> response = service.update(id, inboundOrderDTO);
         if (response == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
