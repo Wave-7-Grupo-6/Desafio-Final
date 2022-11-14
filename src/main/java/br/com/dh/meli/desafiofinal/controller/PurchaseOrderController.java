@@ -1,6 +1,7 @@
 package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
+import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTOResponse;
 import br.com.dh.meli.desafiofinal.model.PurchaseOrder;
 import br.com.dh.meli.desafiofinal.service.IPurchaseOrder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,13 @@ public class PurchaseOrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PurchaseOrder> update(@PathVariable Long id){
-        return new ResponseEntity<>(service.update(id), HttpStatus.CREATED);
+    public ResponseEntity<PurchaseOrder> updateStatusToDelivered(@PathVariable Long id){
+        return new ResponseEntity<>(service.updateStatusToDelivered(id), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PurchaseOrder> getById(@PathVariable Long id){
-        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    public ResponseEntity<PurchaseOrderDTOResponse> getById(@PathVariable Long id){
+        PurchaseOrderDTOResponse purchaseOrderDTOResponse = new PurchaseOrderDTOResponse(service.findById(id));
+        return new ResponseEntity<>(purchaseOrderDTOResponse, HttpStatus.OK);
     }
 }

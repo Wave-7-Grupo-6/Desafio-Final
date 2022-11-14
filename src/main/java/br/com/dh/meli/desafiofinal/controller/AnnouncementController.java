@@ -32,7 +32,7 @@ public class AnnouncementController {
         Category category = categoryService.findById(announcementDTO.getCategoryId());
         ProductType productType = productTypeService.findById(announcementDTO.getProductTypeId());
         Announcement announcement = new Announcement(null, announcementDTO.getDescription(),
-                announcementDTO.getPrice(), category, seller, productType);
+                category, seller, productType);
 
         Announcement savedAnnouncement = announcementService.save(announcement);
 

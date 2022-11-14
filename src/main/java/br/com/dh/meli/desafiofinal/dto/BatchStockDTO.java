@@ -27,7 +27,6 @@ public class BatchStockDTO {
     private LocalDate dueDate;
     private BigDecimal price;
 
-
     public Batch createBatch(BatchStockDTO batchStockDTO, InboundOrder inboundOrder, Announcement announcement){
         Batch batch = new Batch();
         batch.setBatchNumber(batchStockDTO.getBatchNumber());
@@ -37,6 +36,7 @@ public class BatchStockDTO {
         batch.setManufacturingDate(batchStockDTO.getManufacturingDate());
         batch.setVolume(batchStockDTO.getVolume());
         batch.setDueDate(batchStockDTO.getDueDate());
+        batch.setPrice(batchStockDTO.getPrice());
         batch.setInboundOrder(inboundOrder);
         batch.setAnnouncement(announcement);
         batch.setSection(inboundOrder.getSection());
@@ -52,7 +52,7 @@ public class BatchStockDTO {
         this.manufacturingTime = batch.getManufacturingTime();
         this.volume = batch.getVolume();
         this.dueDate = batch.getDueDate();
-        this.price = batch.getAnnouncement().getPrice();
+        this.price = batch.getPrice();
     }
 }
 

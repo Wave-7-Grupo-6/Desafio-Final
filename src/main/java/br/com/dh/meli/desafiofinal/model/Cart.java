@@ -34,4 +34,12 @@ public class Cart {
     @JsonManagedReference
     @ToString.Exclude
     private List<CartItem> cartItems;
+
+    public BigDecimal getTotalPrice() {
+        this.totalPrice = this.cartItems != null ? cartItems.stream()
+                .map(item -> item.getValue().multiply(new BigDecimal(item.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add) : null;
+        return this.totalPrice;
+    }
+
 }

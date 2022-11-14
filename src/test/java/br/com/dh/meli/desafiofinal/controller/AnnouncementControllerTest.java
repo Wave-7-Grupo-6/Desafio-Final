@@ -70,8 +70,7 @@ class AnnouncementControllerTest {
 
         resultActions.andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", CoreMatchers.is(announcement.getId().intValue())))
-                .andExpect(jsonPath("$.description", CoreMatchers.is(announcement.getDescription())))
-                .andExpect(jsonPath("$.price", CoreMatchers.is(announcement.getPrice().intValue())));
+                .andExpect(jsonPath("$.description", CoreMatchers.is(announcement.getDescription())));
     }
 
     @Test
@@ -86,8 +85,7 @@ class AnnouncementControllerTest {
                 )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", CoreMatchers.is(announcement.getId().intValue())))
-                .andExpect(jsonPath("$.description", CoreMatchers.is(announcement.getDescription())))
-                .andExpect(jsonPath("$.price", CoreMatchers.is(announcement.getPrice().intValue())));
+                .andExpect(jsonPath("$.description", CoreMatchers.is(announcement.getDescription())));
     }
 
     @Test

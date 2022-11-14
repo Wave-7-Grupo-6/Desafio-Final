@@ -45,7 +45,6 @@ class AnnouncementServiceTest {
 
         assertThat(announcement).isNotNull();
         assertThat(announcement.getId()).isEqualTo(getAnnouncement().getId());
-        assertThat(announcement.getPrice()).isEqualTo(getAnnouncement().getPrice());
         assertThat(announcement.getDescription()).isEqualTo(getAnnouncement().getDescription());
     }
 
@@ -64,7 +63,6 @@ class AnnouncementServiceTest {
         Announcement savedAnnouncement = announcementService.save(announcement);
 
         assertThat(savedAnnouncement.getId()).isEqualTo(getAnnouncement().getId());
-        assertThat(savedAnnouncement.getPrice()).isEqualTo(getAnnouncement().getPrice());
         assertThat(savedAnnouncement.getDescription()).isEqualTo(getAnnouncement().getDescription());
     }
 
