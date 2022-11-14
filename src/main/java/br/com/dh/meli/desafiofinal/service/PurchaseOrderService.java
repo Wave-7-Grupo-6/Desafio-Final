@@ -35,13 +35,11 @@ public class PurchaseOrderService implements IPurchaseOrder{
     }
 
     @Override
-    public PurchaseOrder update(Long id){
+    public PurchaseOrder updateStatusToDelivered(Long id){
         PurchaseOrder purchaseOrder = findById(id);
 
         purchaseOrder.setOrderStatus(OrderStatus.DELIVERED);
         repository.save(purchaseOrder);
-
-        //TODO update stock
 
         return purchaseOrder;
     }

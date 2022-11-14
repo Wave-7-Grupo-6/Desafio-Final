@@ -24,8 +24,8 @@ public class PurchaseOrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PurchaseOrder> update(@PathVariable Long id){
-        return new ResponseEntity<>(service.update(id), HttpStatus.CREATED);
+    public ResponseEntity<PurchaseOrder> updateStatusToDelivered(@PathVariable Long id){
+        return new ResponseEntity<>(service.updateStatusToDelivered(id), HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

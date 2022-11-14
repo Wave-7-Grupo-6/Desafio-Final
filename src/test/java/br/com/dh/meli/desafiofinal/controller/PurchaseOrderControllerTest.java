@@ -56,7 +56,7 @@ class PurchaseOrderControllerTest {
     void update_returnUpdatedPurchaseOrder_whenSuccess() throws Exception {
         PurchaseOrder purchaseOrder = getPurchaseOrder();
         purchaseOrder.setOrderStatus(OrderStatus.DELIVERED);
-        when(purchaseOrderService.update(purchaseOrder.getId())).thenReturn(purchaseOrder);
+        when(purchaseOrderService.updateStatusToDelivered(purchaseOrder.getId())).thenReturn(purchaseOrder);
 
         mockMvc.perform(
                         put("/api/v1/purchase-order/{id}", purchaseOrder.getId())

@@ -60,7 +60,7 @@ class PurchaseOrderServiceTest {
         PurchaseOrder purchaseOrder = getPurchaseOrder();
         when(repository.findById(anyLong())).thenReturn(Optional.of(purchaseOrder));
 
-        assertThat(purchaseOrderService.update(1L).getOrderStatus()).isEqualTo(OrderStatus.DELIVERED);
+        assertThat(purchaseOrderService.updateStatusToDelivered(1L).getOrderStatus()).isEqualTo(OrderStatus.DELIVERED);
     }
 
     @Test
