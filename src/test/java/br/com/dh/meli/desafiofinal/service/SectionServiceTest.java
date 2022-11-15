@@ -47,4 +47,15 @@ public class SectionServiceTest {
 
         assertThrows(NoSuchElementException.class, () -> service.findById(1L));
     }
+
+    @Test
+    void save_returnsSection_whenSuccess() {
+        Section section = getSection();
+
+        when(repository.save(any(Section.class))).thenReturn(section);
+
+        Section sectionSaved = service.save(section);
+
+        assertThat(sectionSaved).isEqualTo(section);
+    }
 }
