@@ -92,4 +92,13 @@ class AnnouncementServiceTest {
 
         assertThrows(NotFoundException.class, ()-> announcementService.findByCategory("Category 1"));
     }
+
+    @Test
+    void findByProductType_returnAnnouncementList_whenSuccess() {
+        when(announcementRepository.findByProductType_Id(1L)).thenReturn(List.of(getAnnouncement()));
+
+        List<Announcement> announcementList = announcementService.findByProductType(1L);
+        assertThat(announcementList).isNotEmpty();
+        assertThat(announcementList.size()).isEqualTo(1);
+    }
 }
