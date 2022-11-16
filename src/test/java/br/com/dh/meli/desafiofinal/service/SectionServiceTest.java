@@ -39,6 +39,14 @@ public class SectionServiceTest {
         Section sectionFound = service.findById(1L);
 
         assertThat(sectionFound).isEqualTo(section);
+        assertThat(sectionFound.getName()).isEqualTo(section.getName());
+        assertThat(sectionFound.getVolumeMax()).isEqualTo(section.getVolumeMax());
+        assertThat(sectionFound.getVolumeOccupied()).isEqualTo(section.getVolumeOccupied());
+        assertThat(sectionFound.getTemperature()).isEqualTo(section.getTemperature());
+        assertThat(sectionFound.getCategory()).isEqualTo(section.getCategory());
+        assertThat(sectionFound.getWarehouse()).isEqualTo(section.getWarehouse());
+        assertThat(sectionFound.getInboundOrders()).isEqualTo(section.getInboundOrders());
+        assertThat(sectionFound.getSeller()).isEqualTo(section.getSeller());
     }
 
     @Test
@@ -46,5 +54,16 @@ public class SectionServiceTest {
         when(repository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(NoSuchElementException.class, () -> service.findById(1L));
+    }
+
+    @Test
+    void save_returnsSection_whenSuccess() {
+        Section section = getSection();
+
+        when(repository.save(any(Section.class))).thenReturn(section);
+
+        Section sectionSaved = service.save(section);
+
+        assertThat(sectionSaved).isEqualTo(section);
     }
 }
