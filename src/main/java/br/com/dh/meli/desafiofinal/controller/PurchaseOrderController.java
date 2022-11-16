@@ -24,9 +24,6 @@ public class PurchaseOrderController {
     @ResponseStatus(HttpStatus.CREATED)
     public BigDecimal save(@RequestBody @Valid PurchaseOrderDTO purchaseOrderDTO){
         purchaseOrderDTO.setDate(LocalDate.now());
-        if(purchaseOrderDTO.getOrderStatus().toString() == "A"){
-            throw new NotFoundException("Oi");
-        }
         return service.save(purchaseOrderDTO);
     }
 
