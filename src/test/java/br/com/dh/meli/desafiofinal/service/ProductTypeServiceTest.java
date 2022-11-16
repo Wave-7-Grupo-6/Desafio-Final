@@ -33,11 +33,13 @@ public class ProductTypeServiceTest {
 
     @Test
     void findById_returnProductType_whenProductTypeExists() {
-        when(repo.findById(anyLong())).thenReturn(Optional.of(getProductType()));
+        Optional<ProductType> productType = Optional.of(getProductType());
+        when(repo.findById(anyLong())).thenReturn(productType);
 
-        ProductType productType = service.findById(1L);
+        ProductType productTypeFound = service.findById(1L);
 
-        assertThat(productType).isNotNull();
-        assertThat(productType.getId()).isEqualTo(getProductType().getId());
+        assertThat(productTypeFound).isNotNull();
+        assertThat(productTypeFound.getId()).isEqualTo(productType.get().getId());
+        assertThat(productTypeFound.getAnnouncements()).isEqualTo(productType.get().getAnnouncements());
     }
 }
