@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class SellerController {
             @ApiResponse(code = 201, message = "Seller created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
-    public Seller save(@RequestBody SellerDTO sellerDTO){
+    public Seller save(@RequestBody @Valid SellerDTO sellerDTO){
         return service.save(sellerDTO);
     }
 

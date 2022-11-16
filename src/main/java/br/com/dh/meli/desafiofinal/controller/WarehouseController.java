@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class WarehouseController {
             @ApiResponse(code = 201, message = "Warehouse created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
-    public ResponseEntity<Warehouse> save(@RequestBody WarehouseDTO warehouse){
+    public ResponseEntity<Warehouse> save(@RequestBody @Valid WarehouseDTO warehouse){
         Warehouse warehouseCreated = service.save(warehouse);
 
         return new ResponseEntity<>(warehouseCreated, HttpStatus.CREATED);

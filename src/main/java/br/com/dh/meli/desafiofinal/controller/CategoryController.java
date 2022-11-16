@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,7 @@ public class CategoryController {
             @ApiResponse(code = 201, message = "Category created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
-    public void save(@RequestBody CategoryDTO categoryDTO){
+    public void save(@RequestBody @Valid CategoryDTO categoryDTO){
         service.save(categoryDTO);
     }
 

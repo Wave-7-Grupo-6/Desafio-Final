@@ -58,6 +58,6 @@ public class TestUtils {
 
     public static PurchaseOrderDTO getPurchaseOrderDTO(){
         List<ProductDTO> productDTOs = List.of(new ProductDTO(getAnnouncement().getId(), getPurchaseItem().getQuantity(), getLowIdBatch().getBatchNumber()));
-        return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), OrderStatus.PROCESSING, productDTOs);
+        return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), OrderStatus.PROCESSING.toString(), productDTOs);
     }
 }

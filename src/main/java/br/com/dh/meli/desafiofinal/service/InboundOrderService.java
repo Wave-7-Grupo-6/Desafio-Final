@@ -39,8 +39,8 @@ public class InboundOrderService implements IInboundOrder{
           InboundOrder inboundOrder = new InboundOrder(inboundOrderDTO, section.findById(inboundOrderDTO.getSectionId()));
           Float volumeTotal = 0f;
 
-          for(int i = 0; i < inboundOrderDTO.getBatchStockDTOList().size(); i++){
-               BatchStockDTO batchStockDTO = inboundOrderDTO.getBatchStockDTOList().get(i);
+          for(int i = 0; i < inboundOrderDTO.getBatchStockList().size(); i++){
+               BatchStockDTO batchStockDTO = inboundOrderDTO.getBatchStockList().get(i);
                inboundOrder.getBatchs().add(batchStockDTO.createBatch(batchStockDTO, inboundOrder, announcement.findById(batchStockDTO.getProductId())));
 
                volumeTotal += batchStockDTO.getVolume();
