@@ -8,6 +8,7 @@ import br.com.dh.meli.desafiofinal.model.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -45,6 +46,12 @@ public class TestUtils {
 
     public static Batch getLowIdBatch(){
         return new Batch(1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0),getAnnouncement(), null, getSection() );
+    }
+
+    public static InboundOrder getInboundOrder(){
+        List<Batch> batchList = new ArrayList<Batch>();
+        batchList.add(getBatch());
+        return new InboundOrder(2L,LocalDate.now(), 1L, batchList, getSection());
     }
 
     public static PurchaseItem getPurchaseItem(){
