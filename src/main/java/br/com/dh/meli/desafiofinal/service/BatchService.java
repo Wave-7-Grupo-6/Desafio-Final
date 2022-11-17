@@ -52,6 +52,11 @@ public class BatchService implements IBatch{
         return repo.findByDueDateIsBefore(LocalDate.now().plusDays(days)).stream().map(BatchDTO::new).collect(Collectors.toList());
     }
 
+    public List<Batch> findByDaysAndCategoryAndOrderPerDueDate(Integer days, String category) {
+        List<Batch> batches = repo.findBatchByCategoryAndDueDate(LocalDate.now().plusDays(days), category);
+        return batches;
+    }
+
     private void validations(Long sellerId, Long sectionId) {
         Seller seller = sellerService.findById(sellerId);
         Section section = sectionService.findById(sectionId);

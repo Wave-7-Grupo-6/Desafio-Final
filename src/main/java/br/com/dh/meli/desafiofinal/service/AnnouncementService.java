@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.BatchStockDTOResponse;
 import br.com.dh.meli.desafiofinal.dto.ProductTypeDTO;
 import br.com.dh.meli.desafiofinal.dto.WarehouseStockDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;

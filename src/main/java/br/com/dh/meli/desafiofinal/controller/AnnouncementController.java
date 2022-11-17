@@ -153,4 +153,24 @@ public class AnnouncementController {
     public ResponseEntity<List<BatchDTO>> findByDueDate(@RequestParam Integer days, @RequestParam Long section, @RequestParam Long seller){
         return new ResponseEntity<>(batchService.findByDueDateIsBefore(days, section, seller), HttpStatus.OK);
     }
+    @GetMapping(value = "/due-date/list", params = {"days", "category"})
+    @ApiOperation(value = "Get all Batches by Category in Due Date Specific and Order Per DueDate")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Batches found"),
+            @ApiResponse(code = 404, message = "Batches not found"),
+            @ApiResponse(code = 404, message = "Announcement not found")
+    })
+    public ResponseEntity<List<BatchDTO>> findStockByCategoryAndNumberDaysAndOrdered(@RequestParam Integer days, @RequestParam String category){
+        List<Batch> batches = batchService.findByDaysAndCategoryAndOrderPerDueDate(days, category);
+        System.out.println("------------------>");
+        System.out.println(batches);
+        List<BatchDTO> batchDTO = batches
+                .stream()
+                .map(BatchDTO::new)
+                .collect(Collectors.toList());
+
+        batchDTO.sort(Comparator.comparing(BatchDTO::getDueDate));
+
+        return new ResponseEntity<>(batchDTO, HttpStatus.OK);
+    }
 }
