@@ -88,7 +88,7 @@ public class InboundOrderControllerTest {
 
         List<BatchStockDTO> expected = new ArrayList<>();
         expected.add(new BatchStockDTO());
-        when(service.update(eq(2L),any(InboundOrderDTO.class))).thenReturn(expected);
+        when(service.update(anyLong(),any(InboundOrderDTO.class))).thenReturn(expected);
 
         ResultActions resultActions = mockMvc.perform(
                 put("/api/v1/fresh-products/inboundorder/2")
