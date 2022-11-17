@@ -49,6 +49,13 @@ public class InboundOrder {
     @ApiModelProperty(notes = "The inbound order section")
     private Section section;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "discount_coupon_id")
+    @JsonIgnoreProperties("inboundOrders")
+    @JsonBackReference
+    @ApiModelProperty(notes = "The inbound order discount coupon")
+    private DiscountCoupon discountCoupon;
+
     public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section) {
         this.id = inboundOrderDTO.getId();
         this.orderDate = inboundOrderDTO.getOrderDate();

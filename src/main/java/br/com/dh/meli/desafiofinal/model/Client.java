@@ -29,4 +29,12 @@ public class Client {
     @ToString.Exclude
     @ApiModelProperty(notes = "The client carts")
     private List<Cart> carts;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "client_discount_coupon",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "discount_coupon_id")
+    )
+    private List<DiscountCoupon> discountCoupons;
 }

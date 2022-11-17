@@ -22,9 +22,14 @@ INSERT INTO section VALUES
 INSERT INTO client VALUES
                        (null, 'Williamns');
 
-INSERT INTO inbound_order VALUES (1,'2022-11-09', 1234, 1);
-INSERT INTO inbound_order VALUES (2,'2022-11-09', 1235, 2);
-INSERT INTO inbound_order VALUES (3,'2022-11-09', 1239, 3);
+INSERT INTO discount_coupon (id, status, discount, description) VALUES
+                               (null, 1, 10.0, 'CUPOM_01'),
+                               (null, 1, 20.0, 'CUPOM_02'),
+                               (null, 1, 30.0, 'CUPOM_03');
+
+INSERT INTO inbound_order VALUES (1,'2022-11-09', 1234, 1, 1);
+INSERT INTO inbound_order VALUES (2,'2022-11-09', 1235, 2, 2);
+INSERT INTO inbound_order VALUES (3,'2022-11-09', 1239, 3, 3);
 
 INSERT INTO batch (batch_number, current_temperature, due_date, manufacturing_date, manufacturing_time, product_quantity, volume, annoucement_id, inbound_order, section_id, price) VALUES
                       (1, 10, '2022-12-01', '2022-11-09', '00:00:00', 10, 0.5, 1, 1, 1, 44),

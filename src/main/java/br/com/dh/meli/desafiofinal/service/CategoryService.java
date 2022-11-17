@@ -31,7 +31,7 @@ public class CategoryService implements ICategory {
 
     @Override
     public void save(CategoryDTO categoryDTO) {
-        repository.save(new Category(null, categoryDTO.getName(), categoryDTO.getTemperature(), null, null));
+        repository.save(new Category(null, categoryDTO.getName(), categoryDTO.getTemperature(), null, null, null));
     }
 
     @Override

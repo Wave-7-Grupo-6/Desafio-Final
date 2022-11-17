@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,6 +42,16 @@ public class Category {
     @ToString.Exclude
     @ApiModelProperty(notes = "The category sections")
     private List<Section> sections;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "category_discount_coupon",
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "discount_coupon_id")
+    )
+    @JsonIgnoreProperties("categories")
+    @JsonBackReference
+    private List<DiscountCoupon> discountCoupons;
 
     public Category(Long id, String name, float temperature) {
         this.id = id;
