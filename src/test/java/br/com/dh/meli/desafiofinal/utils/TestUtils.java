@@ -22,12 +22,18 @@ public class TestUtils {
         return new Section(1L,"Section 1", 50.0f, 10.0f, getCategory(), getWarehouse(),getSeller());
     }
 
+    public static Section getValidateSection(){
+        return new Section(1L,"Section 1", 50.0f, 10.0f, getCategory(), getWarehouse(),null);
+    }
+
     public static Warehouse getWarehouse(){
         return new Warehouse(1L,"Warehouse 1");
     }
 
     public static Seller getSeller(){
-        return new Seller(1L,"Seller 1");
+         Seller seller = new Seller(1L,"Seller 1");
+         seller.setSections(List.of(getValidateSection()));
+         return seller;
     }
 
     public static ProductType getProductType(){ return new ProductType(1L, "Product Type", null); }
