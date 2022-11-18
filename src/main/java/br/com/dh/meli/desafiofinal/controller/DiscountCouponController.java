@@ -62,4 +62,14 @@ public class DiscountCouponController {
     public void delete(@PathVariable Long id){
         service.delete(id);
     }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get a Discount Coupon by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Discount Coupon found"),
+            @ApiResponse(code = 404, message = "Discount Coupon not found"),
+    })
+    public ResponseEntity<DiscountCouponDTO> findById(@PathVariable Long id){
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    }
 }
