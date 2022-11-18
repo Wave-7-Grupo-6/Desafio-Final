@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * The type Batch dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,6 +22,11 @@ public class BatchDTO {
     private Long productId;
     private Long productTypeId;
 
+    /**
+     * Instantiates a new Batch dto.
+     *
+     * @param batch the batch
+     */
     public BatchDTO(Batch batch) {
         this.id = batch.getBatchNumber();
         this.productQuantity = batch.getProductQuantity();

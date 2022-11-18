@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * The type Batch.
+ */
 @Entity
 @Getter
 @Setter
