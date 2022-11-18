@@ -9,6 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+/**
+ * The type Section.
+ */
 @Entity
 @Getter
 @Setter
@@ -54,6 +57,17 @@ public class Section {
     @JsonBackReference
     private Seller seller;
 
+    /**
+     * Instantiates a new Section.
+     *
+     * @param id          the id
+     * @param name        the name
+     * @param volumeMax   the volume max
+     * @param temperature the temperature
+     * @param category    the category
+     * @param warehouse   the warehouse
+     * @param seller      the seller
+     */
     public Section(Long id, String name, Float volumeMax, Float temperature, Category category, Warehouse warehouse, Seller seller) {
         this.id = id;
         this.name = name;
@@ -67,6 +81,9 @@ public class Section {
         calculateVolumeOccupied();
     }
 
+    /**
+     * > This function calculates the volume occupied by the inbound orders in the warehouse
+     */
     private void calculateVolumeOccupied(){
         this.volumeOccupied = 0f;
         if(inboundOrders != null){

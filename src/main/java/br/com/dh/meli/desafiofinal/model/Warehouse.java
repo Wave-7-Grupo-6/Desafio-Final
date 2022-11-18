@@ -8,6 +8,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * The type Warehouse.
+ */
 @Entity
 @Getter
 @Setter
@@ -30,6 +33,12 @@ public class Warehouse {
     @ApiModelProperty(notes = "The warehouse sections")
     private List<Section> sections;
 
+    /**
+     * Instantiates a new Warehouse.
+     *
+     * @param id   the id
+     * @param name the name
+     */
     public Warehouse(Long id, String name) {
         this.id = id;
         this.name = name;
