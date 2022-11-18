@@ -58,6 +58,7 @@ public class Section {
         this.id = id;
         this.name = name;
         this.volumeMax = volumeMax;
+        this.volumeOccupied = 0F;
         this.temperature = temperature;
         this.category = category;
         this.warehouse = warehouse;

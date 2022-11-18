@@ -34,7 +34,8 @@ public class InboundOrderController {
     })
     public ResponseEntity<List<BatchStockDTO>> saveOrder(@RequestBody @Valid InboundOrderDTO inboundOrderDTO){
         inboundOrderDTO.setOrderDate(LocalDate.now());
-        return new ResponseEntity<>(service.save(inboundOrderDTO), HttpStatus.CREATED);
+        List<BatchStockDTO> result = service.save(inboundOrderDTO);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
