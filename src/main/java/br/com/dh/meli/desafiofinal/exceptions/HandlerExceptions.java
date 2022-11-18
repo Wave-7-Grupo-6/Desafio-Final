@@ -107,16 +107,4 @@ public class HandlerExceptions {
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<ExceptionDetails> handlerDataIntegrityViolationException(DataIntegrityViolationException ex){
-        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
-                .title("Operation invalid")
-                .message(ex.getMessage())
-                .status(HttpStatus.BAD_REQUEST.value())
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
-    }
 }
