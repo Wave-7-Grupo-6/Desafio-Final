@@ -31,7 +31,7 @@ public class TestUtils {
     }
 
     public static Seller getSeller(){
-         Seller seller = new Seller(1L,"Seller 1");
+         Seller seller = new Seller(1L, "seller@seler.com", "12345", Set.of(getSellerRole()),"Seller 1");
          seller.setSections(List.of(getValidateSection()));
          return seller;
     }
@@ -43,7 +43,7 @@ public class TestUtils {
     }
 
     public static Client getClient(){
-        return new Client(1L, "Client 1", null);
+        return new Client(1L,"client@client.com","12345",Set.of(getClientRole()), "Client 1");
     }
 
     public static Batch getBatch(){
@@ -72,5 +72,13 @@ public class TestUtils {
     public static PurchaseOrderDTO getPurchaseOrderDTO(){
         List<ProductDTO> productDTOs = List.of(new ProductDTO(getAnnouncement().getId(), getPurchaseItem().getQuantity(), getLowIdBatch().getBatchNumber()));
         return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), OrderStatus.PROCESSING.toString(), productDTOs);
+    }
+
+    public static Role getSellerRole(){
+        return new Role(1L, "ROLE_SELLER");
+    }
+
+    public static Role getClientRole(){
+        return new Role(1L, "ROLE_CLIENT");
     }
 }

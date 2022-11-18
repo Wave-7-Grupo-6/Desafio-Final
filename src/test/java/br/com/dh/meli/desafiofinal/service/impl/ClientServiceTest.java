@@ -14,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
+import static br.com.dh.meli.desafiofinal.utils.TestUtils.getClientRole;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -26,17 +27,21 @@ class ClientServiceTest {
     @Mock
     private ClientRepository repository;
 
+    @Mock
+    private RoleService roleService;
+
     private IClient service;
 
     @BeforeEach
     void setup(){
-        service = new ClientService(repository);
+        service = new ClientService(repository, roleService);
     }
 
     @Test
     void save_returnClient_whenSuccess() {
         Client client = getClient();
         when(repository.save(any())).thenReturn(client);
+        when(roleService.findByName("ROLE_CLIENT")).thenReturn(getClientRole());
 
         Client savedClient = service.save(new ClientDTO(client));
 

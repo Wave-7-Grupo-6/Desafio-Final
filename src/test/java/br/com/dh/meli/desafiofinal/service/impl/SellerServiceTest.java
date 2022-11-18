@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.getSeller;
+import static br.com.dh.meli.desafiofinal.utils.TestUtils.getSellerRole;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -28,11 +29,13 @@ class SellerServiceTest {
     @Mock
     private SellerRepository sellerRepository;
 
+    @Mock
+    private RoleService roleService;
     private ISeller sellerService;
 
     @BeforeEach
     void setUp() {
-        sellerService = new SellerService(sellerRepository);
+        sellerService = new SellerService(sellerRepository, roleService);
     }
 
     @Test
@@ -70,6 +73,7 @@ class SellerServiceTest {
     void save_returnSuccess_whenSellerValid() {
         Seller seller = getSeller();
         when(sellerRepository.save(any(Seller.class))).thenReturn(seller);
+        when(roleService.findByName("ROLE_SELLER")).thenReturn(getSellerRole());
 
         Seller savedSeller = sellerService.save(new SellerDTO(seller));
 
