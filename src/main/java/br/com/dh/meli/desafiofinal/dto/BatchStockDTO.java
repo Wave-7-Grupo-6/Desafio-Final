@@ -15,6 +15,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * The type Batch stock dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -45,6 +48,14 @@ public class BatchStockDTO {
     @Digits(integer=4, fraction=2, message = "Price must not exceed 4 digits.")
     private BigDecimal price;
 
+    /**
+     * Create batch batch.
+     *
+     * @param batchStockDTO the batch stock dto
+     * @param inboundOrder  the inbound order
+     * @param announcement  the announcement
+     * @return the batch
+     */
     public Batch createBatch(BatchStockDTO batchStockDTO, InboundOrder inboundOrder, Announcement announcement){
         Batch batch = new Batch();
         batch.setBatchNumber(batchStockDTO.getBatchNumber());
@@ -61,6 +72,11 @@ public class BatchStockDTO {
         return batch;
     }
 
+    /**
+     * Instantiates a new Batch stock dto.
+     *
+     * @param batch the batch
+     */
     public BatchStockDTO(Batch batch) {
         this.batchNumber = batch.getBatchNumber();
         this.productId = batch.getAnnouncement().getId();

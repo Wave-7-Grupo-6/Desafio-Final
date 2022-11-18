@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+/**
+ * The type Seller dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,6 +22,11 @@ public class SellerDTO {
     @NotEmpty(message = "Name must not be empty.")
     private String name;
 
+    /**
+     * Instantiates a new Seller dto.
+     *
+     * @param seller the seller
+     */
     public SellerDTO(Seller seller) {
         this.name = seller.getName();
     }

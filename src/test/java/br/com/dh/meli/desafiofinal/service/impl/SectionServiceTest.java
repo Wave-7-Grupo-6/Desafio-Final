@@ -1,9 +1,11 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
-import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Section;
 import br.com.dh.meli.desafiofinal.repository.SectionRepo;
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
+
+import br.com.dh.meli.desafiofinal.service.ISection;
+import br.com.dh.meli.desafiofinal.service.impl.SectionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
