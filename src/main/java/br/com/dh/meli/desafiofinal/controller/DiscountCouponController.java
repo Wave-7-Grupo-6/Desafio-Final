@@ -51,4 +51,15 @@ public class DiscountCouponController {
     public DiscountCouponDTO update(DiscountCouponDTO discountCouponDTO, @PathVariable Long id){
         return service.update(discountCouponDTO, id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation(value = "Delete a Discount Coupon")
+    @ApiResponses(value = {
+            @ApiResponse(code = 204, message = "Discount Coupon deleted successfully"),
+            @ApiResponse(code = 400, message = "Invalid request"),
+    })
+    public void delete(@PathVariable Long id){
+        service.delete(id);
+    }
 }
