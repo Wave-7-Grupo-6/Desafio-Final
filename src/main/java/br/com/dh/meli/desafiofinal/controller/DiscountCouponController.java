@@ -40,4 +40,15 @@ public class DiscountCouponController {
     public ResponseEntity<List<DiscountCouponDTO>> findAll(){
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Update a Discount Coupon")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Discount Coupon updated successfully"),
+            @ApiResponse(code = 400, message = "Invalid request"),
+    })
+    public DiscountCouponDTO update(DiscountCouponDTO discountCouponDTO, @PathVariable Long id){
+        return service.update(discountCouponDTO, id);
+    }
 }
