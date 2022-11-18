@@ -17,16 +17,14 @@ public class DiscountCouponDTO {
     private String description;
 
     public DiscountCouponDTO(DiscountCoupon discountCoupon) {
-        this.status = discountCoupon.getStatus();
+        this.id = discountCoupon.getId();
+        this.status = 1;
+        if(discountCoupon.getStatus() != 0) this.status = discountCoupon.getStatus();
         this.discount = discountCoupon.getDiscount();
         this.description = discountCoupon.getDescription();
     }
 
     public DiscountCoupon toDiscountCoupon() {
         return new DiscountCoupon(this.id, this.status, this.discount, this.description);
-    }
-
-    public DiscountCoupon toDiscountCoupon(Long id) {
-        return new DiscountCoupon(id, this.status, this.discount, this.description);
     }
 }
