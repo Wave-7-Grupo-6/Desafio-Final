@@ -9,5 +9,6 @@ public interface IRole {
     Role update(Role role);
     void deleteById(Long id);
     Role findById(Long id);
+    Role findByName(String name);
     List<Role> findAll();
 }

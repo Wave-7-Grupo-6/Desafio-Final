@@ -1,4 +1,4 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.BatchDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NoCompatibleException;
@@ -8,6 +8,9 @@ import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.model.Section;
 import br.com.dh.meli.desafiofinal.model.Seller;
 import br.com.dh.meli.desafiofinal.repository.BatchRepository;
+import br.com.dh.meli.desafiofinal.service.IBatch;
+import br.com.dh.meli.desafiofinal.service.ISection;
+import br.com.dh.meli.desafiofinal.service.ISeller;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -18,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class BatchService implements IBatch{
+public class BatchService implements IBatch {
     private final BatchRepository repo;
     private final ISeller sellerService;
     private final ISection sectionService;

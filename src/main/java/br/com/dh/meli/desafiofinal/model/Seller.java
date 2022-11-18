@@ -1,5 +1,7 @@
 package br.com.dh.meli.desafiofinal.model;
 
+import br.com.dh.meli.desafiofinal.dto.ClientDTO;
+import br.com.dh.meli.desafiofinal.dto.SellerDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,8 +35,13 @@ public class Seller extends User{
     @ApiModelProperty(notes = "The seller sections")
     private List<Section> sections;
 
-    public Seller(Long id, String name) {
-        super(id);
+    public Seller(Long id, String username, String password, Set<Role> roles, String name) {
+        super(id, username, password, roles, true, true, true, true);
+        this.name = name;
+    }
+
+    public Seller(SellerDTO sellerDTO, Set<Role> roles) {
+        super(null, sellerDTO.getUsername(), sellerDTO.getPassword(), roles, true, true, true, true);
         this.name = name;
     }
 }

@@ -21,6 +21,7 @@ public class Role {
     private Long id;
 
     @ApiModelProperty(notes = "The role name")
+    @Column(nullable = false, unique = true)
     private String name;
 
 }

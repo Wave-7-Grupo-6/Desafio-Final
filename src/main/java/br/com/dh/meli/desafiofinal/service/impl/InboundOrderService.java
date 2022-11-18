@@ -1,4 +1,4 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
@@ -7,6 +7,10 @@ import br.com.dh.meli.desafiofinal.exceptions.NoSpaceAvailableException;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.repository.InboundOrderRepository;
+import br.com.dh.meli.desafiofinal.service.IAnnouncement;
+import br.com.dh.meli.desafiofinal.service.IInboundOrder;
+import br.com.dh.meli.desafiofinal.service.ISection;
+import br.com.dh.meli.desafiofinal.service.IWarehouse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +21,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 
-public class InboundOrderService implements IInboundOrder{
+public class InboundOrderService implements IInboundOrder {
      private final InboundOrderRepository repository;
      private final ISection section;
      private final IAnnouncement announcement;

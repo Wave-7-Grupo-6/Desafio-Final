@@ -1,4 +1,4 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.BatchStockDTOResponse;
 import br.com.dh.meli.desafiofinal.dto.ProductTypeDTO;
@@ -8,6 +8,8 @@ import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.model.Section;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
+import br.com.dh.meli.desafiofinal.service.IAnnouncement;
+import br.com.dh.meli.desafiofinal.service.ICategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

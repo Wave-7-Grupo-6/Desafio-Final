@@ -1,8 +1,9 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.WarehouseDTO;
 import br.com.dh.meli.desafiofinal.model.Warehouse;
 import br.com.dh.meli.desafiofinal.repository.WarehouseRepo;
+import br.com.dh.meli.desafiofinal.service.IWarehouse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class WarehouseService implements IWarehouse{
+public class WarehouseService implements IWarehouse {
     private final WarehouseRepo repo;
 
     @Override

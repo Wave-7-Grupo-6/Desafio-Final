@@ -1,8 +1,9 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Role;
 import br.com.dh.meli.desafiofinal.repository.RoleRepository;
+import br.com.dh.meli.desafiofinal.service.IRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class RoleService implements IRole{
+public class RoleService implements IRole {
 
     private final RoleRepository roleRepository;
 
@@ -38,6 +39,12 @@ public class RoleService implements IRole{
     @Override
     public Role findById(Long id) {
         Optional<Role> role = roleRepository.findById(id);
+        return role.orElseThrow(() -> new NotFoundException("Role not found."));
+    }
+
+    @Override
+    public Role findByName(String name) {
+        Optional<Role> role = roleRepository.findByName(name);
         return role.orElseThrow(() -> new NotFoundException("Role not found."));
     }
 

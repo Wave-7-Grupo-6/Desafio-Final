@@ -1,9 +1,10 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.CategoryDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Category;
 import br.com.dh.meli.desafiofinal.repository.CategoryRepository;
+import br.com.dh.meli.desafiofinal.service.ICategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

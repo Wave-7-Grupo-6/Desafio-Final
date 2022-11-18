@@ -1,9 +1,13 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.repository.PurchaseOrderRepository;
+import br.com.dh.meli.desafiofinal.service.IAnnouncement;
+import br.com.dh.meli.desafiofinal.service.IBatch;
+import br.com.dh.meli.desafiofinal.service.IClient;
+import br.com.dh.meli.desafiofinal.service.IPurchaseOrder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class PurchaseOrderService implements IPurchaseOrder{
+public class PurchaseOrderService implements IPurchaseOrder {
     private final PurchaseOrderRepository repository;
     private final IAnnouncement annService;
     private final IClient cliService;

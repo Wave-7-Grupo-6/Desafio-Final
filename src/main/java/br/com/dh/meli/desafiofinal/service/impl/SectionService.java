@@ -1,7 +1,8 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.model.Section;
 import br.com.dh.meli.desafiofinal.repository.SectionRepo;
+import br.com.dh.meli.desafiofinal.service.ISection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class SectionService implements ISection{
+public class SectionService implements ISection {
     private final SectionRepo repo;
 
     @Override
