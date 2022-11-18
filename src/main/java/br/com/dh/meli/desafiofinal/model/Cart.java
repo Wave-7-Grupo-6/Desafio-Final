@@ -10,6 +10,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * The type Cart.
+ */
 @Entity
 @Getter
 @Setter
@@ -35,6 +38,12 @@ public class Cart {
     @ToString.Exclude
     private List<CartItem> cartItems;
 
+    /**
+     * It takes the cartItems, multiplies the value of each item by the quantity of that item, and then adds all of those
+     * values together
+     *
+     * @return the total price
+     */
     public BigDecimal getTotalPrice() {
         this.totalPrice = this.cartItems != null ? cartItems.stream()
                 .map(item -> item.getValue().multiply(new BigDecimal(item.getQuantity())))

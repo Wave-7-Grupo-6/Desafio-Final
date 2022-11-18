@@ -8,6 +8,8 @@ import br.com.dh.meli.desafiofinal.service.IRole;
 import br.com.dh.meli.desafiofinal.service.ISeller;
 import br.com.dh.meli.desafiofinal.service.IUser;
 import br.com.dh.meli.desafiofinal.service.impl.SellerService;
+import br.com.dh.meli.desafiofinal.service.ISeller;
+import br.com.dh.meli.desafiofinal.service.impl.SellerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

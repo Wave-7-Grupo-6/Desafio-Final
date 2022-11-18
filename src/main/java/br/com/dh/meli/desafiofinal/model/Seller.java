@@ -1,6 +1,5 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.dto.SellerDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -11,6 +10,9 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The type Seller.
+ */
 @Entity
 @Getter
 @Setter
@@ -35,6 +37,12 @@ public class Seller extends User{
     @ApiModelProperty(notes = "The seller sections")
     private List<Section> sections;
 
+    /**
+     * Instantiates a new Seller.
+     *
+     * @param id   the id
+     * @param name the name
+     */
     public Seller(Long id, String username, String password, Set<Role> roles, String name) {
         super(id, username, password, roles, true, true, true, true);
         this.name = name;

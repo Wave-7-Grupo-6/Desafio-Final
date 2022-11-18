@@ -1,6 +1,5 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * The type Inbound order.
+ */
 @Entity
 @Getter
 @Setter
@@ -49,6 +51,12 @@ public class InboundOrder {
     @ApiModelProperty(notes = "The inbound order section")
     private Section section;
 
+    /**
+     * Instantiates a new Inbound order.
+     *
+     * @param inboundOrderDTO the inbound order dto
+     * @param section         the section
+     */
     public InboundOrder(InboundOrderDTO inboundOrderDTO, Section section) {
         this.id = inboundOrderDTO.getId();
         this.orderDate = inboundOrderDTO.getOrderDate();

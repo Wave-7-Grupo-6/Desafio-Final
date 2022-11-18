@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * The type Announcement.
+ */
 @Entity
 @Getter
 @Setter
@@ -59,6 +62,15 @@ public class Announcement {
     @ApiModelProperty(notes = "The announcement product type")
     private ProductType productType;
 
+    /**
+     * Instantiates a new Announcement.
+     *
+     * @param id          the id
+     * @param description the description
+     * @param category    the category
+     * @param seller      the seller
+     * @param productType the product type
+     */
     public Announcement(Long id, String description, Category category, Seller seller, ProductType productType) {
         this.id = id;
         this.description = description;

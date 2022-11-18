@@ -11,6 +11,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * The type Client dto.
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -39,6 +42,11 @@ public class ClientDTO {
     * */
     private String password;
 
+    /**
+     * Instantiates a new Client dto.
+     *
+     * @param client the client
+     */
     public ClientDTO(Client client) {
         this.name = client.getName();
         this.username = client.getUsername();

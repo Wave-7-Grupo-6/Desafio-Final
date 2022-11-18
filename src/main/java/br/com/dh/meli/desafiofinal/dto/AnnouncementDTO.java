@@ -11,6 +11,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+
+/**
+ * The type Announcement dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,6 +39,11 @@ public class AnnouncementDTO {
     @NotNull(message = "ProductType id must not be null.")
     private Long productTypeId;
 
+    /**
+     * Instantiates a new Announcement dto.
+     *
+     * @param announcement the announcement
+     */
     public AnnouncementDTO(Announcement announcement) {
         this.id = announcement.getId();
         this.description = announcement.getDescription();

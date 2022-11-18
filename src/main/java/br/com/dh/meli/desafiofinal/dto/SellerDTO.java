@@ -14,6 +14,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * The type Seller dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -42,6 +45,11 @@ public class SellerDTO {
     * */
     private String password;
 
+    /**
+     * Instantiates a new Seller dto.
+     *
+     * @param seller the seller
+     */
     public SellerDTO(Seller seller) {
         this.name = seller.getName();
         this.username = seller.getUsername();
