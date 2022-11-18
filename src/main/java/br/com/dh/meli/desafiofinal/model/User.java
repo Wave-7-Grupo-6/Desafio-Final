@@ -20,7 +20,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User implements UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,55 +45,14 @@ public class User implements UserDetails {
     private Set<Role> roles;
 
     @ApiModelProperty(notes = "The user account expiration status")
-    private Boolean isAccountNonExpired;
+    private Boolean accountNonExpired;
 
     @ApiModelProperty(notes = "The user account locked status")
-    private Boolean isAccountNonLocked;
+    private Boolean accountNonLocked;
 
     @ApiModelProperty(notes = "The user credentials expiration status")
-    private Boolean isCredentialsNonExpired;
+    private Boolean credentialsNonExpired;
 
     @ApiModelProperty(notes = "The user enabled status")
-    private Boolean isEnabled;
-
-    public User(Long id) {
-        this.id = id;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
-        return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return this.isAccountNonExpired;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return this.isAccountNonLocked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return this.isCredentialsNonExpired;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return this.isEnabled;
-    }
+    private Boolean enabled;
 }

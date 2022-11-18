@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service.impl;
 
+import br.com.dh.meli.desafiofinal.model.CustomUserDetails;
 import br.com.dh.meli.desafiofinal.model.User;
 import br.com.dh.meli.desafiofinal.repository.UserRepository;
 import br.com.dh.meli.desafiofinal.service.IUser;
@@ -28,7 +29,7 @@ public class UserService implements UserDetailsService, IUser {
             throw new UsernameNotFoundException("User ["+username+"] not found.");
         } else {
             log.info("Loading user ["+username+"].");
-            return user.get();
+            return new CustomUserDetails(user.get());
         }
 
     }
