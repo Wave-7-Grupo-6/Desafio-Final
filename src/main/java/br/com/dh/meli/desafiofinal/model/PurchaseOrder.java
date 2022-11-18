@@ -46,6 +46,11 @@ public class PurchaseOrder {
     @ApiModelProperty(notes = "The purchase order items")
     private Set<PurchaseItem> purchaseItems;
 
+    @ManyToOne
+    @JoinColumn(name = "discount_coupon_id")
+    @ApiModelProperty(notes = "The purchase order discount coupon")
+    private DiscountCoupon discountCoupon;
+
     public PurchaseOrder(PurchaseOrderDTO purchaseOrderDTO, Client client) {
         this.date = purchaseOrderDTO.getDate();
         this.orderStatus = OrderStatus.valueOf(purchaseOrderDTO.getOrderStatus());
@@ -56,6 +61,9 @@ public class PurchaseOrder {
         this.totalPrice = this.purchaseItems != null ? purchaseItems.stream()
                 .map(item -> item.getPrice().multiply(new BigDecimal(item.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add) : null;
+        if(this.discountCoupon != null && this.totalPrice != null) {
+            this.totalPrice = this.totalPrice.subtract(BigDecimal.valueOf(this.discountCoupon.getDiscount()));
+        }
         return this.totalPrice;
     }
 }

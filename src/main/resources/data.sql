@@ -46,7 +46,7 @@ INSERT INTO cart VALUES (1, 1);
 INSERT INTO cart_item VALUES
     (null, 3, 44.0, 1, 1);
 
-INSERT INTO purchase_order VALUES (1, '2022-11-09', 'DELIVERED', 1);
+INSERT INTO purchase_order (id, date, order_status, client_id) VALUES (1, '2022-11-09', 'DELIVERED', 1);
 
 INSERT INTO purchase_item VALUES
                         (null, 44.0, 1, 1, 1),

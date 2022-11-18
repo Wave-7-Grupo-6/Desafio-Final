@@ -26,6 +26,8 @@ public class PurchaseOrderDTO {
     @NotNull(message = "Buyer id must not be null.")
     private Long buyerId; // client
 
+    private Long discountCouponId;
+
     @OrderStatusValue(enumClass = OrderStatus.class)
     private String orderStatus;
     private List<@Valid ProductDTO> products;

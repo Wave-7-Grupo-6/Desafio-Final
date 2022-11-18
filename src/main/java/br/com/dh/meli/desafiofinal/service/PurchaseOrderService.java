@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.DiscountCouponDTO;
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import br.com.dh.meli.desafiofinal.model.*;
@@ -21,10 +22,15 @@ public class PurchaseOrderService implements IPurchaseOrder{
     private final IAnnouncement annService;
     private final IClient cliService;
     private final IBatch batchService;
+    private final IDiscountCoupon discountService;
 
     @Override
     public BigDecimal save(PurchaseOrderDTO purchaseOrderDTO) {
         PurchaseOrder purchaseOrder = createAttributes(purchaseOrderDTO);
+        if(purchaseOrderDTO.getDiscountCouponId() != null) {
+            DiscountCouponDTO discountCouponDTO = discountService.findById(purchaseOrderDTO.getDiscountCouponId());
+            purchaseOrder.setDiscountCoupon(discountCouponDTO.toDiscountCoupon());
+        }
 
         purchaseOrderDTO.getProducts().forEach(product -> {
             batchService.updateStock(product.getBatchId(), product.getProductId(), product.getQuantity());
