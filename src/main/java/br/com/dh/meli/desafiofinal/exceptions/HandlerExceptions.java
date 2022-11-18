@@ -87,7 +87,7 @@ public class HandlerExceptions {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ExceptionDetails> handlerNoSuchElementException(NoSuchElementException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
-                .title("Objeto não encontrado")
+                .title("Object not found")
                 .message(ex.getMessage())
                 .status(HttpStatus.NOT_FOUND.value())
                 .timestamp(LocalDateTime.now())
@@ -99,7 +99,19 @@ public class HandlerExceptions {
     @ExceptionHandler(OutOfStockException.class)
     public ResponseEntity<ExceptionDetails> handlerOutOfStockException(OutOfStockException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
-                .title("Objeto sem estoque suficiente.")
+                .title("Object out of stock")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<ExceptionDetails> handlerDataIntegrityViolationException(DataIntegrityViolationException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("Operation invalid")
                 .message(ex.getMessage())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .timestamp(LocalDateTime.now())
