@@ -15,14 +15,15 @@ public class DiscountCouponService implements IDiscountCoupon{
     private final DiscountCouponRepository repository;
 
     @Override
-    public void save(DiscountCouponDTO discountCouponDTO) {
-        repository.save(discountCouponDTO.toDiscountCoupon());
+    public DiscountCouponDTO save(DiscountCouponDTO discountCouponDTO) {
+        return new DiscountCouponDTO(repository.save(discountCouponDTO.toDiscountCoupon()));
     }
 
     @Override
-    public void update(DiscountCouponDTO discountCouponDTO, Long id) {
+    public DiscountCouponDTO update(DiscountCouponDTO discountCouponDTO, Long id) {
         findById(id);
-        repository.save(discountCouponDTO.toDiscountCoupon(id));
+        discountCouponDTO.setId(id);
+        return save(discountCouponDTO);
     }
 
     @Override
