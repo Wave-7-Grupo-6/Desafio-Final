@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.ProductTypeDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
@@ -91,5 +92,22 @@ class AnnouncementServiceTest {
         when(categoryService.findByName(anyString())).thenReturn(getCategory());
 
         assertThrows(NotFoundException.class, ()-> announcementService.findByCategory("Category 1"));
+    }
+
+    @Test
+    void findByProductType_returnAnnouncementList_whenSuccess() {
+        when(announcementRepository.findByProductType_Id(1L)).thenReturn(List.of(getAnnouncement()));
+
+        List<Announcement> announcementList = announcementService.findByProductType(1L);
+
+        assertThat(announcementList).isNotEmpty();
+        assertThat(announcementList.size()).isEqualTo(1);
+    }
+
+    @Test
+    void findByProductTypeGroupByWarehouse_throwsNullPointer_whenFails() {
+        when(announcementRepository.findByProductType_Id(1L)).thenReturn(List.of(getAnnouncement()));
+
+        assertThrows(NullPointerException.class, ()-> announcementService.findByProductTypeGroupByWarehouse(1L));
     }
 }
