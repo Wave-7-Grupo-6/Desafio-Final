@@ -13,11 +13,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(notes = "The database generated client ID")
-    private Long id;
+@PrimaryKeyJoinColumn(name = "id")
+public class Client extends User{
 
     @Column(nullable = false)
     @ApiModelProperty(notes = "The client name")

@@ -10,16 +10,12 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Data
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Seller {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ApiModelProperty(notes = "The database generated seller ID")
-    private Long id;
+@PrimaryKeyJoinColumn(name = "id")
+public class Seller extends User{
 
     @Column (nullable = false)
     @ApiModelProperty(notes = "The seller name")
@@ -38,7 +34,7 @@ public class Seller {
     private List<Section> sections;
 
     public Seller(Long id, String name) {
-        this.id = id;
+        super(id);
         this.name = name;
     }
 }
