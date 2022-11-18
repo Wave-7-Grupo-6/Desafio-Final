@@ -27,8 +27,8 @@ public class HandlerExceptions {
 
         return new ResponseEntity<>(
                 ExceptionDetails.builder()
-                        .title("Parâmetros inválidos")
-                        .message("Um ou mais campos com valor inválido.")
+                        .title("Params invalids")
+                        .message("One or more params are invalids")
                         .status(HttpStatus.BAD_REQUEST.value())
                         .fieldErrors(fieldErrors)
                         .timestamp(LocalDateTime.now())
@@ -40,8 +40,8 @@ public class HandlerExceptions {
     public ResponseEntity<ExceptionDetails> handleDataIntegrityViolationException (DataIntegrityViolationException ex){
         return new ResponseEntity<>(
                 ExceptionDetails.builder()
-                        .title("Dados inválidos")
-                        .message("Um ou mais valores fornecidos são inválidos")
+                        .title("Data integrity violation")
+                        .message("One or more params are invalids")
                         .status(HttpStatus.BAD_GATEWAY.value())
                         .timestamp(LocalDateTime.now())
                         .build(),
@@ -51,7 +51,7 @@ public class HandlerExceptions {
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ExceptionDetails> handlerNotFoundException(NotFoundException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
-                .title("Objeto não encontrado")
+                .title("Object not found")
                 .message(ex.getMessage())
                 .status(HttpStatus.NOT_FOUND.value())
                 .timestamp(LocalDateTime.now())
