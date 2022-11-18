@@ -49,4 +49,11 @@ public class DiscountCoupon {
     @ToString.Exclude
     @ApiModelProperty(notes = "The discount coupon inbound orders")
     private List<InboundOrder> inboundOrders;
+
+    public DiscountCoupon(Long id, int status, Double discount, String description) {
+        this.id = id;
+        this.status = status;
+        this.discount = discount;
+        this.description = description;
+    }
 }
