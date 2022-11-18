@@ -9,6 +9,6 @@ import java.util.List;
 public interface DiscountCouponRepository extends JpaRepository<DiscountCoupon, Long> {
     List<DiscountCoupon> findByDiscount(Double discount);
 
-    @Query("SELECT d FROM DiscountCoupon d WHERE d.categories in (select c from Category c where c.id = :categoryId)")
+    @Query("select c.discountCoupons from Category c where c.id = :categoryId")
     List<DiscountCoupon> findByCategoryId(Long categoryId);
 }

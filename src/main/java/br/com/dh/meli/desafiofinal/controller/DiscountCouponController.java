@@ -81,4 +81,13 @@ public class DiscountCouponController {
     public ResponseEntity<List<DiscountCouponDTO>> findByDiscount(@PathVariable Double discount){
         return new ResponseEntity<>(service.findByDiscount(discount), HttpStatus.OK);
     }
+
+    @GetMapping("/category/{categoryId}")
+    @ApiOperation(value = "Get a Discount Coupon by category id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Discounts Coupons found"),
+    })
+    public ResponseEntity<List<DiscountCouponDTO>> findByCategoryId(@PathVariable Long categoryId){
+        return new ResponseEntity<>(service.findByCategoryId(categoryId), HttpStatus.OK);
+    }
 }

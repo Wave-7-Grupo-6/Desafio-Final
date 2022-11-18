@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DiscountCouponService implements IDiscountCoupon{
     private final DiscountCouponRepository repository;
+    private final ICategory catService;
 
     @Override
     public DiscountCouponDTO save(DiscountCouponDTO discountCouponDTO) {
@@ -54,6 +55,7 @@ public class DiscountCouponService implements IDiscountCoupon{
 
     @Override
     public List<DiscountCouponDTO> findByCategoryId(Long categoryId) {
+        catService.findById(categoryId);
         return repository.findByCategoryId(categoryId).stream().map(DiscountCouponDTO::new).collect(Collectors.toList());
     }
 }

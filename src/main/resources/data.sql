@@ -27,6 +27,11 @@ INSERT INTO discount_coupon (id, status, discount, description) VALUES
                                (null, 1, 20.0, 'CUPOM_02'),
                                (null, 1, 30.0, 'CUPOM_03');
 
+INSERT INTO category_discount_coupon VALUES
+                                        (1, 1),
+                                        (2, 2),
+                                        (3, 3);
+
 INSERT INTO inbound_order VALUES (1,'2022-11-09', 1234, 1, 1);
 INSERT INTO inbound_order VALUES (2,'2022-11-09', 1235, 2, 2);
 INSERT INTO inbound_order VALUES (3,'2022-11-09', 1239, 3, 3);
