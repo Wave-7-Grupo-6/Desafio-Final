@@ -1,7 +1,6 @@
 package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.DiscountCouponDTO;
-import br.com.dh.meli.desafiofinal.model.DiscountCoupon;
 import br.com.dh.meli.desafiofinal.service.IDiscountCoupon;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/discount-coupons")
+@RequestMapping("/api/v1/discount-coupons")
 @Api(tags = "Discount Coupon Controller", value = "DiscountCouponController", description = "Controller for Discount Coupon")
 public class DiscountCouponController {
     @Autowired
