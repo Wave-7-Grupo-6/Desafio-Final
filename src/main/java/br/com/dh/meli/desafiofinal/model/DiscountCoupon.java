@@ -48,7 +48,7 @@ public class DiscountCoupon {
     @JsonManagedReference
     @ToString.Exclude
     @ApiModelProperty(notes = "The discount coupon inbound orders")
-    private List<InboundOrder> inboundOrders;
+    private List<PurchaseOrder> purchaseOrders;
 
     public DiscountCoupon(Long id, int status, Double discount, String description) {
         this.id = id;

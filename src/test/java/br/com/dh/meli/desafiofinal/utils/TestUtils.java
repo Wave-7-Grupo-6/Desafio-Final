@@ -46,6 +46,10 @@ public class TestUtils {
         return new Client(1L, "Client 1", null, null);
     }
 
+    public static DiscountCoupon getDiscountCoupon(){
+        return new DiscountCoupon(1L, 1, 10.9, "Discount Coupon 1", List.of(getCategory()), null, null);
+    }
+
     public static Batch getBatch(){
         return new Batch(2L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0),getAnnouncement(), null, getSection());
     }
