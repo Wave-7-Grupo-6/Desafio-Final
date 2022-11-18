@@ -19,7 +19,7 @@ Projeto feito no bootcamp [Java BackEnd - MercadoLivre](https://www.mercadolibre
 - Criar uma API utilizando o Spring
 - Criar os Testes de Unidade e de Integração.
 
-## 📝 Requisito
+## 📝 Problemática
 
 Um Cliente gostaria de poder aplicar um cupom de desconto para que sua compra saia um pouco mais parada, por esta razão, iremos:
 
