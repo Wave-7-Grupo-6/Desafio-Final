@@ -36,6 +36,6 @@ public class Client extends User{
 
     public Client(ClientDTO clientDTO, Set<Role> roles) {
         super(null, clientDTO.getUsername(), clientDTO.getPassword(), roles, true, true, true, true);
-        this.name = name;
+        this.name = clientDTO.getName();
     }
 }

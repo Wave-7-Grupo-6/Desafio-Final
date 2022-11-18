@@ -1,7 +1,8 @@
+-- password: "aaaaaA1@"
 INSERT INTO user VALUES
-                          (null, 1, 1, 1, 1, '123456','paula@gmail.com'),
-                          (null, 1, 1, 1, 1, '123456','williams@gmail.com'),
-                          (null, 1, 1, 1, 1, '123456','thays@gmail.com');
+                          (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','paula@gmail.com'),
+                          (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','williams@gmail.com'),
+                          (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','thays@gmail.com');
 
 INSERT INTO seller VALUES ('Paula', 1);
 

@@ -42,6 +42,6 @@ public class Seller extends User{
 
     public Seller(SellerDTO sellerDTO, Set<Role> roles) {
         super(null, sellerDTO.getUsername(), sellerDTO.getPassword(), roles, true, true, true, true);
-        this.name = name;
+        this.name = sellerDTO.getName();
     }
 }

@@ -4,13 +4,17 @@ import br.com.dh.meli.desafiofinal.dto.SellerDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Seller;
 import br.com.dh.meli.desafiofinal.repository.SellerRepository;
+import br.com.dh.meli.desafiofinal.service.IRole;
 import br.com.dh.meli.desafiofinal.service.ISeller;
+import br.com.dh.meli.desafiofinal.service.IUser;
 import br.com.dh.meli.desafiofinal.service.impl.SellerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +23,7 @@ import static br.com.dh.meli.desafiofinal.utils.TestUtils.getSeller;
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.getSellerRole;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,14 +31,16 @@ class SellerServiceTest {
 
     @Mock
     private SellerRepository sellerRepository;
-
     @Mock
-    private RoleService roleService;
+    private IRole roleService;
+    @Mock
+    private IUser userService;
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     private ISeller sellerService;
 
     @BeforeEach
     void setUp() {
-        sellerService = new SellerService(sellerRepository, roleService);
+        sellerService = new SellerService(sellerRepository, userService, roleService, passwordEncoder);
     }
 
     @Test
@@ -74,6 +79,7 @@ class SellerServiceTest {
         Seller seller = getSeller();
         when(sellerRepository.save(any(Seller.class))).thenReturn(seller);
         when(roleService.findByName("ROLE_SELLER")).thenReturn(getSellerRole());
+        when(userService.existsByUsername(anyString())).thenReturn(false);
 
         Seller savedSeller = sellerService.save(new SellerDTO(seller));
 

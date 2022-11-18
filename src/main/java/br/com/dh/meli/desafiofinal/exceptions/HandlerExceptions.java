@@ -42,7 +42,7 @@ public class HandlerExceptions {
                 ExceptionDetails.builder()
                         .title("Dados inválidos")
                         .message("Um ou mais valores fornecidos são inválidos")
-                        .status(HttpStatus.BAD_GATEWAY.value())
+                        .status(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .build(),
                 HttpStatus.BAD_REQUEST);
@@ -106,5 +106,17 @@ public class HandlerExceptions {
                 .build();
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NotUniqueException.class)
+    public ResponseEntity<ExceptionDetails> handlerNotUniqueException(NotUniqueException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("Objeto já cadastrado")
+                .message(ex.getMessage())
+                .status(HttpStatus.CONFLICT.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.CONFLICT);
     }
 }

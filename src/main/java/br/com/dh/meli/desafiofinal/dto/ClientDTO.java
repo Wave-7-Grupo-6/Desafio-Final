@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,10 +21,12 @@ public class ClientDTO {
     @NotEmpty(message = "Name must not be empty.")
     private String name;
 
-    @Size(max = 15, message = "Username must not exceed 50 characters.")
+    @Email(message = "Username must be a valid email.")
+    @NotEmpty(message = "Username must not be empty.")
     private String username;
 
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
+            message = "Password must contain at least 1 digit, 1 uppercase letter, 1 lowercase letter, 1 special character and be at least 8 characters long with no spaces.")
     /*
         ^                 # start-of-string
         (?=.*[0-9])       # a digit must occur at least once
