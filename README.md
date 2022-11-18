@@ -1,4 +1,5 @@
-# Desafio Final
+# Desafio Final - Requisito 06 - Giovanna de Souza
 
+## Sobre o projeto
 
-![UML](https://user-images.githubusercontent.com/114093532/202289686-7bcfeab0-845d-4c96-abac-f9eb72be8a94.svg)
+![UML](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/gi.png)
