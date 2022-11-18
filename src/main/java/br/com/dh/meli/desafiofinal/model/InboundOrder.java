@@ -63,4 +63,12 @@ public class InboundOrder {
         this.section = section;
         this.batchs = new ArrayList<>();
     }
+
+    public InboundOrder(Long id, LocalDate orderDate, Long orderNumber, List<Batch> batchs, Section section) {
+        this.id = id;
+        this.orderDate = orderDate;
+        this.orderNumber = orderNumber;
+        this.batchs = batchs;
+        this.section = section;
+    }
 }

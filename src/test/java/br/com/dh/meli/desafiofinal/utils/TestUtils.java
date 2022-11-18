@@ -43,7 +43,7 @@ public class TestUtils {
     }
 
     public static Client getClient(){
-        return new Client(1L, "Client 1", null);
+        return new Client(1L, "Client 1", null, null);
     }
 
     public static Batch getBatch(){
@@ -66,11 +66,11 @@ public class TestUtils {
 
     public static PurchaseOrder getPurchaseOrder(){
         BigDecimal total = getPurchaseItem().getPrice().multiply(new BigDecimal(getPurchaseItem().getQuantity()));
-        return new PurchaseOrder(1L,LocalDate.now(), OrderStatus.PROCESSING,total, getClient(), Set.of(getPurchaseItem()));
+        return new PurchaseOrder(1L,LocalDate.now(), OrderStatus.PROCESSING,total, getClient(), Set.of(getPurchaseItem()), null);
     }
 
     public static PurchaseOrderDTO getPurchaseOrderDTO(){
         List<ProductDTO> productDTOs = List.of(new ProductDTO(getAnnouncement().getId(), getPurchaseItem().getQuantity(), getLowIdBatch().getBatchNumber()));
-        return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), OrderStatus.PROCESSING.toString(), productDTOs);
+        return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), null, OrderStatus.PROCESSING.toString(), productDTOs);
     }
 }

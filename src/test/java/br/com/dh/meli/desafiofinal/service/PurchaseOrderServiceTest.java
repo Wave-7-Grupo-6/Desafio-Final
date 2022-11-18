@@ -34,11 +34,13 @@ class PurchaseOrderServiceTest {
     private IClient clientService;
     @Mock
     private IBatch batchService;
+    @Mock
+    private IDiscountCoupon discountCouponService;
     private IPurchaseOrder purchaseOrderService;
 
     @BeforeEach
     void setUp() {
-        purchaseOrderService = new PurchaseOrderService(repository, announcementService, clientService, batchService);
+        purchaseOrderService = new PurchaseOrderService(repository, announcementService, clientService, batchService, discountCouponService);
     }
 
     @Test

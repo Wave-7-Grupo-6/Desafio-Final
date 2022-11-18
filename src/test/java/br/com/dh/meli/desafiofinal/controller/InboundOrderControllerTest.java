@@ -76,7 +76,7 @@ public class InboundOrderControllerTest {
         );
 
         resultActions.andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.title",CoreMatchers.is("Parâmetros inválidos")));
+                .andExpect(jsonPath("$.title",CoreMatchers.is("Params invalids")));
     }
 
     @Test
