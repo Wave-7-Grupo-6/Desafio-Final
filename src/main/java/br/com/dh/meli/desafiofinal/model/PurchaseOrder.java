@@ -39,7 +39,7 @@ public class PurchaseOrder {
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     @ApiModelProperty(notes = "The purchase order client")
-    private Client client;
+    private User client;
 
     @OneToMany(mappedBy = "purchaseOrder", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("purchaseOrder")

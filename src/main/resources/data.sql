@@ -1,4 +1,9 @@
-INSERT INTO seller VALUES (null, 'Paula');
+INSERT INTO user VALUES
+                          (null, 1, 1, 1, 1, '123456','paula@gmail.com'),
+                          (null, 1, 1, 1, 1, '123456','williams@gmail.com'),
+                          (null, 1, 1, 1, 1, '123456','thays@gmail.com');
+
+INSERT INTO seller VALUES ('Paula', 1);
 
 INSERT INTO category VALUES
                          (null, 'FRESCO', 20),
@@ -20,7 +25,7 @@ INSERT INTO section VALUES
                         (null, 'CONGELADO_01', 0, 50, 3, 1, 1);
 
 INSERT INTO client VALUES
-                       (null, 'Williamns');
+                       ('Williamns', 2);
 
 INSERT INTO inbound_order VALUES (1,'2022-11-09', 1234, 1);
 INSERT INTO inbound_order VALUES (2,'2022-11-09', 1235, 2);
@@ -42,3 +47,14 @@ INSERT INTO purchase_item VALUES
                         (null, 44.0, 1, 1, 1),
                         (null, 10.0, 2, 2, 1),
                         (null, 12.9, 1, 3, 1);
+
+
+INSERT INTO role VALUES
+                              (null, 'ROLE_ADMIN'),
+                              (null, 'ROLE_CLIENT'),
+                              (null, 'ROLE_SELLER');
+
+INSERT INTO user_role VALUES
+                     (1, 3),
+                     (2, 2),
+                     (3, 1);

@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -36,9 +36,13 @@ public class User implements UserDetails {
     @ApiModelProperty(notes = "The user password")
     private String password;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "user_role", joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
     @ApiModelProperty(notes = "The user roles")
-    private List<Role> roles;
+    private Set<Role> roles;
 
     @ApiModelProperty(notes = "The user account expiration status")
     private Boolean isAccountNonExpired;

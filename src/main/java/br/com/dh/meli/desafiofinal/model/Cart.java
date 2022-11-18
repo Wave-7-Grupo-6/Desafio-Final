@@ -27,7 +27,7 @@ public class Cart {
     @JoinColumn(name = "client_id")
     @JsonIgnoreProperties("carts")
     @JsonBackReference
-    private Client client;
+    private User client;
 
     @OneToMany(mappedBy = "cart")
     @JsonIgnoreProperties("cart")

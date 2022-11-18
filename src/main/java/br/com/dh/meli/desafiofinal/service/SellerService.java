@@ -25,6 +25,6 @@ public class SellerService implements ISeller {
 
     @Override
     public Seller save(SellerDTO sellerDTO) {
-        return repository.save(new Seller(null, sellerDTO.getName(), null, null));
+        return repository.save(new Seller(null, sellerDTO.getName()));
     }
 }

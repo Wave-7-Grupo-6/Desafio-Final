@@ -26,4 +26,8 @@ public class Client extends User{
     @ToString.Exclude
     @ApiModelProperty(notes = "The client carts")
     private List<Cart> carts;
+
+    public Client(String name) {
+        this.name = name;
+    }
 }
