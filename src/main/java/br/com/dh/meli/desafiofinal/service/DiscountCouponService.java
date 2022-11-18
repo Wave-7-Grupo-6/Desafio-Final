@@ -3,6 +3,7 @@ package br.com.dh.meli.desafiofinal.service;
 import br.com.dh.meli.desafiofinal.dto.DiscountCouponDTO;
 import br.com.dh.meli.desafiofinal.repository.DiscountCouponRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +29,12 @@ public class DiscountCouponService implements IDiscountCoupon{
 
     @Override
     public void delete(Long id) {
-        findById(id);
-        repository.deleteById(id);
+        try{
+            findById(id);
+            repository.deleteById(id);
+        }catch (DataIntegrityViolationException ex){
+            throw new DataIntegrityViolationException("You can't delete a discount coupon that has products associated!");
+        }
     }
 
     @Override
