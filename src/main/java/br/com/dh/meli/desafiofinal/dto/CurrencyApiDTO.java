@@ -21,5 +21,5 @@ public class CurrencyApiDTO implements Serializable {
     private Float bid;
     private Float ask;
     private String timestamp;
-    private LocalDateTime create_date;
+    private String create_date;
 }
