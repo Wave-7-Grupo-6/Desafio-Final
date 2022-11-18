@@ -42,7 +42,7 @@ public class HandlerExceptions {
                 ExceptionDetails.builder()
                         .title("Dados inválidos")
                         .message("Um ou mais valores fornecidos são inválidos")
-                        .status(HttpStatus.BAD_GATEWAY.value())
+                        .status(HttpStatus.BAD_REQUEST.value())
                         .timestamp(LocalDateTime.now())
                         .build(),
                 HttpStatus.BAD_REQUEST);
@@ -60,6 +60,30 @@ public class HandlerExceptions {
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NoSpaceAvailableException.class)
+    public ResponseEntity<ExceptionDetails> handlerNoSpaceAvailableException(NoSpaceAvailableException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("No space avaliable")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoCompatibleException.class)
+    public ResponseEntity<ExceptionDetails> handlerNoCompatibleException(NoCompatibleException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("No compatible")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ExceptionDetails> handlerNoSuchElementException(NoSuchElementException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
@@ -70,5 +94,17 @@ public class HandlerExceptions {
                 .build();
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(OutOfStockException.class)
+    public ResponseEntity<ExceptionDetails> handlerOutOfStockException(OutOfStockException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("Objeto sem estoque suficiente.")
+                .message(ex.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
     }
 }

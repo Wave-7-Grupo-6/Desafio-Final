@@ -5,9 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * The type Batch.
+ */
 @Entity
 @Getter
 @Setter
@@ -17,13 +21,7 @@ import java.time.LocalTime;
 public class Batch {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
     private Long batchNumber;
-
-    @Column
-    private Long productId;
 
     @Column(nullable = false)
     private Float currentTemperature;
@@ -43,6 +41,9 @@ public class Batch {
     @Column(nullable = false)
     private LocalDate dueDate;
 
+    @Column(nullable = false)
+    private BigDecimal price;
+
     @ManyToOne
     @JoinColumn(name = "annoucement_id")
     @JsonIgnoreProperties("batchs")
@@ -60,4 +61,5 @@ public class Batch {
     @JsonIgnoreProperties("batchs")
     @JsonBackReference
     private Section section;
+
 }

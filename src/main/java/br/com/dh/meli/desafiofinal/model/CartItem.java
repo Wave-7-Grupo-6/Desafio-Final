@@ -10,6 +10,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * The type Cart item.
+ */
 @Entity
 @Getter
 @Setter
@@ -38,7 +41,4 @@ public class CartItem {
     @JsonBackReference
     private Cart cart;
 
-    public void calculateValue(){
-        value = announcement.getPrice().multiply(BigDecimal.valueOf(this.quantity));
-    }
 }

@@ -1,8 +1,11 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
+import br.com.dh.meli.desafiofinal.service.IAnnouncement;
+import br.com.dh.meli.desafiofinal.service.ICategory;
+import br.com.dh.meli.desafiofinal.service.impl.AnnouncementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +48,6 @@ class AnnouncementServiceTest {
 
         assertThat(announcement).isNotNull();
         assertThat(announcement.getId()).isEqualTo(getAnnouncement().getId());
-        assertThat(announcement.getPrice()).isEqualTo(getAnnouncement().getPrice());
         assertThat(announcement.getDescription()).isEqualTo(getAnnouncement().getDescription());
     }
 
@@ -64,7 +66,6 @@ class AnnouncementServiceTest {
         Announcement savedAnnouncement = announcementService.save(announcement);
 
         assertThat(savedAnnouncement.getId()).isEqualTo(getAnnouncement().getId());
-        assertThat(savedAnnouncement.getPrice()).isEqualTo(getAnnouncement().getPrice());
         assertThat(savedAnnouncement.getDescription()).isEqualTo(getAnnouncement().getDescription());
     }
 
@@ -93,5 +94,22 @@ class AnnouncementServiceTest {
         when(categoryService.findByName(anyString())).thenReturn(getCategory());
 
         assertThrows(NotFoundException.class, ()-> announcementService.findByCategory("Category 1"));
+    }
+
+    @Test
+    void findByProductType_returnAnnouncementList_whenSuccess() {
+        when(announcementRepository.findByProductType_Id(1L)).thenReturn(List.of(getAnnouncement()));
+
+        List<Announcement> announcementList = announcementService.findByProductType(1L);
+
+        assertThat(announcementList).isNotEmpty();
+        assertThat(announcementList.size()).isEqualTo(1);
+    }
+
+    @Test
+    void findByProductTypeGroupByWarehouse_throwsNullPointer_whenFails() {
+        when(announcementRepository.findByProductType_Id(1L)).thenReturn(List.of(getAnnouncement()));
+
+        assertThrows(NullPointerException.class, ()-> announcementService.findByProductTypeGroupByWarehouse(1L));
     }
 }

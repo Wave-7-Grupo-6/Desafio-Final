@@ -1,9 +1,9 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import br.com.dh.meli.desafiofinal.dto.ProductDTO;
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +11,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
+/**
+ * The type Purchase order.
+ */
 @Entity
 @Getter
 @Setter
@@ -26,48 +25,53 @@ import java.util.stream.Collectors;
 public class PurchaseOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @ApiModelProperty(notes = "The database generated purchase order ID")
     private Long id;
 
+    @ApiModelProperty(notes = "The purchase order date")
     private LocalDate date;
 
     @Enumerated(EnumType.STRING)
+    @ApiModelProperty(notes = "The purchase order status")
     private OrderStatus orderStatus;
 
     @Transient
+    @ApiModelProperty(notes = "The purchase order total value")
     private BigDecimal totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
+    @ApiModelProperty(notes = "The purchase order client")
     private Client client;
 
     @OneToMany(mappedBy = "purchaseOrder", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JsonIgnoreProperties("purchaseOrder")
+    @ApiModelProperty(notes = "The purchase order items")
     private Set<PurchaseItem> purchaseItems;
 
-    public PurchaseOrder(PurchaseOrderDTO purchaseOrderDTO, Client client, List<Announcement> announcements) {
+    /**
+     * Instantiates a new Purchase order.
+     *
+     * @param purchaseOrderDTO the purchase order dto
+     * @param client           the client
+     */
+    public PurchaseOrder(PurchaseOrderDTO purchaseOrderDTO, Client client) {
         this.date = purchaseOrderDTO.getDate();
-        this.orderStatus = purchaseOrderDTO.getOrderStatus();
+        this.orderStatus = OrderStatus.valueOf(purchaseOrderDTO.getOrderStatus());
         this.client = client;
-
-        this.purchaseItems = new HashSet<>();
-        for(int i = 0; i < purchaseItems.size(); i++){
-            this.purchaseItems.add(
-                new PurchaseItem(purchaseOrderDTO.getProducts().get(i).getQuantity(), announcements.get(i), this)
-            );
-        }
-
-        calculateTotalPrice(announcements, purchaseOrderDTO.getProducts());
     }
 
-    private void calculateTotalPrice(List<Announcement> announcements, List<ProductDTO> productDTOS){
-        BigDecimal total = new BigDecimal(BigInteger.ZERO);
-        for(int i = 0; i < announcements.size(); i++){
-            BigDecimal value = new BigDecimal(String.valueOf(announcements.get(i).getPrice()
-                    .multiply(new BigDecimal(productDTOS.get(i).getQuantity()))));
-            total = total.add(value);
-        }
-
-        totalPrice = total;
+    /**
+     * It takes the purchaseItems list, maps each item to a BigDecimal representing the price of the item multiplied by the
+     * quantity of the item, then reduces the list of BigDecimals to a single BigDecimal representing the total price of
+     * the purchase
+     *
+     * @return The total price of the purchase.
+     */
+    public BigDecimal getTotalPrice() {
+        this.totalPrice = this.purchaseItems != null ? purchaseItems.stream()
+                .map(item -> item.getPrice().multiply(new BigDecimal(item.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add) : null;
+        return this.totalPrice;
     }
 }
