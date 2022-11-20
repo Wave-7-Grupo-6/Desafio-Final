@@ -7,15 +7,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
+
 @Service
 @RequiredArgsConstructor
 public class CurrencyApiService implements ICurrencyApi {
     @Override
-    public Float getCurrencyValue(String currency) {
+    public BigDecimal getValue(String currency) {
         RestTemplate restTemplate = new RestTemplate();
         String url = String.format("https://economia.awesomeapi.com.br/%s-BRL/?format=json", currency);
         CurrencyApiDTO[] currencyApiDTO = restTemplate.getForObject(url, CurrencyApiDTO[].class);
-        if (currencyApiDTO == null || currency == null) {
+        if (currencyApiDTO == null) {
             throw new NotFoundException("Currency not found.");
         }
         return currencyApiDTO[0].getBid();

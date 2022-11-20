@@ -1,5 +1,7 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import java.math.BigDecimal;
+
 public interface ICurrencyApi {
-    Float getCurrencyValue(String currency);
+    BigDecimal getValue(String currency);
 }

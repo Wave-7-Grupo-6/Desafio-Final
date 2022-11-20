@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,12 +15,12 @@ public class CurrencyApiDTO implements Serializable {
     private String code;
     private String codein;
     private String name;
-    private Float high;
-    private Float low;
-    private Float varBid;
-    private Float pctChange;
-    private Float bid;
-    private Float ask;
+    private BigDecimal high;
+    private BigDecimal low;
+    private BigDecimal varBid;
+    private BigDecimal pctChange;
+    private BigDecimal bid;
+    private BigDecimal ask;
     private String timestamp;
     private String create_date;
 }
