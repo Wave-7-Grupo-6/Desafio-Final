@@ -46,6 +46,14 @@ public interface IAnnouncement {
     List<Announcement> findAll();
 
     /**
+     * Find all the list with converted currency.
+     *
+     * @param currency the currency
+     * @return the list
+     */
+    List<Announcement> findAllAndCurrency(String currency);
+
+    /**
      * Find by category list.
      *
      * @param category the category

@@ -70,6 +70,26 @@ public class AnnouncementService implements IAnnouncement {
     }
 
     /**
+     * This method is responsible for returning all announcements with a specific currency.
+     * @param currency the currency
+     * @return the list
+     */
+    @Override
+    public List<Announcement> findAllAndCurrency(String currency) {
+        List<Announcement> announcements = repository.findAll();
+
+        if (currency != null) {
+            BigDecimal currentCurrency = currencyApiService.getValue(currency);
+
+            for (Announcement announcement : announcements) {
+                currencyApiService.convertAnnouncementCurrency(announcement, currentCurrency);
+            }
+        }
+
+        return announcements;
+    }
+
+    /**
      * This method is responsible for finding all announcements by category.
      * @param category
      * @return the list

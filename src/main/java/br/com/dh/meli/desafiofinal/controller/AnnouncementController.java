@@ -116,6 +116,19 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcements);
     }
 
+    @GetMapping(params = "currency")
+    @ApiOperation(value = "Get all Announcements and currency")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Announcements found"),
+    })
+    public ResponseEntity<List<Announcement>> findAllAndCurrency(@RequestParam String currency){
+        List<Announcement> announcements = announcementService.findAllAndCurrency(currency);
+        if(announcements.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(announcements);
+    }
+
     /**
      * Find by category response entity.
      *
