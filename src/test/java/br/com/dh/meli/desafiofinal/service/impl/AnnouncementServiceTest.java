@@ -5,6 +5,7 @@ import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
 import br.com.dh.meli.desafiofinal.service.IAnnouncement;
 import br.com.dh.meli.desafiofinal.service.ICategory;
+import br.com.dh.meli.desafiofinal.service.ICurrencyApi;
 import br.com.dh.meli.desafiofinal.service.impl.AnnouncementService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,11 +34,14 @@ class AnnouncementServiceTest {
     @Mock
     private ICategory categoryService;
 
+    @Mock
+    private ICurrencyApi currencyApiService;
+
     private IAnnouncement announcementService;
 
     @BeforeEach
     void setUp() {
-        announcementService = new AnnouncementService(announcementRepository, categoryService);
+        announcementService = new AnnouncementService(announcementRepository, categoryService, currencyApiService);
     }
 
     @Test
