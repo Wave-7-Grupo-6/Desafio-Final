@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.CurrencyApiDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
+import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.service.ICurrencyApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,20 @@ public class CurrencyApiService implements ICurrencyApi {
         } catch (HttpClientErrorException e) {
             throw new NotFoundException("Currency not found.");
         }
+    }
+
+    @Override
+    public Announcement convertAnnouncementCurrency(Announcement announcement, BigDecimal currency) {
+        announcement.getCartItems().forEach(cartItem -> {
+            cartItem.setValue(cartItem.getValue().multiply(currency));
+        });
+        announcement.getSeller().getSections().forEach(section -> {
+            section.getInboundOrders().forEach(inboundOrder -> {
+                inboundOrder.getBatchs().forEach(batch -> {
+                    batch.setPrice(batch.getPrice().multiply(currency));
+                });
+            });
+        });
+        return announcement;
     }
 }

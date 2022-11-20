@@ -45,17 +45,7 @@ public class AnnouncementService implements IAnnouncement {
 
         if (currency != null) {
             BigDecimal currentCurrency = currencyApiService.getValue(currency);
-            announcement.getCartItems().forEach(cartItem -> {
-                cartItem.setValue(cartItem.getValue().multiply(currentCurrency));
-            });
-            announcement.getSeller().getSections().forEach(section -> {
-                section.getInboundOrders().forEach(inboundOrder -> {
-                    inboundOrder.getBatchs().forEach(batch -> {
-                        batch.setPrice(batch.getPrice().multiply(currentCurrency));
-                    });
-                });
-            });
-            return announcement;
+            return currencyApiService.convertAnnouncementCurrency(announcement, currentCurrency);
         }
 
         return announcement;
