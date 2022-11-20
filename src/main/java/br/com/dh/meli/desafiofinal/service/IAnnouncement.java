@@ -17,7 +17,18 @@ public interface IAnnouncement {
      * @param id the id
      * @return the announcement
      */
+
     Announcement findById(Long id);
+
+    /**
+     * Find by id announcement.
+     *
+     * @param id the id
+     * @param currency the currency
+     * @return the announcement
+     */
+
+    Announcement findByIdAndCurrency(Long id, String currency);
 
     /**
      * Save announcement.

@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -75,15 +76,22 @@ public class AnnouncementController {
             @ApiResponse(code = 200, message = "Announcement found"),
             @ApiResponse(code = 404, message = "Announcement not found"),
     })
-    public ResponseEntity<Announcement> findById(@PathVariable Long id, @RequestParam(defaultValue = "BRL") String currency){
-        RestTemplate restTemplate = new RestTemplate();
-        String url = String.format("https://economia.awesomeapi.com.br/%s-BRL/?format=json", currency);
-        CurrencyApiDTO[] currencyApiDTO = restTemplate.getForObject(url, CurrencyApiDTO[].class);
-        assert currencyApiDTO != null;
-        Float bid = currencyApiDTO[0].getBid();
-        System.out.println(bid);
-
+    public ResponseEntity<Announcement> findById(@PathVariable Long id){
         Announcement announcement = announcementService.findById(id);
+        if(announcement !=null){
+            return ResponseEntity.ok(announcement);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/{id}", params = "currency")
+    @ApiOperation(value = "Get a Announcement by ID and currency")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Announcement found"),
+            @ApiResponse(code = 404, message = "Announcement not found"),
+    })
+    public ResponseEntity<Announcement> findByIdAndCurrency(@PathVariable Long id, @RequestParam String currency){
+        Announcement announcement = announcementService.findByIdAndCurrency(id, currency);
         if(announcement !=null){
             return ResponseEntity.ok(announcement);
         }

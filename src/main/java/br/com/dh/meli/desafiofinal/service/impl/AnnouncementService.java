@@ -9,9 +9,11 @@ import br.com.dh.meli.desafiofinal.model.Section;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;
 import br.com.dh.meli.desafiofinal.service.IAnnouncement;
 import br.com.dh.meli.desafiofinal.service.ICategory;
+import br.com.dh.meli.desafiofinal.service.ICurrencyApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +27,8 @@ public class AnnouncementService implements IAnnouncement {
     private final AnnouncementRepository repository;
     private final ICategory catService;
 
+    private final ICurrencyApi currencyApiService;
+
     /**
      * This method is responsible for finding an announcement by id.
      * @param id
@@ -33,6 +37,28 @@ public class AnnouncementService implements IAnnouncement {
     @Override
     public Announcement findById(Long id) {
         return repository.findById(id).orElseThrow(() -> new NotFoundException("Announcement not found."));
+    }
+
+    @Override
+    public Announcement findByIdAndCurrency(Long id, String currency) {
+        Announcement announcement = repository.findById(id).orElseThrow(() -> new NotFoundException("Announcement not found."));
+
+        if (currency != null) {
+            BigDecimal currentCurrency = currencyApiService.getValue(currency);
+            announcement.getCartItems().forEach(cartItem -> {
+                cartItem.setValue(cartItem.getValue().multiply(currentCurrency));
+            });
+            announcement.getSeller().getSections().forEach(section -> {
+                section.getInboundOrders().forEach(inboundOrder -> {
+                    inboundOrder.getBatchs().forEach(batch -> {
+                        batch.setPrice(batch.getPrice().multiply(currentCurrency));
+                    });
+                });
+            });
+            return announcement;
+        }
+
+        return announcement;
     }
 
     /**
