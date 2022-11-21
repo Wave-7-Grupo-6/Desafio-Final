@@ -45,10 +45,7 @@ mvn spring-boot:run
 
 ## 🧑🏻‍🚀 Como testar no Postman
 
-1. Importar o arquivo:
-```shell
-
-```
+1. Importar o arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Discount%20Coupon%20Postman.json)
 
 # 💡 Documentação da API
 
