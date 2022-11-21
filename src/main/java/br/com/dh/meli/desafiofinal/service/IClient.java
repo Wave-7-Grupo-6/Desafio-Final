@@ -27,6 +27,14 @@ public interface IClient {
     /**
      * Find by id client.
      *
+     * @param currency the currency
+     * @return the client
+     */
+    List<Client> findAllAndCurrency(String currency);
+
+    /**
+     * Find by id client.
+     *
      * @param id the id
      * @return the client
      */

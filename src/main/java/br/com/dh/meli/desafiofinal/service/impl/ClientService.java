@@ -4,9 +4,11 @@ import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.model.Client;
 import br.com.dh.meli.desafiofinal.repository.ClientRepository;
 import br.com.dh.meli.desafiofinal.service.IClient;
+import br.com.dh.meli.desafiofinal.service.ICurrencyApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -17,6 +19,8 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class ClientService implements IClient {
     private final ClientRepository repo;
+
+    private final ICurrencyApi currencyApiService;
 
     /**
      * Save a new client to the database.
@@ -37,6 +41,32 @@ public class ClientService implements IClient {
     @Override
     public List<Client> findAll() {
         return repo.findAll();
+    }
+
+    /**
+     * Find all clients and return them as a list with converted currency.
+     *
+     * @param currencyName the currency
+     * @return the client
+     */
+    @Override
+    public List<Client> findAllAndCurrency(String currencyName) {
+        List<Client> clients = repo.findAll();
+
+        BigDecimal currencyValue = currencyApiService.getValue(currencyName);
+
+        clients.forEach(client -> {
+            client.getCarts().forEach(cart -> {
+                cart.getCartItems().forEach(cartItem -> {
+                    if (!cartItem.getCurrency().equalsIgnoreCase(currencyName)) {
+                        cartItem.setCurrency(currencyName);
+                        cartItem.setValue(cartItem.getValue().multiply(currencyValue));
+                    }
+                });
+            });
+        });
+
+        return clients;
     }
 
     /**

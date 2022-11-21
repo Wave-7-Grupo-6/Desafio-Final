@@ -55,6 +55,22 @@ public class ClientController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
+
+    /**
+     * Find all response entity with clients and converted currency.
+     * @param currency the currency
+     * @return the response entity with clients
+     */
+    @GetMapping(params = "currency")
+    @ApiOperation(value = "Get all Clients and converted currency")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Clients found"),
+            @ApiResponse(code = 404, message = "Currency not found"),
+    })
+    public ResponseEntity<List<Client>> findAllAndCurrency(@RequestParam String currency){
+        return new ResponseEntity<>(service.findAllAndCurrency(currency), HttpStatus.OK);
+    }
+
     /**
      * Find by id response entity with client.
      *
