@@ -4,6 +4,7 @@ import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.model.Client;
 import br.com.dh.meli.desafiofinal.repository.ClientRepository;
 import br.com.dh.meli.desafiofinal.service.IClient;
+import br.com.dh.meli.desafiofinal.service.ICurrencyApi;
 import br.com.dh.meli.desafiofinal.service.impl.ClientService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,11 +27,14 @@ class ClientServiceTest {
     @Mock
     private ClientRepository repository;
 
+    @Mock
+    private ICurrencyApi currencyApiService;
+
     private IClient service;
 
     @BeforeEach
     void setup(){
-        service = new ClientService(repository);
+        service = new ClientService(repository, currencyApiService);
     }
 
     @Test
