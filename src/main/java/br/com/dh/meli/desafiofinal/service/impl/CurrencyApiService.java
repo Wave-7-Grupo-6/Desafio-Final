@@ -34,7 +34,7 @@ public class CurrencyApiService implements ICurrencyApi {
     public Announcement convertAnnouncementCurrency(Announcement announcement, BigDecimal currency, String currencyName) {
         announcement.getCartItems().forEach(cartItem -> {
             if (!cartItem.getCurrency().equalsIgnoreCase(currencyName)) {
-                cartItem.setCurrency(currencyName);
+                cartItem.setCurrency(currencyName.toUpperCase());
                 cartItem.setValue(cartItem.getValue().multiply(currency));
             }
         });

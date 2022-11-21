@@ -61,6 +61,16 @@ public interface IAnnouncement {
      */
     List<Announcement> findByCategory(String category);
 
+
+    /**
+     * Find by category list with converted currency.
+     *
+     * @param category the category
+     * @param currency the currency
+     * @return the list
+     */
+    List<Announcement> findByCategoryAndCurrency(String category, String currency);
+
     /**
      * Find by product type list.
      *

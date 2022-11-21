@@ -106,6 +106,31 @@ public class AnnouncementService implements IAnnouncement {
     }
 
     /**
+     * This method is responsible for finding all announcements by category with converted currency.
+     * @param category the category
+     * @param currency the currency
+     * @return the list
+     */
+    @Override
+    public List<Announcement> findByCategoryAndCurrency(String category, String currency) {
+        Long id_cat = catService.findByName(category).getId();
+
+        List<Announcement> list = repository.findByCategory_Id(id_cat);
+
+        if(list.isEmpty()) throw new NotFoundException("Announcement list of category not found");
+
+        if (currency != null) {
+            BigDecimal currentCurrency = currencyApiService.getValue(currency);
+
+            for (Announcement announcement : list) {
+                currencyApiService.convertAnnouncementCurrency(announcement, currentCurrency, currency);
+            }
+        }
+
+        return list;
+    }
+
+    /**
      * This method is responsible for finding all announcements by product type.
      * @param prod_id product type id
      * @return the list

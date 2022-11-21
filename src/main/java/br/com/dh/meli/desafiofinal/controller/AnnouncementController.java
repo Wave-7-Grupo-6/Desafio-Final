@@ -89,6 +89,7 @@ public class AnnouncementController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Announcement found"),
             @ApiResponse(code = 404, message = "Announcement not found"),
+            @ApiResponse(code = 404, message = "Currency not found"),
     })
     public ResponseEntity<Announcement> findByIdAndCurrency(@PathVariable Long id, @RequestParam String currency){
         Announcement announcement = announcementService.findByIdAndCurrency(id, currency);
@@ -144,6 +145,24 @@ public class AnnouncementController {
     })
     public ResponseEntity<List<Announcement>> findByCategory(@RequestParam String category){
         return new ResponseEntity<>(announcementService.findByCategory(category), HttpStatus.OK);
+    }
+
+    /**
+     * Find by category response entity.
+     *
+     * @param category the category
+     * @return the response entity
+     */
+    @GetMapping(value = "/list", params = {"category", "currency"})
+    @ApiOperation(value = "Get all Announcements by Category")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Announcements found"),
+            @ApiResponse(code = 404, message = "Announcements not found"),
+            @ApiResponse(code = 404, message = "Category not found"),
+            @ApiResponse(code = 404, message = "Currency not found")
+    })
+    public ResponseEntity<List<Announcement>> findByCategoryAndCurrency(@RequestParam String category, @RequestParam String currency){
+        return new ResponseEntity<>(announcementService.findByCategoryAndCurrency(category, currency), HttpStatus.OK);
     }
 
     /**
