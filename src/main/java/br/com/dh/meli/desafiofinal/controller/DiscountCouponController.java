@@ -27,7 +27,7 @@ public class DiscountCouponController {
             @ApiResponse(code = 201, message = "Discount Coupon created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
-    public DiscountCouponDTO save(DiscountCouponDTO discountCouponDTO){
+    public DiscountCouponDTO save(@RequestBody DiscountCouponDTO discountCouponDTO){
         return service.save(discountCouponDTO);
     }
 
@@ -47,7 +47,7 @@ public class DiscountCouponController {
             @ApiResponse(code = 200, message = "Discount Coupon updated successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
-    public DiscountCouponDTO update(DiscountCouponDTO discountCouponDTO, @PathVariable Long id){
+    public DiscountCouponDTO update(@RequestBody DiscountCouponDTO discountCouponDTO, @PathVariable Long id){
         return service.update(discountCouponDTO, id);
     }
 
