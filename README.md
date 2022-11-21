@@ -403,6 +403,10 @@ POST /api/v1/purchase-order/
 
 [![DER](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)
 
+## 📖 User Storie
+
+[![Storie](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Requisito 6 - DOC.docx)](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Requisito 6 - DOC.docx)
+
 ## 👩🏽‍💻 Desenvolvedora
 
 Olá, meu nome é Giovanna de Souza, tenho 19 anos, sou paulistana de nascença e mineira de coração, meu início na programação começou aos meus 14 anos, durante o ensino médio que fiz em uma escola técnica aqui de São Paulo.
