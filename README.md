@@ -405,7 +405,7 @@ POST /api/v1/purchase-order/
 
 ## 📖 User Storie
 
-[![Storie](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Requisito 6 - DOC.docx)](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Requisito 6 - DOC.docx)
+![User Storie](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Requisito06-DOC.docx)
 
 ## 👩🏽‍💻 Desenvolvedora
 
