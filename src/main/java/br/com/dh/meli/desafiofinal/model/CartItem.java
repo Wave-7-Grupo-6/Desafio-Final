@@ -29,6 +29,9 @@ public class CartItem {
     @Column(nullable = false)
     private BigDecimal value;
 
+    @Column(nullable = false, columnDefinition = "varchar(3) default 'BRL'")
+    private String currency;
+
     @ManyToOne
     @JoinColumn(name = "annoucement_id")
     @JsonIgnoreProperties("cartItems")
