@@ -56,7 +56,9 @@ public class BatchService implements IBatch{
         List<Batch> batches = repo.findBatchByCategoryAndDueDate(LocalDate.now().plusDays(days), category);
         return batches;
     }
-
+    public List<Batch> findBatchToDonation(Integer daysToExpire) {
+        return repo.findBatchToDonation(LocalDate.now().plusDays(daysToExpire));
+    }
     private void validations(Long sellerId, Long sectionId) {
         Seller seller = sellerService.findById(sellerId);
         Section section = sectionService.findById(sectionId);

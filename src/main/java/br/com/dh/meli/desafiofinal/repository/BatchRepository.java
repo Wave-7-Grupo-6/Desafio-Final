@@ -12,4 +12,7 @@ public interface BatchRepository extends JpaRepository <Batch, Long> {
 
     @Query("SELECT b FROM Batch b WHERE b.announcement.category.name = :name AND b.dueDate <= :date")
     List<Batch> findBatchByCategoryAndDueDate(LocalDate date, String name);
+
+    @Query("SELECT b FROM Batch b WHERE b.dueDate < :date")
+    List<Batch> findBatchToDonation(LocalDate date);
 }
