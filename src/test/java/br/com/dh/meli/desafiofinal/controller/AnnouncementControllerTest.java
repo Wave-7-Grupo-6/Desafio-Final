@@ -89,6 +89,21 @@ class AnnouncementControllerTest {
     }
 
     @Test
+    void findByIdAndCurrency_returnAnnouncementAndSuccess_whenAnnouncementExists() throws Exception {
+        Announcement announcement = getAnnouncement();
+        when(announcementService.findByIdAndCurrency(1L, "USD")).thenReturn(announcement);
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/{id}", announcement.getId())
+                                .param("currency", "USD")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", CoreMatchers.is(announcement.getId().intValue())))
+                .andExpect(jsonPath("$.description", CoreMatchers.is(announcement.getDescription())));
+    }
+
+    @Test
     void findById_ThrowsNotFoundException_whenAnnouncementDoesntExists() throws Exception {
         Announcement announcement = getAnnouncement();
         when(announcementService.findById(anyLong())).thenThrow(NotFoundException.class);
@@ -128,6 +143,20 @@ class AnnouncementControllerTest {
     }
 
     @Test
+    void findAllAndCurrency_returnAnnouncementList_whenSuccess() throws Exception {
+        Announcement announcement = getAnnouncement();
+        when(announcementService.findAllAndCurrency("USD")).thenReturn(List.of(announcement));
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products")
+                                .param("currency", "USD")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
     void findByCategory_returnAnnouncementList_whenSuccess() throws Exception {
         Announcement announcement = getAnnouncement();
         when(announcementService.findByCategory(anyString())).thenReturn(List.of(announcement));
@@ -137,6 +166,22 @@ class AnnouncementControllerTest {
 
         mockMvc.perform(
                         get("/api/v1/fresh-products/list?category={category}", category)
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    void findByCategoryAndCurrency_returnAnnouncementList_whenSuccess() throws Exception {
+        Announcement announcement = getAnnouncement();
+        when(announcementService.findByCategoryAndCurrency(anyString(), anyString())).thenReturn(List.of(announcement));
+
+        String category = "Category 1";
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/list?category={category}", category)
+                                .param("currency", "USD")
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isOk())

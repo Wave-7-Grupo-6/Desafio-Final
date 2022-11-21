@@ -43,7 +43,6 @@ public class CurrencyApiServiceTest {
     @Test
     void convertAnnouncementCurrency_returnAnnouncement_whenSuccess() {
         Announcement announcement = getAnnouncement();
-        announcement.setCartItems(List.of(getCartItem()));
 
         Announcement announcementConverted = currencyApiService.convertAnnouncementCurrency(announcement, BigDecimal.ONE, "USD");
 
