@@ -401,7 +401,7 @@ POST /api/v1/purchase-order/
 
 ## 🖊 Diagrama Entidade Relacionamento (DER)
 
-![DER](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)
+[![DER](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)
 
 ## 👩🏽‍💻 Desenvolvedora
 
