@@ -172,6 +172,35 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "create purchase order",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"buyerId\": 1,\n  \"date\": \"2022-12-12\",\n  \"discountCouponId\": 1,\n  \"orderStatus\": \"PROCESSING\",\n  \"products\": [\n    {\n      \"batchId\": 1,\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order",
+												""
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
