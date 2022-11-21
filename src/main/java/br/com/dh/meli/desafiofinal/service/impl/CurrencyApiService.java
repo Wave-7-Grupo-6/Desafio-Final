@@ -5,6 +5,7 @@ import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.service.ICurrencyApi;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -15,10 +16,12 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class CurrencyApiService implements ICurrencyApi {
+
+    private final RestTemplate restTemplate = new RestTemplate();
+
     @Override
     public BigDecimal getValue(String currency) {
         try {
-            RestTemplate restTemplate = new RestTemplate();
             String url = String.format("https://economia.awesomeapi.com.br/BRL-%s/?format=json", currency);
             CurrencyApiDTO[] currencyApiDTO = restTemplate.getForObject(url, CurrencyApiDTO[].class);
             if (currencyApiDTO == null) {

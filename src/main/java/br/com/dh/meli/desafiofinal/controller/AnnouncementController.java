@@ -93,7 +93,7 @@ public class AnnouncementController {
     })
     public ResponseEntity<Announcement> findByIdAndCurrency(@PathVariable Long id, @RequestParam String currency){
         Announcement announcement = announcementService.findByIdAndCurrency(id, currency);
-        if(announcement !=null){
+        if(announcement != null){
             return ResponseEntity.ok(announcement);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
