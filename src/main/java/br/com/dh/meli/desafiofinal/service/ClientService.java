@@ -1,4 +1,4 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.model.Client;

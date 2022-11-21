@@ -1,11 +1,9 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.CategoryDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Category;
 import br.com.dh.meli.desafiofinal.repository.CategoryRepository;
-import br.com.dh.meli.desafiofinal.service.ICategory;
-import br.com.dh.meli.desafiofinal.service.impl.CategoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

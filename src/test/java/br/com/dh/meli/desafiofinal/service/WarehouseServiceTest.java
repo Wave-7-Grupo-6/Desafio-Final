@@ -1,11 +1,9 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.WarehouseDTO;
 import br.com.dh.meli.desafiofinal.model.Warehouse;
 import br.com.dh.meli.desafiofinal.repository.SellerRepository;
 import br.com.dh.meli.desafiofinal.repository.WarehouseRepo;
-import br.com.dh.meli.desafiofinal.service.IWarehouse;
-import br.com.dh.meli.desafiofinal.service.impl.WarehouseService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

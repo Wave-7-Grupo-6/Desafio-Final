@@ -1,8 +1,7 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.model.ProductType;
 import br.com.dh.meli.desafiofinal.repository.ProductTypeRepository;
-import br.com.dh.meli.desafiofinal.service.impl.ProductTypeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
