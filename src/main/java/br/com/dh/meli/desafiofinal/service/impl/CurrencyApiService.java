@@ -10,6 +10,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -30,14 +31,17 @@ public class CurrencyApiService implements ICurrencyApi {
     }
 
     @Override
-    public Announcement convertAnnouncementCurrency(Announcement announcement, BigDecimal currency) {
+    public Announcement convertAnnouncementCurrency(Announcement announcement, BigDecimal currency, String currencyName) {
         announcement.getCartItems().forEach(cartItem -> {
             cartItem.setValue(cartItem.getValue().multiply(currency));
         });
         announcement.getSeller().getSections().forEach(section -> {
             section.getInboundOrders().forEach(inboundOrder -> {
                 inboundOrder.getBatchs().forEach(batch -> {
-                    batch.setPrice(batch.getPrice().multiply(currency));
+                    if (!batch.getCurrency().equalsIgnoreCase(currencyName)) {
+                        batch.setCurrency(currencyName.toUpperCase());
+                        batch.setPrice(batch.getPrice().multiply(currency));
+                    }
                 });
             });
         });

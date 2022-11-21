@@ -47,11 +47,11 @@ public class TestUtils {
     }
 
     public static Batch getBatch(){
-        return new Batch(2L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0),getAnnouncement(), null, getSection());
+        return new Batch(2L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0), "BRL",getAnnouncement(), null, getSection());
     }
 
     public static Batch getLowIdBatch(){
-        return new Batch(1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0),getAnnouncement(), null, getSection() );
+        return new Batch(1L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(30),new BigDecimal(10.0), "BRL" ,getAnnouncement(), null, getSection());
     }
 
     public static InboundOrder getInboundOrder(){

@@ -6,5 +6,5 @@ import java.math.BigDecimal;
 
 public interface ICurrencyApi {
     BigDecimal getValue(String currency);
-    Announcement convertAnnouncementCurrency(Announcement announcement, BigDecimal currency);
+    Announcement convertAnnouncementCurrency(Announcement announcement, BigDecimal currency, String currencyName);
 }

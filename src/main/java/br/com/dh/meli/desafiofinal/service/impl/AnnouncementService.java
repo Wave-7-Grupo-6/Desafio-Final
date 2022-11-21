@@ -40,12 +40,12 @@ public class AnnouncementService implements IAnnouncement {
     }
 
     @Override
-    public Announcement findByIdAndCurrency(Long id, String currency) {
+    public Announcement findByIdAndCurrency(Long id, String currencyName) {
         Announcement announcement = repository.findById(id).orElseThrow(() -> new NotFoundException("Announcement not found."));
 
-        if (currency != null) {
-            BigDecimal currentCurrency = currencyApiService.getValue(currency);
-            return currencyApiService.convertAnnouncementCurrency(announcement, currentCurrency);
+        if (currencyName != null) {
+            BigDecimal currentCurrency = currencyApiService.getValue(currencyName);
+            return currencyApiService.convertAnnouncementCurrency(announcement, currentCurrency, currencyName);
         }
 
         return announcement;
@@ -75,14 +75,14 @@ public class AnnouncementService implements IAnnouncement {
      * @return the list
      */
     @Override
-    public List<Announcement> findAllAndCurrency(String currency) {
+    public List<Announcement> findAllAndCurrency(String currencyName) {
         List<Announcement> announcements = repository.findAll();
 
-        if (currency != null) {
-            BigDecimal currentCurrency = currencyApiService.getValue(currency);
+        if (currencyName != null) {
+            BigDecimal currentCurrency = currencyApiService.getValue(currencyName);
 
             for (Announcement announcement : announcements) {
-                currencyApiService.convertAnnouncementCurrency(announcement, currentCurrency);
+                currencyApiService.convertAnnouncementCurrency(announcement, currentCurrency, currencyName);
             }
         }
 

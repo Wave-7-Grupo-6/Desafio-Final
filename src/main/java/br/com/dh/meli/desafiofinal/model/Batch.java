@@ -44,6 +44,9 @@ public class Batch {
     @Column(nullable = false)
     private BigDecimal price;
 
+    @Column(nullable = false, columnDefinition = "varchar(3) default 'BRL'")
+    private String currency;
+
     @ManyToOne
     @JoinColumn(name = "annoucement_id")
     @JsonIgnoreProperties("batchs")
@@ -61,5 +64,4 @@ public class Batch {
     @JsonIgnoreProperties("batchs")
     @JsonBackReference
     private Section section;
-
 }
