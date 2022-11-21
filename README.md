@@ -399,6 +399,10 @@ POST /api/v1/purchase-order/
 }
 ```
 
+## 🖊 Diagrama Entidade Relacionamento (DER)
+
+![DER](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)
+
 ## 👩🏽‍💻 Desenvolvedora
 
 Olá, meu nome é Giovanna de Souza, tenho 19 anos, sou paulistana de nascença e mineira de coração, meu início na programação começou aos meus 14 anos, durante o ensino médio que fiz em uma escola técnica aqui de São Paulo.
