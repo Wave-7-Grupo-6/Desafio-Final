@@ -309,7 +309,7 @@ Olá, meu nome é Giovanna de Souza, tenho 19 anos, sou paulistana de nascença 
 Desde então tenho procurado aprender mais e mais sobre programação, me sinto lisongeada por poder fazer parte dessa empresa maravilhosa que é o Mercado Livre.
 
 <div>
-    <img src="https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/gi.png" alt="Imagem Gi" width="200" align="right" style="margin-top: 2.5%" />
+    <img src="https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/gi.png" alt="Imagem Gi" width="200" align="right" style="margin-top: 5%" />
     <img src="https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/gi-foto.png" alt="Imagem Gi anime" width="200" align="left"/>
 </div>
 
