@@ -9,9 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * The type Product type.
- */
 @Entity
 @Getter
 @Setter

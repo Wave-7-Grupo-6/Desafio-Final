@@ -9,9 +9,6 @@ import lombok.Setter;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-/**
- * The type Client dto.
- */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,11 +19,6 @@ public class ClientDTO {
     @NotEmpty(message = "Name must not be empty.")
     private String name;
 
-    /**
-     * Instantiates a new Client dto.
-     *
-     * @param client the client
-     */
     public ClientDTO(Client client) {
         this.name = client.getName();
     }

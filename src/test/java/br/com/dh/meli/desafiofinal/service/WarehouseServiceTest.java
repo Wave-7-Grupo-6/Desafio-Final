@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 
 import java.util.*;
 

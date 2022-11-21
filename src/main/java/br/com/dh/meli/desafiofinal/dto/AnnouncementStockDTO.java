@@ -7,9 +7,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-/**
- * The type Announcement stock dto.
- */
 @Getter
 @Setter
 @NoArgsConstructor

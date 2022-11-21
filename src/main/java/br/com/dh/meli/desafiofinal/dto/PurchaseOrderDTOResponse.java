@@ -12,9 +12,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * The type Purchase order dto response.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,11 +25,6 @@ public class PurchaseOrderDTOResponse {
     private BigDecimal totalPrice;
     private List<ProductDTO> products;
 
-    /**
-     * Instantiates a new Purchase order dto response.
-     *
-     * @param purchaseOrder the purchase order
-     */
     public PurchaseOrderDTOResponse(PurchaseOrder purchaseOrder) {
         this.id = purchaseOrder.getId();
         this.date = purchaseOrder.getDate();

@@ -11,9 +11,6 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * The type Announcement.
- */
 @Entity
 @Getter
 @Setter
@@ -62,6 +59,7 @@ public class Announcement {
     @ApiModelProperty(notes = "The announcement product type")
     private ProductType productType;
 
+<<<<<<< HEAD
     @ManyToOne
     @JoinColumn(name = "favorite_product_id")
     @JsonIgnoreProperties("announcements")
@@ -77,6 +75,8 @@ public class Announcement {
      * @param seller      the seller
      * @param productType the product type
      */
+=======
+>>>>>>> parent of b5e8d8a (Merge pull request #71 from Wave-7-Grupo-6/JavaDoc)
     public Announcement(Long id, String description, Category category, Seller seller, ProductType productType) {
         this.id = id;
         this.description = description;

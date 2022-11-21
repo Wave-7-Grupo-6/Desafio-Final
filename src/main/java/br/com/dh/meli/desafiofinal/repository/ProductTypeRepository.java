@@ -6,8 +6,5 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-/**
- * The interface Product type repository.
- */
 public interface ProductTypeRepository extends JpaRepository<ProductType, Long> {
 }

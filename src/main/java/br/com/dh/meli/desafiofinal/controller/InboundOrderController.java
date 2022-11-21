@@ -19,9 +19,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * The type Inbound order controller.
- */
 @RestController
 @RequestMapping("/api/v1/fresh-products/inboundorder/")
 @Api(tags = "Inbound Order Controller", value = "InboundOrderController", description = "Controller for Inbound Order")
@@ -29,12 +26,6 @@ public class InboundOrderController {
     @Autowired
     private IInboundOrder service;
 
-    /**
-     * Save inbound order entity.
-     *
-     * @param inboundOrderDTO the inbound order dto
-     * @return the response entity with batch stock list
-     */
     @PostMapping
     @ApiOperation(value = "Create a new Inbound Order")
     @ApiResponses(value = {
@@ -47,13 +38,6 @@ public class InboundOrderController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-    /**
-     * Update inbound order entity.
-     *
-     * @param id              the id
-     * @param inboundOrderDTO the inbound order dto
-     * @return the response entity with batch stock list
-     */
     @PutMapping("/{id}")
     @ApiOperation(value = "Update a Inbound Order by ID")
     @ApiResponses(value = {

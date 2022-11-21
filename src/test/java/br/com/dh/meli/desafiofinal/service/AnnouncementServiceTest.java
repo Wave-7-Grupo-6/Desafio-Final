@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.service;
 
+import br.com.dh.meli.desafiofinal.dto.ProductTypeDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.repository.AnnouncementRepository;

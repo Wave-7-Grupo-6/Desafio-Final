@@ -9,9 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-/**
- * The type Purchase item.
- */
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,14 +33,6 @@ public class PurchaseItem {
     @JsonIgnoreProperties("purchaseItems")
     private PurchaseOrder purchaseOrder;
 
-    /**
-     * Instantiates a new Purchase item.
-     *
-     * @param quantity      the quantity
-     * @param price         the price
-     * @param announcement  the announcement
-     * @param purchaseOrder the purchase order
-     */
     public PurchaseItem(Integer quantity, BigDecimal price, Announcement announcement, PurchaseOrder purchaseOrder) {
         this.quantity = quantity;
         this.price = price;
