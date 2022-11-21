@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.utils;
 
+import br.com.dh.meli.desafiofinal.dto.CurrencyApiDTO;
 import br.com.dh.meli.desafiofinal.dto.ProductDTO;
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
@@ -13,6 +14,22 @@ import java.util.List;
 import java.util.Set;
 
 public class TestUtils {
+
+    public static CurrencyApiDTO getCurrencyApiDTO() {
+        return new CurrencyApiDTO(
+                "BRL",
+                "USD",
+                "Real Brasileiro/Dolar Americano",
+                BigDecimal.valueOf(0.18),
+                BigDecimal.valueOf(0.18),
+                BigDecimal.valueOf(0.18),
+                BigDecimal.valueOf(1.14),
+                BigDecimal.valueOf(0.18),
+                BigDecimal.valueOf(0.18),
+                "1669052818",
+                "2022-11-21 14:46:58"
+        );
+    }
 
     public static Category getCategory(){
         return new Category(1L, "Category 1", 10);
