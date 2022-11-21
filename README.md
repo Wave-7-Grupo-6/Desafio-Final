@@ -299,6 +299,106 @@ DELETE /api/v1/discount-coupons/{id}
 }
 ```
 
+### 🎫 Cadastro de um novo cupom de desconto
+
+```http
+POST /api/v1/purchase-order/
+```
+
+| Corpo da requisição                                      | Tipo                                | Descrição                                               |
+|:---------------------------------------------------------|:------------------------------------|:--------------------------------------------------------|
+| `buyerId, date, discountCouponId, orderStatus, products` | `long, date, long, String, Product` | **Obrigatório**. Todos os campos no corpo da requisição |
+
+**Formato do corpo da requisição**
+```json
+{
+  "buyerId": 1,
+  "date": "2022-12-12",
+  "discountCouponId": 1,
+  "orderStatus": "PROCESSING",
+  "products": [
+    {
+      "batchId": 1,
+      "productId": 1,
+      "quantity": 2
+    }
+  ]
+}
+```
+
+**Retorno em caso de sucesso**
+```json
+73.00
+```
+
+**Retorno em caso de Cliente não encontrado**
+```json
+{
+    "title": "Object not found",
+    "message": "Client not found",
+    "status": 404,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:53:26.747692"
+}
+```
+
+**Retorno em caso de Cupom de desconto não encontrado**
+```json
+{
+    "title": "Object not found",
+    "message": "Discount Coupon not found",
+    "status": 404,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:53:26.747692"
+}
+```
+
+**Retorno em caso de Estoque não encontrado**
+```json
+{
+    "title": "Object not found",
+    "message": "BatchStock not found.",
+    "status": 404,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:54:32.590391"
+}
+```
+
+**Retorno em caso de Status de pedido inválido**
+```json
+{
+    "title": "Params invalids",
+    "message": "One or more params are invalids",
+    "status": 400,
+    "fieldErrors": {
+        "orderStatus": "Must be any of enum OrderStatus [CANCELLED, DELIVERED, IN_TRANSIT, PAYMENT_DUE, PICK_UP_AVAILABLE, PROBLEM, PROCESSING, RETURNED]"
+    },
+    "timestamp": "2022-11-21T10:55:13.786739"
+}
+```
+
+**Retorno em caso de Anúncio não encontrado**
+```json
+{
+    "title": "Object not found",
+    "message": "Announcement not found.",
+    "status": 404,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:57:04.830174"
+}
+```
+
+**Retorno em caso de Estoque insuficiente**
+```json
+{
+    "title": "Object out of stock",
+    "message": "There is not enough stock in this batch",
+    "status": 400,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:57:57.220358"
+}
+```
+
 ## 👩🏽‍💻 Desenvolvedora
 
 Olá, meu nome é Giovanna de Souza, tenho 19 anos, sou paulistana de nascença e mineira de coração, meu início na programação começou aos meus 14 anos, durante o ensino médio que fiz em uma escola técnica aqui de São Paulo.
