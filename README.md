@@ -52,6 +52,255 @@ mvn spring-boot:run
 
 # 💡 Documentação da API
 
+### 🎫 Cadastro de um novo cupom de desconto
+
+```http
+POST /api/v1/discount-coupons
+```
+
+| Corpo da requisição     | Tipo             | Descrição                                               |
+|:------------------------|:-----------------|:--------------------------------------------------------|
+| `description, discount` | `string, double` | **Obrigatório**. Todos os campos no corpo da requisição |
+
+**Formato do corpo da requisição**
+```json
+{
+    "description": "Cupom de desconto para compras acima de R$ 100,00",
+    "discount": 10.0
+}
+```
+
+**Retorno em caso de sucesso**
+```json
+{
+    "id": 1,
+    "status" : 1,
+    "discount": 10.0,
+    "description": "Cupom de desconto para compras acima de R$ 100,00"
+}
+```
+
+### 🎫 Listar todos os cupons de desconto
+
+```http
+GET /api/v1/discount-coupons
+```
+
+| Descrição                                                           |
+|:--------------------------------------------------------------------|
+| Será retornado um array com todos os cupons de desconto cadastrados |
+
+**Retorno em caso de sucesso**
+```json
+[
+    {
+        "id": 1,
+        "status" : 1,
+        "discount": 10.0,
+        "description": "Cupom de desconto para compras acima de R$ 100,00"
+    },
+    {
+        "id": 2,
+        "status" : 1,
+        "discount": 20.0,
+        "description": "Cupom de desconto para compras acima de R$ 200,00"
+    }
+]
+```
+
+### 🎫 Listar um cupom de desconto pelo id
+
+```http
+GET /api/v1/discount-coupons/{id}
+```
+
+| Descrição                                                                                  |
+|:-------------------------------------------------------------------------------------------|
+| Será retornado um cupom de desconto cujo id tenha alguma correspondência no banco de dados |
+
+| Corpo da requisição  | Tipo   | Descrição                                             |
+| :------------------- |:-------| :---------------------------------------------------- |
+| `id`                 | `long` | **Obrigatório**. Parâmetros devem ser passados na URL |
+
+**Retorno em caso de sucesso**
+```json
+{
+    "id": 1,
+    "status" : 1,
+    "discount": 10.0,
+    "description": "Cupom de desconto para compras acima de R$ 100,00"
+}
+```
+
+**Retorno em caso de erro**
+```json
+{
+    "title": "Object not found",
+    "message": "Discount Coupon not found",
+    "status": 404,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:17:57.351544"
+}
+```
+
+### 🎫 Listar uma lista de cupons de desconto pelo desconto
+
+```http
+GET /api/v1/discount-coupons/discount/{discount}
+```
+
+| Descrição                                                                                                   |
+|:------------------------------------------------------------------------------------------------------------|
+| Será retornado uma lista de cupons de desconto cujo desconto tenha alguma correspondência no banco de dados |
+
+| Corpo da requisição | Tipo     | Descrição                                             |
+|:--------------------|:---------|:------------------------------------------------------|
+| `discount`          | `double` | **Obrigatório**. Parâmetros devem ser passados na URL |
+
+**Retorno em caso de sucesso**
+```json
+[
+    {
+        "id": 1,
+        "status" : 1,
+        "discount": 10.0,
+        "description": "Cupom de desconto para compras acima de R$ 100,00"
+    },
+    {
+        "id": 2,
+        "status" : 1,
+        "discount": 10.0,
+        "description": "Cupom de desconto para compras acima de R$ 200,00"
+    }
+]
+```
+
+**Retorno em caso de nenhuma correspondência encontrada**
+```json
+[]
+```
+
+### 🎫 Listar uma lista de cupons de desconto pela categoria
+
+```http
+GET /api/v1/discount-coupons/category/{category}
+```
+
+| Descrição                                                                                                    |
+|:-------------------------------------------------------------------------------------------------------------|
+| Será retornado uma lista de cupons de desconto cuja categoria tenha alguma correspondência no banco de dados |
+
+| Corpo da requisição | Tipo   | Descrição                                             |
+|:--------------------|:-------|:------------------------------------------------------|
+| `category`          | `long` | **Obrigatório**. Parâmetros devem ser passados na URL |
+
+**Retorno em caso de sucesso**
+```json
+[
+    {
+        "id": 1,
+        "status" : 1,
+        "discount": 10.0,
+        "description": "Cupom de desconto para compras acima de R$ 100,00"
+    }
+]
+```
+
+**Retorno em caso de nenhuma correspondência encontrada**
+```json
+[]
+```
+
+**Retorno em caso de categoria não encontrada**
+```json
+{
+    "title": "Object not found",
+    "message": "Category not found",
+    "status": 404,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:17:57.351544"
+}
+```
+
+### 🎫 Atualização de um cupom de desconto
+
+```http
+PUT /api/v1/discount-coupons/{id}
+```
+
+| Parâmetro   | Tipo   | Descrição                                             |
+| :---------- |:-------| :---------------------------------------------------- |
+| `id`        | `long` | **Obrigatório**. Parâmetros devem ser passados na URL |
+
+| Corpo da requisição     | Tipo             | Descrição                                               |
+|:------------------------|:-----------------|:--------------------------------------------------------|
+| `description, discount` | `string, double` | **Obrigatório**. Todos os campos no corpo da requisição |
+
+**Formato do corpo da requisição**
+```json
+{
+    "description": "Cupom de desconto para compras acima de R$ 100,00",
+    "discount": 15.0
+}
+```
+
+**Retorno em caso de sucesso**
+```json
+{
+    "id": 1,
+    "status" : 1,
+    "discount": 15.0,
+    "description": "Cupom de desconto para compras acima de R$ 100,00"
+}
+```
+
+**Retorno em caso de erro**
+```json
+{
+    "title": "Object not found",
+    "message": "Discount Coupon not found",
+    "status": 404,
+    "fieldErrors": null,
+    "timestamp": "2022-11-21T10:17:57.351544"
+}
+```
+
+### 🎫 Deletar um cupom de desconto pelo id
+
+```http
+DELETE /api/v1/discount-coupons/{id}
+```
+
+| Corpo da requisição | Tipo   | Descrição                                             |
+|:--------------------|:-------|:------------------------------------------------------|
+| `id`                | `long` | **Obrigatório**. Parâmetros devem ser passados na URL |
+
+**Retorno em caso de sucesso**
+```http
+204 No Content
+```
+
+**Retorno em caso de nenhuma correspondência encontrada**
+```json
+{
+  "title": "Object not found",
+  "message": "Discount Coupon not found",
+  "status": 404,
+  "fieldErrors": null,
+  "timestamp": "2022-11-21T10:36:11.55644"
+}
+```
+
+**Retorno em caso de operação inválida (Quando um cupom já foi utilizado pelo menos 1 vez)**
+```json
+{
+	"title": "Data integrity violation",
+	"message": "One or more params are invalids",
+	"status": 502,
+	"fieldErrors": null,
+	"timestamp": "2022-11-21T10:36:44.603478"
+}
+```
 
 ## 👩🏽‍💻 Desenvolvedora
 
