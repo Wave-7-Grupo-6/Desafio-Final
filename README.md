@@ -1,5 +1,6 @@
-# 🍃 Desafio Final - Conversor de Moedas - Michael Caxias
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&duration=1000&pause=1000&color=F7F40E&width=435&lines=Desafio+Final;Conversor+de+Cambio;por+Michael+Caxias)](https://git.io/typing-svg)
 
+<img src="https://cdn.iconscout.com/icon/free/png-256/currency-exchange-1783333-1516830.png" align="right" width="100px" />
 
 📝 Problemática
 
