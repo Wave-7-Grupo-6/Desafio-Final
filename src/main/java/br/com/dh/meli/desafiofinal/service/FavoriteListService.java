@@ -1,4 +1,4 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.model.Announcement;
@@ -41,12 +41,10 @@ public class FavoriteListService implements IFavoriteList {
     public Client delete(Long clientId, Long productId){
 
         Client client = clientService.findById(clientId);
-        System.out.println("Printa aqui o cliente id ----->" + clientId);
         if(client == null)
             return null;
 
         Announcement announcement = announcementService.findById(productId);
-        System.out.println("Printa aqui o produto id ----->" + productId);
         if(announcement == null)
             return null;
 

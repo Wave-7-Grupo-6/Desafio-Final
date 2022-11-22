@@ -28,7 +28,7 @@ public class Client {
     @JsonManagedReference
     @ToString.Exclude
     @ApiModelProperty(notes = "The client carts")
-    private List<Cart> carts;
+   private List<Cart> carts;
 
     @ManyToMany
     @JoinTable(
