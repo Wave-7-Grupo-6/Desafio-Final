@@ -4,6 +4,7 @@ import br.com.dh.meli.desafiofinal.dto.SaleoffDTO;
 import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.repository.BatchRepository;
 import br.com.dh.meli.desafiofinal.service.ISaleoff;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,9 @@ public class SaleoffService implements ISaleoff {
     @Autowired
     private BatchRepository repository;
 
-
+    public SaleoffService(BatchRepository batchRepository) {
+        this.repository = batchRepository;
+    }
     @Override
     public List<SaleoffDTO> getAll(){
         List<Batch> batchList = this.repository.findAll();
