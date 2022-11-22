@@ -30,9 +30,11 @@ mvn spring-boot:run
 ```
 
 ## 📚 User Story e documentação
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/833px-PDF_file_icon.svg.png" align="right" width="50px" />
 - [Requisito 6.pdf](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/convert-currency/src/main/resources/Requisito%206%20-%20Bootcamp.docx.pdf)
 
 ## 🧑🏻‍🚀 Como testar no Postman
+<img src="https://seeklogo.com/images/P/postman-logo-0087CA0D15-seeklogo.com.png" align="right" width="50px" />
 
 - Importe o seguinte arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/convert-currency/src/main/resources/Req6-COLLECTION.json)
 
