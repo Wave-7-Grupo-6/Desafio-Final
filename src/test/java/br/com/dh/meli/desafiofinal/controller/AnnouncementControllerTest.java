@@ -4,16 +4,33 @@ import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Batch;
+import br.com.dh.meli.desafiofinal.repository.UserRepository;
+import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
+import br.com.dh.meli.desafiofinal.security.JwtTokenUtil;
 import br.com.dh.meli.desafiofinal.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,10 +46,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(AnnouncementController.class)
+@WebMvcTest(controllers = AnnouncementController.class)
 class AnnouncementControllerTest {
-
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
@@ -53,7 +68,18 @@ class AnnouncementControllerTest {
     @MockBean
     private IBatch batchService;
 
+    @Autowired
+    private WebApplicationContext context;
+
+    @BeforeEach
+    void setUp() {
+        mockMvc = MockMvcBuilders
+                .webAppContextSetup(context)
+                .build();
+    }
+
     @Test
+    @WithMockUser(roles={"SELLER","ADMIN"})
     void save_returnAnnouncementAndCreatedStatus_whenAnnouncementValid() throws Exception {
         Announcement announcement = getAnnouncement();
         when(sellerService.findById(anyLong())).thenReturn(getSeller());

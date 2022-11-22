@@ -31,7 +31,7 @@ public class TestUtils {
     }
 
     public static Seller getSeller(){
-         Seller seller = new Seller(1L, "seller@seler.com", "12345", Set.of(getSellerRole()),"Seller 1");
+         Seller seller = new Seller(1L, "seller@seler.com", "aaaaaA1@", Set.of(getSellerRole()),"Seller 1");
          seller.setSections(List.of(getValidateSection()));
          return seller;
     }
@@ -43,7 +43,7 @@ public class TestUtils {
     }
 
     public static Client getClient(){
-        return new Client(1L,"client@client.com","12345",Set.of(getClientRole()), "Client 1");
+        return new Client(1L,"client@client.com","aaaaaA1@",Set.of(getClientRole()), "Client 1");
     }
 
     public static Batch getBatch(){

@@ -2,30 +2,41 @@ package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.CategoryDTO;
 import br.com.dh.meli.desafiofinal.model.Category;
+import br.com.dh.meli.desafiofinal.repository.UserRepository;
+import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
+import br.com.dh.meli.desafiofinal.security.JwtTokenUtil;
 import br.com.dh.meli.desafiofinal.service.ICategory;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
 import static org.mockito.Mockito.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.hamcrest.CoreMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
 @WebMvcTest(CategoryController.class)
 public class CategoryControllerTest {
-
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired
@@ -33,6 +44,16 @@ public class CategoryControllerTest {
 
     @MockBean
     private ICategory categoryService;
+
+    @Autowired
+    private WebApplicationContext context;
+
+    @BeforeEach
+    void setUp() {
+        mockMvc = MockMvcBuilders
+                .webAppContextSetup(context)
+                .build();
+    }
 
     @Test
     void save_returnCategory_whenValid() throws Exception {

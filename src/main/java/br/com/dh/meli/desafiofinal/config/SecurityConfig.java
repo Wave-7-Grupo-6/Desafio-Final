@@ -1,6 +1,9 @@
 package br.com.dh.meli.desafiofinal.config;
 
+import br.com.dh.meli.desafiofinal.repository.UserRepository;
 import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
+import br.com.dh.meli.desafiofinal.security.JwtTokenUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,20 +22,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig {
-
     private final JwtTokenFilter jwtTokenFilter;
-    //private final UserDetailsService userDetailsService;
     private final String[] authWhitelist = new String[]{
             // -- Swagger UI v3 (OpenAPI)
             "/swagger-ui.html#/**",
             // -- our public API endpoints
             "/api/v1/user/login"
     };
-
-    public SecurityConfig(JwtTokenFilter jwtTokenFilter) {
-        this.jwtTokenFilter = jwtTokenFilter;
-    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -67,22 +65,11 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManagerBean(HttpSecurity http) throws Exception {
-//        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-//        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
-//        return authenticationManagerBuilder.build();
-//    }
-
-//    @Bean
-//    public JwtAuthenticationFilter getJWTAuthenticationFilter(AuthenticationManager authenticationManager) throws Exception {
-//        final JwtAuthenticationFilter filter = new JwtAuthenticationFilter(authenticationManager, jwtTokenUtil);
-//        //filter.setFilterProcessesUrl("/api/auth/login");
-//        return filter;
-//    }
 }

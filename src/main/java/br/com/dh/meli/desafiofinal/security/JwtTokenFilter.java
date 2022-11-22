@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+@Log4j2
 @RequiredArgsConstructor
 @Component
-@Log4j2
 public class JwtTokenFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
     private final JwtTokenUtil jwtTokenUtil;
@@ -62,7 +62,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     }
 
     private void setAuthenticationContext(String token, HttpServletRequest request) {
-        System.out.println(jwtTokenUtil.getSubject(token));
         String[] jwtSubject = jwtTokenUtil.getSubject(token).split(",");
         Optional<User> userOptional = userRepository.findByUsername(jwtSubject[0]);
 
