@@ -10,4 +10,6 @@ public interface ICharities {
     List<Charities> findAll();
 
     Charities findById(Long id);
+
+    Charities update(Long id, Charities charity);
 }

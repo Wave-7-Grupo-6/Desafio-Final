@@ -51,4 +51,15 @@ public class CharitiesController {
         Charities charity = charityService.findById(id);
         return new ResponseEntity<>(charity, HttpStatus.OK);
     }
+
+    @PutMapping("/{id}")
+    @ApiOperation(value = "Update a charity by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Charity updated"),
+            @ApiResponse(code = 404, message = "Charity not found"),
+    })
+    public ResponseEntity<Charities> update(@PathVariable Long id, @RequestBody Charities charity){
+        Charities charityUpdated = charityService.update(id, charity);
+        return new ResponseEntity<>(charityUpdated, HttpStatus.OK);
+    }
 }
