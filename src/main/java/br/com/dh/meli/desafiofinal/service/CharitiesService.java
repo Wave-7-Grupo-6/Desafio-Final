@@ -17,7 +17,7 @@ public class CharitiesService implements ICharities {
 
     @Override
     public Charities save(Charities charities) {
-        if(!validateCharity(charities)){
+        if(invalidCharity(charities)){
             return null;
         }
         return repository.save(charities);
@@ -28,7 +28,7 @@ public class CharitiesService implements ICharities {
         return repository.findAll();
     }
 
-    @Override
+   @Override
     public Charities findById(Long id) {
         return repository.findById(id).orElseThrow();
     }
@@ -40,7 +40,7 @@ public class CharitiesService implements ICharities {
             charity.setId(id);
             return repository.save(charity);
         }
-        throw new NotFoundException("Charity not found.");
+        return null;
     }
 
     @Override
@@ -52,7 +52,9 @@ public class CharitiesService implements ICharities {
         return false;
     }
 
-    boolean validateCharity(Charities charity){
-        return charity.getName() != null && charity.getCnpj() != null && charity.getEmail() != null;
+    boolean invalidCharity(Charities charity){
+        boolean isNull = charity.getName() == null || charity.getCnpj() == null || charity.getEmail() == null;
+        boolean isBlank = charity.getName() == "" || charity.getCnpj() == "" || charity.getEmail() == "";
+        return isNull || isBlank;
     }
 }
