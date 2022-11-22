@@ -1,6 +1,5 @@
 package br.com.dh.meli.desafiofinal.model;
 
-import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

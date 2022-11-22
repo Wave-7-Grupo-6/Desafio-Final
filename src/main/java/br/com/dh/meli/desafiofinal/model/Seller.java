@@ -19,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
-public class Seller extends User{
+public class Seller extends User {
 
     @Column (nullable = false)
     @ApiModelProperty(notes = "The seller name")

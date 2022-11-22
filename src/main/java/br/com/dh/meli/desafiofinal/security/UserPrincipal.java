@@ -1,5 +1,6 @@
-package br.com.dh.meli.desafiofinal.model;
+package br.com.dh.meli.desafiofinal.security;
 
+import br.com.dh.meli.desafiofinal.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,49 +12,49 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomUserDetails implements UserDetails {
+@Getter
+@Setter
+public class UserPrincipal implements UserDetails {
     private User user;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        if(user!=null){
+        if(!user.getRoles().isEmpty()){
             user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
         }
         return authorities;
     }
 
+
     @Override
     public String getPassword() {
-        return this.user.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.user.getAccountNonExpired();
+        return user.getAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.user.getAccountNonLocked();
+        return user.getAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.user.getCredentialsNonExpired();
+        return user.getCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return this.user.getEnabled();
+        return user.getEnabled();
     }
 }

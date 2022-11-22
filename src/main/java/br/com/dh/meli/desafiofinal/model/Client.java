@@ -19,7 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
-public class Client extends User{
+public class Client extends User {
 
     @Column(nullable = false)
     @ApiModelProperty(notes = "The client name")

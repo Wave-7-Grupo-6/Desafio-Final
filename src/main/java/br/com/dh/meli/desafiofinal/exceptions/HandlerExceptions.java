@@ -119,4 +119,16 @@ public class HandlerExceptions {
 
         return new ResponseEntity<>(exceptionDetails, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ExceptionDetails> handlerInvalidTokenException(InvalidTokenException ex){
+        ExceptionDetails exceptionDetails = ExceptionDetails.builder()
+                .title("Objeto já cadastrado")
+                .message(ex.getMessage())
+                .status(HttpStatus.FORBIDDEN.value())
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.FORBIDDEN);
+    }
 }
