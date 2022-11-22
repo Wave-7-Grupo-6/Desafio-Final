@@ -21,7 +21,7 @@ Projeto feito no bootcamp [Java BackEnd - MercadoLivre](https://www.mercadolibre
 
 ## 📝 Problemática
 
-Um Cliente gostaria de poder aplicar um cupom de desconto para que sua compra saia um pouco mais parada, por esta razão, iremos:
+Um Cliente gostaria de poder aplicar um cupom de desconto para que sua compra saia um pouco mais barata, por esta razão, iremos:
 
 - [x] 6.1 - Criar um endpoint para criar um novo cupom de desconto.
 - [x] 6.2 - Criar um endpoint para listar todos os cupons de desconto.
