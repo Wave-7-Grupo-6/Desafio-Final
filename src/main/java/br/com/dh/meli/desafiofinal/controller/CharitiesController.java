@@ -1,6 +1,5 @@
 package br.com.dh.meli.desafiofinal.controller;
 
-import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
 import br.com.dh.meli.desafiofinal.model.*;
 import br.com.dh.meli.desafiofinal.service.ICharities;
 import io.swagger.annotations.ApiOperation;
@@ -9,10 +8,9 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/charities")
@@ -30,5 +28,16 @@ public class CharitiesController {
     public ResponseEntity<Charities> save(@RequestBody Charities charity){
         Charities savedCharity = charityService.save(charity);
         return new ResponseEntity<>(savedCharity, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    @ApiOperation(value = "Get all charities")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Charities found"),
+            @ApiResponse(code = 404, message = "Charities not found"),
+    })
+    public ResponseEntity<List<Charities>> getAll(){
+        List<Charities> charities = charityService.findAll();
+        return new ResponseEntity<>(charities, HttpStatus.OK);
     }
 }

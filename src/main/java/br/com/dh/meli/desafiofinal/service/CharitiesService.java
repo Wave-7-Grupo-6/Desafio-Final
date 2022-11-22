@@ -5,6 +5,8 @@ import br.com.dh.meli.desafiofinal.repository.CharitiesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CharitiesService implements ICharities {
@@ -14,5 +16,10 @@ public class CharitiesService implements ICharities {
     @Override
     public Charities save(Charities charities) {
         return repository.save(charities);
+    }
+
+    @Override
+    public List<Charities> findAll() {
+        return repository.findAll();
     }
 }
