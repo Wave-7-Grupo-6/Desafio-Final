@@ -22,4 +22,9 @@ public class CharitiesService implements ICharities {
     public List<Charities> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public Charities findById(Long id) {
+        return repository.findById(id).orElseThrow();
+    }
 }

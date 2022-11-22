@@ -8,4 +8,6 @@ public interface ICharities {
     Charities save(Charities charities);
 
     List<Charities> findAll();
+
+    Charities findById(Long id);
 }

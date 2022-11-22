@@ -40,4 +40,15 @@ public class CharitiesController {
         List<Charities> charities = charityService.findAll();
         return new ResponseEntity<>(charities, HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get a charity by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Charity found"),
+            @ApiResponse(code = 404, message = "Charity not found"),
+    })
+    public ResponseEntity<Charities> getById(@PathVariable Long id){
+        Charities charity = charityService.findById(id);
+        return new ResponseEntity<>(charity, HttpStatus.OK);
+    }
 }
