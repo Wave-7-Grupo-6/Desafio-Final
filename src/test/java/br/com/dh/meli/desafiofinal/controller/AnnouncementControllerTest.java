@@ -1,6 +1,7 @@
 package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.AnnouncementDTO;
+import br.com.dh.meli.desafiofinal.dto.BatchDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Announcement;
 import br.com.dh.meli.desafiofinal.model.Batch;
@@ -139,8 +140,7 @@ class AnnouncementControllerTest {
                         get("/api/v1/fresh-products/list?category={category}", category)
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)));
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -184,5 +184,46 @@ class AnnouncementControllerTest {
                 .andExpect(jsonPath("$.batchList[0].id", CoreMatchers.is(announcement.getBatchs().get(1).getBatchNumber().intValue())))
                 .andExpect(jsonPath("$.batchList[0].productQuantity", CoreMatchers.is(announcement.getBatchs().get(1).getProductQuantity())))
                 .andExpect(jsonPath("$.batchList[0].dueDate", CoreMatchers.is(announcement.getBatchs().get(1).getDueDate().toString())));
+    }
+
+    @Test
+    void findStockByCategoryAndOrderBy_returnCorrectBatchDTO_whenSuccess() throws Exception {
+        Announcement announcement = getAnnouncement();
+        ArrayList<Batch> batchArray = new ArrayList<Batch>(Arrays.asList(getBatch(), getLowIdBatch()));
+        announcement.setBatchs(batchArray);
+        when(batchService.findByDaysAndCategoryAndOrderPerDueDate(anyInt(), anyString())).thenReturn(batchArray);
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/list?days={days}&category={category}", 60, getCategory().getName())
+                                .contentType(MediaType.APPLICATION_JSON))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$", hasSize(2)));
+    }
+
+    @Test
+    void stockForDonation_returnListBatchDTO_whenSuccess() throws Exception {
+        List<BatchDTO> batchListDTO = getListBatchsForDonation(getBatchForDonation());
+        when(batchService.findBatchToDonation(anyInt())).thenReturn(List.of(getBatchForDonation()));
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/due-date/donation")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id", CoreMatchers.is(batchListDTO.get(0).getId().intValue())))
+                .andExpect(jsonPath("$[0].productQuantity", CoreMatchers.is(batchListDTO.get(0).getProductQuantity())))
+                .andExpect(jsonPath("$[0].dueDate", CoreMatchers.is(batchListDTO.get(0).getDueDate().toString())));
+    }
+
+    @Test
+    void stockForDonation_returnNotFound_whenBatchListIsEmpty() throws Exception {
+        when(batchService.findBatchToDonation(anyInt())).thenReturn(List.of());
+
+        mockMvc.perform(
+                        get("/api/v1/fresh-products/due-date/donation")
+                                .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isNotFound());
     }
 }

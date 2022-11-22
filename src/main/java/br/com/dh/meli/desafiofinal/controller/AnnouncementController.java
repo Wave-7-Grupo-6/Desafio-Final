@@ -177,11 +177,13 @@ public class AnnouncementController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Batches found"),
             @ApiResponse(code = 404, message = "Batches not found"),
-            @ApiResponse(code = 404, message = "Announcement not found")
     })
     public ResponseEntity<List<BatchDTO>> stockForDonation(){
         Integer daysToExpire = 20;
         List<Batch> batches = batchService.findBatchToDonation(daysToExpire);
+        if (batches.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         List<BatchDTO> batchDTO = batches
                 .stream()
                 .map(BatchDTO::new)

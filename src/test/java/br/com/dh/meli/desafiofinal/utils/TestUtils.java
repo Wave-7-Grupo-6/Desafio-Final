@@ -1,5 +1,6 @@
 package br.com.dh.meli.desafiofinal.utils;
 
+import br.com.dh.meli.desafiofinal.dto.BatchDTO;
 import br.com.dh.meli.desafiofinal.dto.ProductDTO;
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
@@ -11,6 +12,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TestUtils {
 
@@ -72,6 +74,19 @@ public class TestUtils {
     public static PurchaseOrderDTO getPurchaseOrderDTO(){
         List<ProductDTO> productDTOs = List.of(new ProductDTO(getAnnouncement().getId(), getPurchaseItem().getQuantity(), getLowIdBatch().getBatchNumber()));
         return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), OrderStatus.PROCESSING.toString(), productDTOs);
+    }
+
+    public static Batch getBatchForDonation() {
+        return new Batch(2L, 10.0f,10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(10),new BigDecimal(10.0),getAnnouncement(), null, getSection() );
+    }
+    public static List<BatchDTO> getListBatchsForDonation(Batch batch) {
+        List<Batch> batches = new ArrayList<Batch>();
+        batches.add(batch);
+        List<BatchDTO> batchDTO = batches
+                .stream()
+                .map(BatchDTO::new)
+                .collect(Collectors.toList());
+        return batchDTO;
     }
 
     public static Charities getCharities(){
