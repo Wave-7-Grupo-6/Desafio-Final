@@ -29,10 +29,11 @@ mvn spring-boot:run
 ```
 
 ## 📚 User Story e documentação
+- [Requisito 6.pdf](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/convert-currency/src/main/resources/Requisito%206%20-%20Bootcamp.docx.pdf)
 
 ## 🧑🏻‍🚀 Como testar no Postman
 
-- Importe o seguinte arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Discount%20Coupon%20Postman.json)
+- Importe o seguinte arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/convert-currency/src/main/resources/Req6-COLLECTION.json)
 
 
 # 💡 Documentação da API
