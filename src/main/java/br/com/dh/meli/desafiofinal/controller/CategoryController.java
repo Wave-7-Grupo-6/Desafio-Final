@@ -22,7 +22,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/category")
 @Api(tags = "Category Controller", value = "CategoryController", description = "Controller for Category")
-@PreAuthorize("hasRole('ADMIN')")
 public class CategoryController {
     @Autowired
     private ICategory service;
@@ -39,6 +38,7 @@ public class CategoryController {
             @ApiResponse(code = 201, message = "Category created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public void save(@RequestBody @Valid CategoryDTO categoryDTO){
         service.save(categoryDTO);
     }

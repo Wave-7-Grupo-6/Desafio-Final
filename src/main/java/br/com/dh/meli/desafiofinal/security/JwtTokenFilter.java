@@ -3,6 +3,7 @@ package br.com.dh.meli.desafiofinal.security;
 import br.com.dh.meli.desafiofinal.model.User;
 import br.com.dh.meli.desafiofinal.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -19,6 +20,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Component
+@Log4j2
 public class JwtTokenFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
     private final JwtTokenUtil jwtTokenUtil;
@@ -40,7 +42,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         }
 
         setAuthenticationContext(token, request);
+
         filterChain.doFilter(request, response);
+
     }
 
     private boolean hasAuthorizationBearer(HttpServletRequest request) {
@@ -58,6 +62,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     }
 
     private void setAuthenticationContext(String token, HttpServletRequest request) {
+        System.out.println(jwtTokenUtil.getSubject(token));
         String[] jwtSubject = jwtTokenUtil.getSubject(token).split(",");
         Optional<User> userOptional = userRepository.findByUsername(jwtSubject[0]);
 

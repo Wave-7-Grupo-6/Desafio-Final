@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -108,6 +109,7 @@ public class UserController {
             @ApiResponse(code = 201, message = "Admin user created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public void save(@RequestBody @Valid UserDTO userDTO){
         userService.save(userDTO);
     }

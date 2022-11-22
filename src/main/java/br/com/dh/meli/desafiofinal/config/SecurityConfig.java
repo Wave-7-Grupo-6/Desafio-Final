@@ -27,28 +27,26 @@ public class SecurityConfig {
             // -- Swagger UI v3 (OpenAPI)
             "/swagger-ui/**",
             // -- our public API endpoints
-            "/api/v1/user/login",
-    };;
+            "/api/v1/user/login"
+    };
 
-    public SecurityConfig(JwtTokenFilter jwtTokenFilter
-//            , UserDetailsService userDetailsService
-    ) {
+    public SecurityConfig(JwtTokenFilter jwtTokenFilter) {
         this.jwtTokenFilter = jwtTokenFilter;
-        //this.userDetailsService = userDetailsService;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
          http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers(authWhitelist).permitAll()
-                .antMatchers(HttpMethod.POST, "/api/v1/client/**", "/api/v1/seller/**").permitAll()
-                 .antMatchers(HttpMethod.GET, "/api/v1/fresh-products/**", "/api/v1/category/**").permitAll()
-                 .antMatchers( "/api/v1/fresh-products/**", "/api/v1/seller/**").hasAnyRole("SELLER", "ADMIN")
-                 .antMatchers( "/api/v1/client/**", "/api/v1/purchase-order/**").hasAnyRole("CLIENT", "ADMIN")
-                //.antMatchers( "/api/v1/role/**", "/api/v1/warehouse/**", "/api/v1/category").hasRole("ADMIN")
-                .anyRequest().authenticated()
-                //.and().httpBasic()
+                 .authorizeRequests()
+                 .antMatchers(authWhitelist).permitAll()
+                 .antMatchers(HttpMethod.POST,
+                         "/api/v1/client",
+                         "/api/v1/seller").permitAll()
+                 .antMatchers(HttpMethod.GET,
+                         "/api/v1/fresh-products/**",
+                         "/api/v1/category/**",
+                         "/api/v1/warehouse/**").permitAll()
+                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
          http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
@@ -60,8 +58,7 @@ public class SecurityConfig {
                             ex.getMessage()
                     );
                 }
-        );
-
+         );
         return http.build();
     }
 

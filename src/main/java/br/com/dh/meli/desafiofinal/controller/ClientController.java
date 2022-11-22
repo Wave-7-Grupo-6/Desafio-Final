@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -51,6 +52,7 @@ public class ClientController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Clients found"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Client>> findAll(){
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
@@ -67,6 +69,7 @@ public class ClientController {
             @ApiResponse(code = 200, message = "Client found"),
             @ApiResponse(code = 404, message = "Client not found"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Client> findById(@PathVariable Long id){
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }

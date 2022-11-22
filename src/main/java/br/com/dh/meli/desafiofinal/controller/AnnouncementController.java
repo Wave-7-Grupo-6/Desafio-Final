@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,6 +50,7 @@ public class AnnouncementController {
             @ApiResponse(code = 201, message = "Announcement created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
+    @PreAuthorize("hasRole('SELLER')")
     public ResponseEntity<AnnouncementDTO> save(@RequestBody AnnouncementDTO announcementDTO){
         Seller seller = sellerService.findById(announcementDTO.getSellerId());
         Category category = categoryService.findById(announcementDTO.getCategoryId());

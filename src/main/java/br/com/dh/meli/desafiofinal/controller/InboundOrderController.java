@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/fresh-products/inboundorder/")
 @Api(tags = "Inbound Order Controller", value = "InboundOrderController", description = "Controller for Inbound Order")
+@PreAuthorize("hasAnyRole('ADMIN', 'SELLER')")
 public class InboundOrderController {
     @Autowired
     private IInboundOrder service;

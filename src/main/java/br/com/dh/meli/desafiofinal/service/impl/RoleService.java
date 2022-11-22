@@ -1,6 +1,7 @@
 package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
+import br.com.dh.meli.desafiofinal.exceptions.NotUniqueException;
 import br.com.dh.meli.desafiofinal.model.Role;
 import br.com.dh.meli.desafiofinal.repository.RoleRepository;
 import br.com.dh.meli.desafiofinal.service.IRole;
@@ -18,6 +19,7 @@ public class RoleService implements IRole {
 
     @Override
     public Role save(Role role) {
+        checkUniqueRole(role.getName());
         role.setId(null);
         return roleRepository.save(role);
     }
@@ -27,6 +29,7 @@ public class RoleService implements IRole {
         if(role.getId() == null || !roleRepository.existsById(role.getId())){
             throw new NotFoundException("Role id not provided or not found.");
         }
+        checkUniqueRole(role.getName());
         return roleRepository.save(role);
     }
 
@@ -57,5 +60,11 @@ public class RoleService implements IRole {
         return roleList;
     }
 
+    private void checkUniqueRole(String roleName){
+        Optional<Role> exintingRole = roleRepository.findByName(roleName);
+        if(exintingRole.isPresent()){
+            throw new NotUniqueException("Role name already exists.");
+        }
+    }
 
 }

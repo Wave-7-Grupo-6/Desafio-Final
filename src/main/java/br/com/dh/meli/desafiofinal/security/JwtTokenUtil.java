@@ -1,6 +1,7 @@
 package br.com.dh.meli.desafiofinal.security;
 
 
+import br.com.dh.meli.desafiofinal.model.Role;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
@@ -10,10 +11,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static io.jsonwebtoken.SignatureAlgorithm.HS256;
 
@@ -27,13 +25,10 @@ public class JwtTokenUtil {
     private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     public String generateAccessToken(HttpServletRequest request, UserPrincipal user) {
-        Map<String, Collection<? extends GrantedAuthority>> claims = new HashMap<>();
-        claims.put("roles", user.getAuthorities());
         String accessToken = Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuer(request.getRequestURL().toString())
                 .setIssuedAt(new Date())
-                .setClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION))
                 .signWith(SECRET_KEY)
                 .compact();
@@ -49,9 +44,7 @@ public class JwtTokenUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + REFRESH_TOKEN_EXPIRATION))
                 .signWith(SECRET_KEY)
                 .compact();
-
         return refreshToken;
-
     }
 
     public boolean validateJwtToken(String authToken)  {

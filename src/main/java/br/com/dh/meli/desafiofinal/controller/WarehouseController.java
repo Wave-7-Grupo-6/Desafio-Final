@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,6 +38,7 @@ public class WarehouseController {
             @ApiResponse(code = 201, message = "Warehouse created successfully"),
             @ApiResponse(code = 400, message = "Invalid request"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Warehouse> save(@RequestBody @Valid WarehouseDTO warehouse){
         Warehouse warehouseCreated = service.save(warehouse);
 
