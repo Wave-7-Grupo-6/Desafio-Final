@@ -73,4 +73,9 @@ public class TestUtils {
         List<ProductDTO> productDTOs = List.of(new ProductDTO(getAnnouncement().getId(), getPurchaseItem().getQuantity(), getLowIdBatch().getBatchNumber()));
         return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), OrderStatus.PROCESSING.toString(), productDTOs);
     }
+
+    public static Charities getCharities(){
+        Charities charities = new Charities(1L, "Santa Casa do lar Nova", "86245982000105", "santacasa@santacasa.org.br", "8398765432");
+        return charities;
+    }
 }
