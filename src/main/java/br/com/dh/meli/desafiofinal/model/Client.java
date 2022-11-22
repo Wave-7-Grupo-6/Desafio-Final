@@ -32,4 +32,13 @@ public class Client {
     @ToString.Exclude
     @ApiModelProperty(notes = "The client carts")
     private List<Cart> carts;
+
+    @ManyToMany
+    @JoinTable(
+            name = "favorite_list",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "announcement_id")
+    )
+    @JsonIgnoreProperties({"favoritedBy","batchs","cartItems","seller"})
+    private List<Announcement> favorites;
 }

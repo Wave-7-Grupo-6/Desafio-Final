@@ -26,8 +26,9 @@ public class ClientService implements IClient {
      */
     @Override
     public Client save(ClientDTO clientDTO) {
-        return repo.save(new Client(null, clientDTO.getName(), null));
+        return repo.save(new Client(null, clientDTO.getName(), null,null));
     }
+
 
     /**
      * Find all clients and return them as a list.
@@ -48,5 +49,10 @@ public class ClientService implements IClient {
     @Override
     public Client findById(Long id) {
         return repo.findById(id).orElseThrow(() -> new NoSuchElementException("Client not found"));
+    }
+
+    @Override
+    public Client save(Client client) {
+        return repo.save(client);
     }
 }

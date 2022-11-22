@@ -62,11 +62,9 @@ public class Announcement {
     @ApiModelProperty(notes = "The announcement product type")
     private ProductType productType;
 
-    @ManyToOne
-    @JoinColumn(name = "favorite_product_id")
+    @ManyToMany(mappedBy = "favorites")
     @JsonIgnoreProperties("announcements")
-    @ApiModelProperty(notes = "The announcement product type")
-    private FavoriteProduct favoriteProduct;
+    private List<Client> favoritedBy;
 
     /**
      * Instantiates a new Announcement.

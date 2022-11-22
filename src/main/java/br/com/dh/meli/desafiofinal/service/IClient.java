@@ -31,4 +31,12 @@ public interface IClient {
      * @return the client
      */
     Client findById(Long id);
+
+    /**
+     * Save client.
+     *
+     * @param client the client
+     * @return the client
+     */
+    Client save(Client client);
 }
