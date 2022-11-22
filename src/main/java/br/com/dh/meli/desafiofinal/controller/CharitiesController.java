@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/charities")
@@ -27,6 +28,9 @@ public class CharitiesController {
     })
     public ResponseEntity<Charities> save(@RequestBody Charities charity){
         Charities savedCharity = charityService.save(charity);
+        if (Objects.isNull(savedCharity)) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         return new ResponseEntity<>(savedCharity, HttpStatus.CREATED);
     }
 
@@ -36,8 +40,11 @@ public class CharitiesController {
             @ApiResponse(code = 200, message = "Charities found"),
             @ApiResponse(code = 404, message = "Charities not found"),
     })
-    public ResponseEntity<List<Charities>> getAll(){
+    public ResponseEntity<List<Charities>> findAll(){
         List<Charities> charities = charityService.findAll();
+        if (charities.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(charities, HttpStatus.OK);
     }
 
@@ -47,30 +54,39 @@ public class CharitiesController {
             @ApiResponse(code = 200, message = "Charity found"),
             @ApiResponse(code = 404, message = "Charity not found"),
     })
-    public ResponseEntity<Charities> getById(@PathVariable Long id){
+    public ResponseEntity<Charities> findById(@PathVariable Long id){
         Charities charity = charityService.findById(id);
+        if (charity == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(charity, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     @ApiOperation(value = "Update a charity by id")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Charity updated"),
+            @ApiResponse(code = 201, message = "Charity updated"),
             @ApiResponse(code = 404, message = "Charity not found"),
     })
     public ResponseEntity<Charities> update(@PathVariable Long id, @RequestBody Charities charity){
         Charities charityUpdated = charityService.update(id, charity);
-        return new ResponseEntity<>(charityUpdated, HttpStatus.OK);
+        if (charityUpdated == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(charityUpdated, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "Delete a charity by id")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Charity deleted"),
+            @ApiResponse(code = 204, message = "Charity deleted"),
             @ApiResponse(code = 404, message = "Charity not found"),
     })
-    public ResponseEntity<Charities> delete(@PathVariable Long id){
-        charityService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Charities> deleteById(@PathVariable Long id){
+        boolean response = charityService.deleteById(id);
+        if (response){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

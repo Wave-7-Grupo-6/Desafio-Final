@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,9 @@ public class CharitiesService implements ICharities {
 
     @Override
     public Charities save(Charities charities) {
+        if(!validateCharity(charities)){
+            return null;
+        }
         return repository.save(charities);
     }
 
@@ -40,9 +44,15 @@ public class CharitiesService implements ICharities {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public boolean deleteById(Long id) {
         if(repository.existsById(id)){
             repository.deleteById(id);
+            return true;
         }
+        return false;
+    }
+
+    boolean validateCharity(Charities charity){
+        return charity.getName() != null && charity.getCnpj() != null && charity.getEmail() != null;
     }
 }
