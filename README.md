@@ -34,7 +34,7 @@ mvn spring-boot:run
 
 ## 🧑🏻‍🚀 Como testar no Postman
 
-1. Importar o arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/readme/src/main/resources/DESAFIO-FINAL.json)
+1. Importar o arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/favorite-products/src/main/resources/postmanCollection.json)
 
 
 # 💡 Documentação da API - Requisitos 06 - Paula Santos - Lista de Favoritos.
@@ -163,10 +163,7 @@ e
 ```
 > O retorno acima é apenas fictício.
 
-
-
-
-
+--------------------------------------------------------
 
 ## Feito Com:
 
