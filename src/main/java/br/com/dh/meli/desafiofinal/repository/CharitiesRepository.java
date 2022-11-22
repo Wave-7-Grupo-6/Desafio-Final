@@ -17,4 +17,6 @@ public interface CharitiesRepository extends JpaRepository<Charities, Long> {
     Optional<Charities> findById(Long id);
 
     boolean existsById(Long id);
+
+    void deleteById(Long id);
 }

@@ -38,4 +38,11 @@ public class CharitiesService implements ICharities {
         }
         throw new NotFoundException("Charity not found.");
     }
+
+    @Override
+    public void deleteById(Long id) {
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+        }
+    }
 }

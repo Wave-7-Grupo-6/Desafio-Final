@@ -12,4 +12,6 @@ public interface ICharities {
     Charities findById(Long id);
 
     Charities update(Long id, Charities charity);
+
+    void deleteById(Long id);
 }

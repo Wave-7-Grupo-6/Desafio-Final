@@ -62,4 +62,15 @@ public class CharitiesController {
         Charities charityUpdated = charityService.update(id, charity);
         return new ResponseEntity<>(charityUpdated, HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Delete a charity by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Charity deleted"),
+            @ApiResponse(code = 404, message = "Charity not found"),
+    })
+    public ResponseEntity<Charities> delete(@PathVariable Long id){
+        charityService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
