@@ -25,7 +25,7 @@ public class SecurityConfig {
     //private final UserDetailsService userDetailsService;
     private final String[] authWhitelist = new String[]{
             // -- Swagger UI v3 (OpenAPI)
-            "/swagger-ui/**",
+            "/swagger-ui.html#/**",
             // -- our public API endpoints
             "/api/v1/user/login"
     };

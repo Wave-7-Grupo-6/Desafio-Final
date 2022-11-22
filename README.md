@@ -235,13 +235,18 @@ GET /api/v1/user/refresh/token
 }
 ```
 
-## 🖊 Diagrama Entidade Relacionamento (DER)
+## 🖊 UML
 
-[![DER](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/images/DER.jpg)
+![UML-req06](https://user-images.githubusercontent.com/114093532/203404618-0bf91106-6330-45a0-a182-5ab86215038d.svg)
+
 
 ## 📖 User Storie
 
-![User Storie](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Requisito06-DOC.docx)
+[![User Storie](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/feature/thays/Requisito%206%20-%20Thays.pdf)]
+
+## 📖 Swagger
+
+http://localhost:8080/swagger-ui.html#/
 
 ## 👩🏽‍💻 Desenvolvedora
 

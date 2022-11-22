@@ -37,12 +37,12 @@ INSERT INTO batch (batch_number, current_temperature, due_date, manufacturing_da
                       (2, 5, '2022-12-09', '2022-11-09', '00:00:00', 10, 0.5, 2, 2, 2, 10.0),
                       (3, -5, '2023-01-10', '2022-11-09', '00:00:00', 10, 0.5, 3, 3, 3, 12.9);
 
-INSERT INTO cart VALUES (1, 1);
+INSERT INTO cart VALUES (1, 2);
 
 INSERT INTO cart_item VALUES
     (null, 3, 44.0, 1, 1);
 
-INSERT INTO purchase_order VALUES (1, '2022-11-09', 'DELIVERED', 1);
+INSERT INTO purchase_order VALUES (1, '2022-11-09', 'DELIVERED', 2);
 
 INSERT INTO purchase_item VALUES
                         (null, 44.0, 1, 1, 1),
