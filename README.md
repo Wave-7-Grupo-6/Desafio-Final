@@ -34,7 +34,7 @@ mvn spring-boot:run
 
 ## 🧑🏻‍🚀 Como testar no Postman
 
-1. Importar o arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/discount-coupon/src/main/resources/Discount%20Coupon%20Postman.json)
+1. Importar o arquivo no Postman: [POSTMAN](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/readme/src/main/resources/DESAFIO-FINAL.json)
 
 ## Requisitos 06 do Grupo 6
 
@@ -44,3 +44,4 @@ mvn spring-boot:run
 - Requisito 06 - [Paula](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/favorite-products) - Um Cliente gostaria de poder favoritar produtos para que possa comprar depois.
 - Requisito 06 - [Thays]()
 - Requisito 06 - [Williamns](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/Req_6_williamns)
+
