@@ -28,11 +28,11 @@ public class Charities {
     @Column(name = "cnpj", nullable = false)
     private String cnpj;
 
-    @Column(name = "phone", nullable = false)
-    private String phone;
-
     @NotBlank(message = "The email is required")
     @Email(message = "Email should be valid")
     @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
 }
