@@ -9,6 +9,7 @@ public interface IBatch {
     Batch save(Batch batch);
     List<BatchDTO> findByDueDateIsBefore(int days, Long sectionId, Long sellerId);
     List<Batch> findByDaysAndCategoryAndOrderPerDueDate(Integer days, String category);
+    List<Batch> findBatchToDonation(Integer daysToExpire);
     Batch updateStock(Long batchId, Long productId, Integer quantity);
     Batch findById(Long id);
 }

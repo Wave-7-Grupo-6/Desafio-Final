@@ -162,8 +162,28 @@ public class AnnouncementController {
     })
     public ResponseEntity<List<BatchDTO>> findStockByCategoryAndNumberDaysAndOrdered(@RequestParam Integer days, @RequestParam String category){
         List<Batch> batches = batchService.findByDaysAndCategoryAndOrderPerDueDate(days, category);
-        System.out.println("------------------>");
-        System.out.println(batches);
+        List<BatchDTO> batchDTO = batches
+                .stream()
+                .map(BatchDTO::new)
+                .collect(Collectors.toList());
+
+        batchDTO.sort(Comparator.comparing(BatchDTO::getDueDate));
+
+        return new ResponseEntity<>(batchDTO, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/due-date/donation")
+    @ApiOperation(value = "Get all Batches for Donation")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Batches found"),
+            @ApiResponse(code = 404, message = "Batches not found"),
+    })
+    public ResponseEntity<List<BatchDTO>> stockForDonation(){
+        Integer daysToExpire = 20;
+        List<Batch> batches = batchService.findBatchToDonation(daysToExpire);
+        if (batches.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         List<BatchDTO> batchDTO = batches
                 .stream()
                 .map(BatchDTO::new)
