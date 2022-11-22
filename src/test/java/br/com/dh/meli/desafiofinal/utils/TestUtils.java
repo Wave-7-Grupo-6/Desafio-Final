@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.utils;
 
 import br.com.dh.meli.desafiofinal.dto.ProductDTO;
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
+import br.com.dh.meli.desafiofinal.dto.SaleoffDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import br.com.dh.meli.desafiofinal.model.*;
 
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -72,5 +74,24 @@ public class TestUtils {
     public static PurchaseOrderDTO getPurchaseOrderDTO(){
         List<ProductDTO> productDTOs = List.of(new ProductDTO(getAnnouncement().getId(), getPurchaseItem().getQuantity(), getLowIdBatch().getBatchNumber()));
         return new PurchaseOrderDTO(LocalDate.now(), getClient().getId(), OrderStatus.PROCESSING.toString(), productDTOs);
+    }
+
+    public static SaleoffDTO getSmallPriceBatch(){
+        Batch batch = new Batch(1L, 10.0f, 10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(20),new BigDecimal("1"),getAnnouncement(), null, getSection());
+        return new SaleoffDTO(batch);
+    }
+
+    public static SaleoffDTO getCloseToExpireBatch(){
+        Batch batch = new Batch(1L, 10.0f, 10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(1),new BigDecimal("80"),getAnnouncement(), null, getSection());
+        return new SaleoffDTO(batch);
+    }
+
+    public static SaleoffDTO getBigDiscountBatch(){
+        Batch batch = new Batch(1L, 10.0f, 10, LocalDate.now(), LocalTime.now(), 0.5f, LocalDate.now().plusDays(1),new BigDecimal("150"),getAnnouncement(), null, getSection());
+        return new SaleoffDTO(batch);
+    }
+
+    public static List<SaleoffDTO> getSaleoffDTOList() {
+        return new ArrayList<SaleoffDTO>(Arrays.asList(getSmallPriceBatch(), getBigDiscountBatch(), getCloseToExpireBatch()));
     }
 }
