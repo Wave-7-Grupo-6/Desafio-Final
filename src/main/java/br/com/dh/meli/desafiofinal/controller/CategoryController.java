@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * The type Category controller.
- */
 @RestController
 @RequestMapping("/api/v1/category")
 @Api(tags = "Category Controller", value = "CategoryController", description = "Controller for Category")
@@ -25,11 +22,6 @@ public class CategoryController {
     @Autowired
     private ICategory service;
 
-    /**
-     * Save the category.
-     *
-     * @param categoryDTO the category dto
-     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a new Category")
@@ -41,11 +33,6 @@ public class CategoryController {
         service.save(categoryDTO);
     }
 
-    /**
-     * Get all response entity with categories.
-     *
-     * @return the response entity
-     */
     @GetMapping
     @ApiOperation(value = "Get all Categories")
     @ApiResponses(value = {
@@ -55,12 +42,6 @@ public class CategoryController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-    /**
-     * Find by id response entity.
-     *
-     * @param id the id
-     * @return the response entity with category
-     */
     @GetMapping("/{id}")
     @ApiOperation(value = "Get a Category by ID")
     @ApiResponses(value = {

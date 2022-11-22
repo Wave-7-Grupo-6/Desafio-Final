@@ -1,15 +1,10 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.InboundOrder;
 import br.com.dh.meli.desafiofinal.repository.InboundOrderRepository;
-import br.com.dh.meli.desafiofinal.service.IAnnouncement;
-import br.com.dh.meli.desafiofinal.service.IInboundOrder;
-import br.com.dh.meli.desafiofinal.service.ISection;
-import br.com.dh.meli.desafiofinal.service.IWarehouse;
-import br.com.dh.meli.desafiofinal.service.impl.InboundOrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +14,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;

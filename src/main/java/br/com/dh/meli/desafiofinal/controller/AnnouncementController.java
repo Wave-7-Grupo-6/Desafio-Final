@@ -18,9 +18,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/**
- * The type Announcement controller.
- */
 @RestController
 @RequestMapping("/api/v1/fresh-products")
 @Api(tags = "Announcement Controller", value = "AnnouncementController", description = "Controller for Announcement")
@@ -37,12 +34,6 @@ public class AnnouncementController {
     @Autowired
     private IBatch batchService;
 
-    /**
-     * Save response entity.
-     *
-     * @param announcementDTO the announcement dto
-     * @return the response entity
-     */
     @PostMapping
     @ApiOperation(value = "Create a new Announcement")
     @ApiResponses(value = {
@@ -61,12 +52,6 @@ public class AnnouncementController {
         return new ResponseEntity<>(new AnnouncementDTO(savedAnnouncement), HttpStatus.CREATED);
     }
 
-    /**
-     * Find by id response entity.
-     *
-     * @param id the id
-     * @return the response entity
-     */
     @GetMapping("/{id}")
     @ApiOperation(value = "Get a Announcement by ID")
     @ApiResponses(value = {
@@ -81,11 +66,6 @@ public class AnnouncementController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    /**
-     * Find all response entity.
-     *
-     * @return the response entity
-     */
     @GetMapping
     @ApiOperation(value = "Get all Announcements")
     @ApiResponses(value = {
@@ -99,12 +79,6 @@ public class AnnouncementController {
         return ResponseEntity.ok(announcements);
     }
 
-    /**
-     * Find by category response entity.
-     *
-     * @param category the category
-     * @return the response entity
-     */
     @GetMapping(value = "/list", params = "category")
     @ApiOperation(value = "Get all Announcements by Category")
     @ApiResponses(value = {
@@ -116,12 +90,6 @@ public class AnnouncementController {
         return new ResponseEntity<>(announcementService.findByCategory(category), HttpStatus.OK);
     }
 
-    /**
-     * Find stock by announcement id announcement stock dto.
-     *
-     * @param announcementId the announcement id
-     * @return the announcement stock dto
-     */
     @GetMapping(value = "/list", params = "announcementId")
     @ApiOperation(value = "Get all Batches by Announcement ID")
     @ApiResponses(value = {
@@ -138,13 +106,6 @@ public class AnnouncementController {
         return new AnnouncementStockDTO(sectionDTO,announcementId, batchStockDTOResponse);
     }
 
-    /**
-     * Find stock by announcement id and ordered announcement stock dto.
-     *
-     * @param announcementId the announcement id
-     * @param orderBy        the order by
-     * @return the announcement stock dto
-     */
     @GetMapping(value = "/list", params = {"announcementId", "orderBy"})
     @ApiOperation(value = "Get all Batches by Announcement ID and Order parameter")
     @ApiResponses(value = {
@@ -170,12 +131,6 @@ public class AnnouncementController {
         return new AnnouncementStockDTO(sectionDTO,announcementId, batchStockDTOResponse);
     }
 
-    /**
-     * Find by product type response entity.
-     *
-     * @param prod_id the prod id
-     * @return the response entity
-     */
     @GetMapping("/by_prod/{prod_id}")
     @ApiOperation(value = "Get all Announcements by Product Type")
     @ApiResponses(value = {
@@ -187,14 +142,6 @@ public class AnnouncementController {
         return new ResponseEntity<>(announcementService.findByProductTypeGroupByWarehouse(prod_id), HttpStatus.OK);
     }
 
-    /**
-     * Find by due date response entity.
-     *
-     * @param days    the days
-     * @param section the section
-     * @param seller  the seller
-     * @return the response entity
-     */
     @GetMapping(value = "/due-date", params = {"days", "section", "seller"})
     @ApiOperation(value = "Get all Batchs by due date, section and seller")
     @ApiResponses(value = {
@@ -206,14 +153,6 @@ public class AnnouncementController {
     public ResponseEntity<List<BatchDTO>> findByDueDate(@RequestParam Integer days, @RequestParam Long section, @RequestParam Long seller){
         return new ResponseEntity<>(batchService.findByDueDateIsBefore(days, section, seller), HttpStatus.OK);
     }
-
-    /**
-     * Find stock by category and number days and ordered response entity.
-     *
-     * @param days     the days
-     * @param category the category
-     * @return the response entity
-     */
     @GetMapping(value = "/due-date/list", params = {"days", "category"})
     @ApiOperation(value = "Get all Batches by Category in Due Date Specific and Order Per DueDate")
     @ApiResponses(value = {

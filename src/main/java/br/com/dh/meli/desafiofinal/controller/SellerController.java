@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * The type Seller controller.
- */
 @RestController
 @RequestMapping("/api/v1/seller")
 @Api(tags = "Seller Controller", value = "SellerController", description = "Controller for Seller")
@@ -25,12 +22,6 @@ public class SellerController {
     @Autowired
     private ISeller service;
 
-    /**
-     * Save seller.
-     *
-     * @param sellerDTO the seller dto
-     * @return the seller
-     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a new Seller")
@@ -42,11 +33,6 @@ public class SellerController {
         return service.save(sellerDTO);
     }
 
-    /**
-     * Find all sellers.
-     *
-     * @return the response entity with sellers
-     */
     @GetMapping
     @ApiOperation(value = "Get all Sellers")
     @ApiResponses(value = {
@@ -60,12 +46,6 @@ public class SellerController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-    /**
-     * Find seller by id.
-     *
-     * @param id the id
-     * @return the response entity with seller
-     */
     @GetMapping("/{id}")
     @ApiOperation(value = "Get a Seller by ID")
     @ApiResponses(value = {

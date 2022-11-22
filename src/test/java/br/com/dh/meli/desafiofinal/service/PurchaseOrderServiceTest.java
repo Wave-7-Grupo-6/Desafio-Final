@@ -1,14 +1,10 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
+import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.model.PurchaseOrder;
 import br.com.dh.meli.desafiofinal.repository.PurchaseOrderRepository;
-import br.com.dh.meli.desafiofinal.service.IAnnouncement;
-import br.com.dh.meli.desafiofinal.service.IBatch;
-import br.com.dh.meli.desafiofinal.service.IClient;
-import br.com.dh.meli.desafiofinal.service.IPurchaseOrder;
-import br.com.dh.meli.desafiofinal.service.impl.PurchaseOrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

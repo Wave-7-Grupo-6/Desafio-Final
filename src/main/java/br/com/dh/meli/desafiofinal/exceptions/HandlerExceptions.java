@@ -42,7 +42,7 @@ public class HandlerExceptions {
                 ExceptionDetails.builder()
                         .title("Dados inválidos")
                         .message("Um ou mais valores fornecidos são inválidos")
-                        .status(HttpStatus.BAD_REQUEST.value())
+                        .status(HttpStatus.BAD_GATEWAY.value())
                         .timestamp(LocalDateTime.now())
                         .build(),
                 HttpStatus.BAD_REQUEST);

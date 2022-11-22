@@ -1,11 +1,9 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.SellerDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Seller;
 import br.com.dh.meli.desafiofinal.repository.SellerRepository;
-import br.com.dh.meli.desafiofinal.service.ISeller;
-import br.com.dh.meli.desafiofinal.service.impl.SellerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

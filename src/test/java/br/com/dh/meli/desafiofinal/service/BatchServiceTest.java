@@ -1,14 +1,10 @@
-package br.com.dh.meli.desafiofinal.service.impl;
+package br.com.dh.meli.desafiofinal.service;
 
 import br.com.dh.meli.desafiofinal.dto.BatchDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.exceptions.OutOfStockException;
 import br.com.dh.meli.desafiofinal.model.Batch;
 import br.com.dh.meli.desafiofinal.repository.BatchRepository;
-import br.com.dh.meli.desafiofinal.service.IBatch;
-import br.com.dh.meli.desafiofinal.service.ISection;
-import br.com.dh.meli.desafiofinal.service.ISeller;
-import br.com.dh.meli.desafiofinal.service.impl.BatchService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

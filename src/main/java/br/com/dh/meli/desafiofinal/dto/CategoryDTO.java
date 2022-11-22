@@ -10,9 +10,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-/**
- * The type Category dto.
- */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,11 +23,6 @@ public class CategoryDTO {
     @NotNull(message = "Temperature must not be null.")
     private Float temperature;
 
-    /**
-     * Instantiates a new Category dto.
-     *
-     * @param category the category
-     */
     public CategoryDTO(Category category){
         this.name = category.getName();
         this.temperature = category.getTemperature();
