@@ -2,7 +2,6 @@ package br.com.dh.meli.desafiofinal.service.impl;
 
 import br.com.dh.meli.desafiofinal.dto.UserDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotUniqueException;
-import br.com.dh.meli.desafiofinal.model.Client;
 import br.com.dh.meli.desafiofinal.model.Role;
 import br.com.dh.meli.desafiofinal.model.User;
 import br.com.dh.meli.desafiofinal.repository.UserRepository;
@@ -20,6 +19,9 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * The type User service.
+ */
 @Log4j2
 @RequiredArgsConstructor
 @Service
@@ -29,6 +31,12 @@ public class UserService implements UserDetailsService, IUser {
     private final IRole roleService;
     private final PasswordEncoder encoder;
 
+    /**
+     * If the user is found, return a UserPrincipal object, otherwise throw a UsernameNotFoundException
+     *
+     * @param username The username of the user to load.
+     * @return UserPrincipal
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByUsername(username);
@@ -42,11 +50,23 @@ public class UserService implements UserDetailsService, IUser {
 
     }
 
+    /**
+     * > This function checks if a user exists in the database by their username
+     *
+     * @param username The username of the user to check for.
+     * @return A boolean value.
+     */
     @Override
     public Boolean existsByUsername(String username){
         return userRepository.existsByUsername(username);
     }
 
+    /**
+     * > It saves a user to the database
+     *
+     * @param userDTO The user object that we want to save.
+     * @return UserDTO
+     */
     @Override
     public UserDTO save(UserDTO userDTO) {
         Role role = roleService.findByName("ROLE_ADMIN");

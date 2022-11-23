@@ -68,6 +68,9 @@ class AnnouncementControllerTest {
     @MockBean
     private IBatch batchService;
 
+    @MockBean
+    private JwtTokenFilter filter;
+
     @Autowired
     private WebApplicationContext context;
 

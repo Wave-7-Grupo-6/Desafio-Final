@@ -3,6 +3,7 @@ package br.com.dh.meli.desafiofinal.controller;
 import br.com.dh.meli.desafiofinal.dto.PurchaseOrderDTO;
 import br.com.dh.meli.desafiofinal.enums.OrderStatus;
 import br.com.dh.meli.desafiofinal.model.PurchaseOrder;
+import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
 import br.com.dh.meli.desafiofinal.service.IPurchaseOrder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,6 +40,9 @@ class PurchaseOrderControllerTest {
 
     @MockBean
     private IPurchaseOrder purchaseOrderService;
+
+    @MockBean
+    private JwtTokenFilter filter;
 
     @Autowired
     private WebApplicationContext context;

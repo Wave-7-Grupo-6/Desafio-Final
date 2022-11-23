@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.model.Client;
+import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
 import br.com.dh.meli.desafiofinal.service.IClient;
 import br.com.dh.meli.desafiofinal.service.IUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,6 +46,9 @@ public class ClientControllerTest {
 
     @MockBean
     private IClient service;
+
+    @MockBean
+    private JwtTokenFilter filter;
 
     @Autowired
     private WebApplicationContext context;

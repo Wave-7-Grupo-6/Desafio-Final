@@ -2,6 +2,7 @@ package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.WarehouseDTO;
 import br.com.dh.meli.desafiofinal.model.Warehouse;
+import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
 import br.com.dh.meli.desafiofinal.service.ICategory;
 import br.com.dh.meli.desafiofinal.service.IWarehouse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -50,6 +51,9 @@ public class WarehouseControllerTest {
 
     @MockBean
     private IWarehouse warehouseService;
+
+    @MockBean
+    private JwtTokenFilter filter;
 
     @Autowired
     private WebApplicationContext context;

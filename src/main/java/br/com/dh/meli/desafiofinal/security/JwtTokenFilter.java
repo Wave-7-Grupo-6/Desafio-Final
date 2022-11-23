@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * The type Jwt token filter.
+ */
 @Log4j2
 @RequiredArgsConstructor
 @Component

@@ -45,6 +45,9 @@ public class CategoryControllerTest {
     @MockBean
     private ICategory categoryService;
 
+    @MockBean
+    private JwtTokenFilter filter;
+
     @Autowired
     private WebApplicationContext context;
 

@@ -5,6 +5,7 @@ import br.com.dh.meli.desafiofinal.exceptions.InvalidTokenException;
 import br.com.dh.meli.desafiofinal.security.JwtTokenUtil;
 import br.com.dh.meli.desafiofinal.security.UserPrincipal;
 import br.com.dh.meli.desafiofinal.service.impl.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -25,19 +26,28 @@ import java.util.Map;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
+/**
+ * The type User controller.
+ */
 @RestController
 @RequestMapping("/api/v1/user")
+@Api(tags = "User Controller", value = "UserController", description = "User for Role")
 public class UserController {
 
     @Autowired
     AuthenticationManager authManager;
-
     @Autowired
     UserService userService;
-
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
+    /**
+     * Login response entity.
+     *
+     * @param request the request
+     * @param userDTO the user dto
+     * @return the response entity
+     */
     @PostMapping("/login")
     @ApiOperation(value = "Login user")
     @ApiResponses(value = {
@@ -64,9 +74,15 @@ public class UserController {
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
         }
-
     }
 
+    /**
+     * Renew access token response entity.
+     *
+     * @param request the request
+     * @return the response entity
+     * @throws IOException the io exception
+     */
     @GetMapping("/refresh/token")
     @ApiOperation(value = "Renew access token")
     @ApiResponses(value = {
@@ -102,6 +118,11 @@ public class UserController {
         }
     }
 
+    /**
+     * Save.
+     *
+     * @param userDTO the user dto
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a new admin user")

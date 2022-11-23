@@ -1,8 +1,6 @@
 package br.com.dh.meli.desafiofinal.config;
 
-import br.com.dh.meli.desafiofinal.repository.UserRepository;
 import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
-import br.com.dh.meli.desafiofinal.security.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -12,7 +10,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,8 +23,14 @@ import javax.servlet.http.HttpServletResponse;
 public class SecurityConfig {
     private final JwtTokenFilter jwtTokenFilter;
     private final String[] authWhitelist = new String[]{
-            // -- Swagger UI v3 (OpenAPI)
-            "/swagger-ui.html#/**",
+            // -- Swagger
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
             // -- our public API endpoints
             "/api/v1/user/login"
     };
@@ -45,7 +48,7 @@ public class SecurityConfig {
                          "/api/v1/category/**",
                          "/api/v1/warehouse/**").permitAll()
                  .anyRequest().authenticated()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
          http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 

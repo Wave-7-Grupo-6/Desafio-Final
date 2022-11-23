@@ -1,6 +1,7 @@
 package br.com.dh.meli.desafiofinal.controller;
 
 import br.com.dh.meli.desafiofinal.dto.SellerDTO;
+import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
 import br.com.dh.meli.desafiofinal.service.ISeller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,6 +39,9 @@ class SellerControllerTest {
 
     @MockBean
     private ISeller sellerService;
+
+    @MockBean
+    private JwtTokenFilter filter;
 
     @Autowired
     private WebApplicationContext context;

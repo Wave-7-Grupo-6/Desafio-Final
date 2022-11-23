@@ -246,7 +246,7 @@ GET /api/v1/user/refresh/token
 
 ## 📖 Swagger
 
-http://localhost:8080/swagger-ui.html#/
+http://localhost:8080/swagger-ui.html#
 
 ## 👩🏽‍💻 Desenvolvedora
 

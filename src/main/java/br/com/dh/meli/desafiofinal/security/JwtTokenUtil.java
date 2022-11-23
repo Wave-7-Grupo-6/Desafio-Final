@@ -15,15 +15,24 @@ import java.util.*;
 
 import static io.jsonwebtoken.SignatureAlgorithm.HS256;
 
+/**
+ * The type Jwt token util.
+ */
 @Log4j2
 @Component
 public class JwtTokenUtil {
 
     private static final long TOKEN_EXPIRATION = 600_000; // 10 min
     public static final long REFRESH_TOKEN_EXPIRATION = 7 * 86_400_000; // 7 days
-
     private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
+    /**
+     * Generate access token string.
+     *
+     * @param request the request
+     * @param user    the user
+     * @return the string
+     */
     public String generateAccessToken(HttpServletRequest request, UserPrincipal user) {
         String accessToken = Jwts.builder()
                 .setSubject(user.getUsername())
@@ -36,6 +45,13 @@ public class JwtTokenUtil {
 
     }
 
+    /**
+     * Generate refresh token string.
+     *
+     * @param request the request
+     * @param user    the user
+     * @return the string
+     */
     public String generateRefreshToken(HttpServletRequest request, UserPrincipal user) {
         String refreshToken = Jwts.builder()
                 .setSubject(user.getUsername())
@@ -47,6 +63,12 @@ public class JwtTokenUtil {
         return refreshToken;
     }
 
+    /**
+     * Validate jwt token boolean.
+     *
+     * @param authToken the auth token
+     * @return the boolean
+     */
     public boolean validateJwtToken(String authToken)  {
         try {
             Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(authToken);
@@ -63,6 +85,12 @@ public class JwtTokenUtil {
         return false;
     }
 
+    /**
+     * Gets subject.
+     *
+     * @param token the token
+     * @return the subject
+     */
     public String getSubject(String token) {
         return Jwts.parserBuilder().setSigningKey(SECRET_KEY).build()
                 .parseClaimsJws(token).getBody().getSubject();

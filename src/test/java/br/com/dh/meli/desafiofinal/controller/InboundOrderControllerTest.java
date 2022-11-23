@@ -4,6 +4,7 @@ package br.com.dh.meli.desafiofinal.controller;
 import br.com.dh.meli.desafiofinal.dto.BatchStockDTO;
 import br.com.dh.meli.desafiofinal.dto.InboundOrderDTO;
 import br.com.dh.meli.desafiofinal.model.InboundOrder;
+import br.com.dh.meli.desafiofinal.security.JwtTokenFilter;
 import br.com.dh.meli.desafiofinal.service.IInboundOrder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.CoreMatchers;
@@ -44,6 +45,9 @@ public class InboundOrderControllerTest {
 
     @MockBean
     private IInboundOrder service;
+
+    @MockBean
+    private JwtTokenFilter filter;
 
     @Autowired
     private WebApplicationContext context;
