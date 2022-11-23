@@ -123,7 +123,7 @@ public class HandlerExceptions {
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<ExceptionDetails> handlerInvalidTokenException(InvalidTokenException ex){
         ExceptionDetails exceptionDetails = ExceptionDetails.builder()
-                .title("Objeto já cadastrado")
+                .title("Token inválido.")
                 .message(ex.getMessage())
                 .status(HttpStatus.FORBIDDEN.value())
                 .timestamp(LocalDateTime.now())

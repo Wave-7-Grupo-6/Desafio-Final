@@ -31,7 +31,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(SellerController.class)
 class SellerControllerTest {
 
-    @Autowired
     private MockMvc mockMvc;
 
     @Autowired

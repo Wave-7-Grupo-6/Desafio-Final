@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,15 +32,16 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
  */
 @RestController
 @RequestMapping("/api/v1/user")
-@Api(tags = "User Controller", value = "UserController", description = "User for Role")
+@Log4j2
+@Api(tags = "User Controller", value = "UserController", description = "Controller for User")
 public class UserController {
 
     @Autowired
-    AuthenticationManager authManager;
+    private AuthenticationManager authManager;
     @Autowired
-    UserService userService;
+    private UserService userService;
     @Autowired
-    JwtTokenUtil jwtTokenUtil;
+    private JwtTokenUtil jwtTokenUtil;
 
     /**
      * Login response entity.
@@ -52,7 +54,7 @@ public class UserController {
     @ApiOperation(value = "Login user")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "User logged successfully"),
-            @ApiResponse(code = 400, message = "Invalid request"),
+            @ApiResponse(code = 403, message = "Forbidden"),
     })
     public ResponseEntity<?> login(HttpServletRequest request, @RequestBody @Valid UserDTO userDTO) {
         try {
@@ -87,7 +89,7 @@ public class UserController {
     @ApiOperation(value = "Renew access token")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Access token renewed successfully"),
-            @ApiResponse(code = 400, message = "Invalid request"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
     })
     public ResponseEntity<?> renewAccessToken(HttpServletRequest request) throws IOException {
         String ATTRIBUTE_PREFIX = "Bearer ";
@@ -124,15 +126,14 @@ public class UserController {
      * @param userDTO the user dto
      */
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a new admin user")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Admin user created successfully"),
-            @ApiResponse(code = 400, message = "Invalid request"),
+            @ApiResponse(code = 409, message = "User already registered."),
     })
     @PreAuthorize("hasRole('ADMIN')")
-    public void save(@RequestBody @Valid UserDTO userDTO){
-        userService.save(userDTO);
+    public ResponseEntity<UserDTO>  save(@RequestBody @Valid UserDTO userDTO){
+        return new ResponseEntity<>(userService.save(userDTO), HttpStatus.CREATED);
     }
 
 }

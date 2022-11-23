@@ -65,8 +65,6 @@ class UserServiceTest {
         User user = getUser();
         when(userRepository.findByUsername(anyString())).thenReturn(Optional.empty());
 
-        UserDetails userDetails = userService.loadUserByUsername(user.getUsername());
-
         assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(user.getUsername()));
     }
 

@@ -2,7 +2,8 @@
 INSERT INTO user VALUES
                           (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','paula@gmail.com'),
                           (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','williams@gmail.com'),
-                          (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','thays@gmail.com');
+                          (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','thays@gmail.com'),
+                          (null, 1, 1, 1, 1, '$2a$10$1.iUctStoe.qGOrzoorpAufoceAF63KOx7D9cm7tFtQfB.wut1iYG','user@user.com');
 
 INSERT INTO seller VALUES ('Paula', 1);
 
@@ -58,4 +59,5 @@ INSERT INTO role VALUES
 INSERT INTO user_role VALUES
                      (1, 3),
                      (2, 2),
-                     (3, 1);
+                     (3, 1),
+                     (4, 1);
