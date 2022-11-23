@@ -173,12 +173,9 @@ e
 
 ## Devs:
 
-[![Giovanna Almeida](https://img.shields.io/badge/Giovanna_Almeida-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/giovanna-souza-70bbb41b4/) 
-[![Mauro Correia](https://img.shields.io/badge/Mauro_Correia-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mauro-correia/) 
-[![Michael Caxias](https://img.shields.io/badge/Michael_Caxias-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/michaelcaxias/) 
+
 [![Paula Santos](https://img.shields.io/badge/Paula_Santos-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/paula-libia-santos/)
-[![Thays Gama ](https://img.shields.io/badge/Thays_Gama-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/thaysgama/) 
-[![Williamns Belo](https://img.shields.io/badge/Williamns_Belo-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/williamns-belo/) 
+
 
 
 <p align="center">Copyright © 2021 Michael Caxias</p>
