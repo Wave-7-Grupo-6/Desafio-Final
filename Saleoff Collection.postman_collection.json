@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "6c15191c-0a01-4937-943b-86d4ee9e75ea",
+		"name": "Saleoff Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21004760"
+	},
+	"item": [
+		{
+			"name": "List all Batchs.",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Sort by Smallest Price.",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Sort by Bigger Discount.",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Sort by Closer to Expire",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Sort by Bigger Price Difference.",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
