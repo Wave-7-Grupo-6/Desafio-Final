@@ -6,6 +6,7 @@ import br.com.dh.meli.desafiofinal.model.Role;
 import br.com.dh.meli.desafiofinal.repository.RoleRepository;
 import br.com.dh.meli.desafiofinal.service.IRole;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class RoleService implements IRole {
 
     private final RoleRepository roleRepository;
@@ -29,6 +31,7 @@ public class RoleService implements IRole {
     public Role save(Role role) {
         checkUniqueRole(role.getName());
         role.setId(null);
+        log.info("Saving role [" + role.getName() + "].");
         return roleRepository.save(role);
     }
 
@@ -45,6 +48,7 @@ public class RoleService implements IRole {
             throw new NotFoundException("Role id not provided or not found.");
         }
         checkUniqueRole(role.getName());
+        log.info("Updating role of id [" + role.getId() + "].");
         return roleRepository.save(role);
     }
 
@@ -56,6 +60,7 @@ public class RoleService implements IRole {
     @Override
     public void deleteById(Long id) {
         findById(id);
+        log.info("Deleting role of id [" + id + "].");
         roleRepository.deleteById(id);
     }
 
@@ -68,7 +73,11 @@ public class RoleService implements IRole {
     @Override
     public Role findById(Long id) {
         Optional<Role> role = roleRepository.findById(id);
-        return role.orElseThrow(() -> new NotFoundException("Role not found."));
+        log.info("Finding role of id [" + id + "].");
+        return role.orElseThrow(() -> {
+            log.error("Role not found.");
+            throw new NotFoundException("Role not found.");
+        });
     }
 
     /**
@@ -80,7 +89,11 @@ public class RoleService implements IRole {
     @Override
     public Role findByName(String name) {
         Optional<Role> role = roleRepository.findByName(name);
-        return role.orElseThrow(() -> new NotFoundException("Role not found."));
+        log.info("Finding role [" + name + "].");
+        return role.orElseThrow(() -> {
+            log.error("Role not found.");
+            throw new NotFoundException("Role not found.");
+        });
     }
 
     /**
@@ -92,8 +105,10 @@ public class RoleService implements IRole {
     public List<Role> findAll() {
         List<Role> roleList = roleRepository.findAll();
         if(roleList.isEmpty()){
+            log.error("Role not found.");
             throw new NotFoundException("No Role found");
         }
+        log.info("Finding list of roles.");
         return roleList;
     }
 
@@ -105,6 +120,7 @@ public class RoleService implements IRole {
     private void checkUniqueRole(String roleName){
         Optional<Role> exintingRole = roleRepository.findByName(roleName);
         if(exintingRole.isPresent()){
+            log.error("Role [" + roleName + "] already exists.");
             throw new NotUniqueException("Role name already exists.");
         }
     }
