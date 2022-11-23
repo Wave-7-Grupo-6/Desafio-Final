@@ -10,7 +10,19 @@
 			"name": "List all Batchs.",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/saleoff",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"saleoff"
+					]
+				}
 			},
 			"response": []
 		},
@@ -18,7 +30,20 @@
 			"name": "Sort by Smallest Price.",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/saleoff/smallest_price",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"saleoff",
+						"smallest_price"
+					]
+				}
 			},
 			"response": []
 		},
@@ -26,7 +51,20 @@
 			"name": "Sort by Bigger Discount.",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/saleoff/bigger_discount",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"saleoff",
+						"bigger_discount"
+					]
+				}
 			},
 			"response": []
 		},
@@ -34,7 +72,20 @@
 			"name": "Sort by Closer to Expire",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/saleoff/closer_to_expire",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"saleoff",
+						"closer_to_expire"
+					]
+				}
 			},
 			"response": []
 		},
@@ -42,7 +93,20 @@
 			"name": "Sort by Bigger Price Difference.",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/saleoff/bigger_price_difference",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"saleoff",
+						"bigger_price_difference"
+					]
+				}
 			},
 			"response": []
 		}
