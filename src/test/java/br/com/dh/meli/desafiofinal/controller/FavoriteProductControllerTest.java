@@ -24,7 +24,6 @@ public class FavoriteProductControllerTest {
     @MockBean
     private IClient clientService;
 
-    @Test
 
 
 
