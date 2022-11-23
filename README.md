@@ -1,5 +1,5 @@
 
-# Desafio Final - Digital House [Mauro Correia]
+# Desafio Final - Digital House [Mauro Correia] 🧙🏻
 
 Último projeto realizado na Digital House, durante o processo de bootcamp do MÉLI.
 O projeto consiste na criação de uma API Rest, feito em Spring, usando a arquitetura MVC.
