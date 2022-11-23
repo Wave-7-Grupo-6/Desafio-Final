@@ -21,6 +21,14 @@ detalhando o último requisito do projeto, sendo esse feito individualmente.
   mvn spring-boot:run
 ```
 
+## Arquivos úteis.
+
+- [User Story](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/saleoff-batchs/Requisito%206%20-%20Saleoff%20Products.docx.pdf)
+
+- [Postman Collection](https://github.com/Wave-7-Grupo-6/Desafio-Final/blob/saleoff-batchs/Saleoff%20Collection.postman_collection.json)
+
+
+
 ## Sobre o que foi desenvolvido
 
 Na nossa aplicação, produtos que tem menos de três semanas de seu vencimento, não eram disponibilizados
@@ -39,15 +47,15 @@ os produtos de diversas formas.
 Retorno em caso de sucesso
 ```json
 [
-    {
-        "productName": "tilápia",
-        "daysToExpire": 9,
-        "discountPercentage": 25,
-        "original_price": 44.00,
-        "sale_price": 33.0000,
-        "price_difference": 11.0000
-    }, 
-    {...}
+  {
+    "productName": "tilápia",
+    "daysToExpire": 9,
+    "discountPercentage": 25,
+    "original_price": 44.00,
+    "sale_price": 33.0000,
+    "price_difference": 11.0000
+  },
+  {...}
 ]
 
 ```
@@ -60,15 +68,15 @@ Retorno em caso de sucesso
 Retorno em caso de sucesso
 ```json
 [
-    {
-        "productName": "pão de forma",
-        "daysToExpire": 9,
-        "discountPercentage": 25,
-        "original_price": 10.00,
-        "sale_price": 7.5000,
-        "price_difference": 2.5000
-    }, 
-    {...}
+  {
+    "productName": "pão de forma",
+    "daysToExpire": 9,
+    "discountPercentage": 25,
+    "original_price": 10.00,
+    "sale_price": 7.5000,
+    "price_difference": 2.5000
+  },
+  {...}
 ]
 
 ```
@@ -81,15 +89,15 @@ Retorno em caso de sucesso
 Retorno em caso de sucesso
 ```json
 [
-    {
-        "productName": "picanha",
-        "daysToExpire": 3,
-        "discountPercentage": 50,
-        "original_price": 100.00,
-        "sale_price": 50.000,
-        "price_difference": 50.000
-    }, 
-    {...}
+  {
+    "productName": "picanha",
+    "daysToExpire": 3,
+    "discountPercentage": 50,
+    "original_price": 100.00,
+    "sale_price": 50.000,
+    "price_difference": 50.000
+  },
+  {...}
 ]
 
 ```
@@ -102,15 +110,15 @@ Retorno em caso de sucesso
 Retorno em caso de sucesso
 ```json
 [
-    {
-        "productName": "doritos",
-        "daysToExpire": 1,
-        "discountPercentage": 25,
-        "original_price": 20.00,
-        "sale_price": 15.000,
-        "price_difference": 5.000
-    }, 
-    {...}
+  {
+    "productName": "doritos",
+    "daysToExpire": 1,
+    "discountPercentage": 25,
+    "original_price": 20.00,
+    "sale_price": 15.000,
+    "price_difference": 5.000
+  },
+  {...}
 ]
 
 ```
@@ -123,15 +131,15 @@ Retorno em caso de sucesso
 Retorno em caso de sucesso
 ```json
 
-    {
-        "productName": "picanha",
-        "daysToExpire": 3,
-        "discountPercentage": 50,
-        "original_price": 100.00,
-        "sale_price": 50.000,
-        "price_difference": 50.000
-    }, 
-    {...}
+{
+  "productName": "picanha",
+  "daysToExpire": 3,
+  "discountPercentage": 50,
+  "original_price": 100.00,
+  "sale_price": 50.000,
+  "price_difference": 50.000
+},
+{...}
 ]
 
 ```
