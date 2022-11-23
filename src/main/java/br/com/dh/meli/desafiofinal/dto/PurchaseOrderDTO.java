@@ -15,6 +15,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The type Purchase order dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -30,6 +33,11 @@ public class PurchaseOrderDTO {
     private String orderStatus;
     private List<@Valid ProductDTO> products;
 
+    /**
+     * Instantiates a new Purchase order dto.
+     *
+     * @param purchaseOrder the purchase order
+     */
     public PurchaseOrderDTO(PurchaseOrder purchaseOrder) {
         this.date = purchaseOrder.getDate();
         this.buyerId = purchaseOrder.getClient().getId();

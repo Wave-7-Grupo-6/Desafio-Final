@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * The type Warehouse controller.
+ */
 @RestController
 @RequestMapping("/api/v1/warehouse")
 @Api(tags = "Warehouse Controller", value = "WarehouseController", description = "Controller for Warehouse")
@@ -22,6 +25,12 @@ public class WarehouseController {
     @Autowired
     private IWarehouse service;
 
+    /**
+     * Save warehouse.
+     *
+     * @param warehouse the warehouse
+     * @return the response entity with warehouse
+     */
     @PostMapping
     @ApiOperation(value = "Create a new Warehouse")
     @ApiResponses(value = {
@@ -34,6 +43,11 @@ public class WarehouseController {
         return new ResponseEntity<>(warehouseCreated, HttpStatus.CREATED);
     }
 
+    /**
+     * Get all warehouses.
+     *
+     * @return the response entity with warehouses
+     */
     @GetMapping
     @ApiOperation(value = "Get all Warehouses")
     @ApiResponses(value = {
@@ -43,6 +57,12 @@ public class WarehouseController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
+    /**
+     * Get warehouse by id.
+     *
+     * @param id the id
+     * @return the response entity with warehouse
+     */
     @GetMapping("/{id}")
     @ApiOperation(value = "Get a Warehouse by ID")
     @ApiResponses(value = {

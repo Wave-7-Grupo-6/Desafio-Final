@@ -1,13 +1,11 @@
-package br.com.dh.meli.desafiofinal.service;
+package br.com.dh.meli.desafiofinal.service.impl;
 
-import br.com.dh.meli.desafiofinal.exceptions.NotFoundException;
 import br.com.dh.meli.desafiofinal.model.Section;
 import br.com.dh.meli.desafiofinal.repository.SectionRepo;
 import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
-<<<<<<< HEAD:src/test/java/br/com/dh/meli/desafiofinal/service/SectionServiceTest.java
 
-=======
->>>>>>> parent of b5e8d8a (Merge pull request #71 from Wave-7-Grupo-6/JavaDoc):src/test/java/br/com/dh/meli/desafiofinal/service/impl/SectionServiceTest.java
+import br.com.dh.meli.desafiofinal.service.ISection;
+import br.com.dh.meli.desafiofinal.service.impl.SectionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

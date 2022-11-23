@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * The type Announcement.
+ */
 @Entity
 @Getter
 @Setter

@@ -9,8 +9,10 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * The type Seller.
+ */
 @Entity
-@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -37,6 +39,12 @@ public class Seller {
     @ApiModelProperty(notes = "The seller sections")
     private List<Section> sections;
 
+    /**
+     * Instantiates a new Seller.
+     *
+     * @param id   the id
+     * @param name the name
+     */
     public Seller(Long id, String name) {
         this.id = id;
         this.name = name;

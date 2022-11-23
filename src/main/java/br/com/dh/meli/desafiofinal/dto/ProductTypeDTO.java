@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * The type Product type dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,6 +19,12 @@ public class ProductTypeDTO {
     private Long productTypeId;
     private List<WarehouseStockDTO> warehouses;
 
+    /**
+     * Instantiates a new Product type dto.
+     *
+     * @param productType the product type
+     * @param warehouses  the warehouses
+     */
     public ProductTypeDTO(ProductType productType, List<WarehouseStockDTO> warehouses) {
         this.productTypeId = getProductTypeId();
         this.warehouses = warehouses;

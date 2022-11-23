@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Inbound order dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,6 +36,11 @@ public class InboundOrderDTO {
 
     private List<@Valid BatchStockDTO> batchStockList;
 
+    /**
+     * Instantiates a new Inbound order dto.
+     *
+     * @param inboundOrder the inbound order
+     */
     public InboundOrderDTO(InboundOrder inboundOrder){
         this.id = inboundOrder.getId();
         this.orderNumber = inboundOrder.getOrderNumber();
