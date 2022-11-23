@@ -39,7 +39,7 @@ mvn spring-boot:run
 ## Requisitos 06 do Grupo 6
 
 - Requisito 06 - [Giovanna](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/discount-coupon) - Um Cliente gostaria de poder aplicar um cupom de desconto para que sua compra saia um pouco mais barata.
-- Requisito 06 - [Mauro](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/saleoff-batchs)
+- Requisito 06 - [Mauro](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/saleoff-batchs) - Liquidação de produtos próximos ao vencimento, seu desconto é proporcional ao tempo restante de validade.
 - Requisito 06 - [Michael](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/convert-currency) - Um Cliente gostaria de poder comprar em outra moeda para não precisar fazer a conversão de moeda para realizar a compra.
 - Requisito 06 - [Paula](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/favorite-products) - Um Cliente gostaria de poder favoritar produtos para que possa comprar depois.
 - Requisito 06 - [Thays](https://github.com/Wave-7-Grupo-6/Desafio-Final/tree/feature/thays) - O administrador gostaria de implementar segurança com token JWT nos recursos para garantir acesso somente a pessoas autorizadas.
