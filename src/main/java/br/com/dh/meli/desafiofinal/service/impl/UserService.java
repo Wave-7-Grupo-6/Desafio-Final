@@ -23,8 +23,8 @@ import java.util.Set;
  * The type User service.
  */
 @Log4j2
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 public class UserService implements UserDetailsService, IUser {
 
     private final UserRepository userRepository;
@@ -72,10 +72,14 @@ public class UserService implements UserDetailsService, IUser {
         Role role = roleService.findByName("ROLE_ADMIN");
         Boolean existsByUsername = userRepository.existsByUsername(userDTO.getUsername());
         if(existsByUsername){
+            log.error("Email already taken.");
             throw new NotUniqueException("Email already taken.");
         }
         userDTO.setPassword(encoder.encode(userDTO.getPassword()));
-        User user = new User(userDTO, Set.of(role));
-        return new UserDTO(userRepository.save(user));
+        User user = userRepository.save(new User(userDTO, Set.of(role)));
+        log.info("Saving user [" + user.getUsername() + "].");
+        return new UserDTO(user);
     }
 }
+
+

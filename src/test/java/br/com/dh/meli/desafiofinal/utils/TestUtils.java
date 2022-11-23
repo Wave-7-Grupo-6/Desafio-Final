@@ -81,4 +81,11 @@ public class TestUtils {
     public static Role getClientRole(){
         return new Role(1L, "ROLE_CLIENT");
     }
+    public static Role getAdminRole(){
+        return new Role(1L, "ROLE_ADMIN");
+    }
+
+    public static User getUser(){
+        return new User(1L,"user@user.com","aaaaaA1@",Set.of(getAdminRole()));
+    }
 }
