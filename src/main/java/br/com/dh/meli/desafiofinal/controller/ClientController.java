@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * The type Client controller.
+ */
 @RestController
 @RequestMapping(("/api/v1/client"))
 @Api(tags = "Client Controller", value = "ClientController", description = "Controller for Client")
@@ -22,6 +25,11 @@ public class ClientController {
     @Autowired
     private IClient service;
 
+    /**
+     * Save client.
+     *
+     * @param clientDTO the client dto
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a new Client")
@@ -33,6 +41,11 @@ public class ClientController {
         service.save(clientDTO);
     }
 
+    /**
+     * Find all response entity with clients.
+     *
+     * @return the response entity with clients
+     */
     @GetMapping
     @ApiOperation(value = "Get all Clients")
     @ApiResponses(value = {
@@ -42,6 +55,12 @@ public class ClientController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
+    /**
+     * Find by id response entity with client.
+     *
+     * @param id the id
+     * @return the response entity with client
+     */
     @GetMapping("{id}")
     @ApiOperation(value = "Get a Client by ID")
     @ApiResponses(value = {

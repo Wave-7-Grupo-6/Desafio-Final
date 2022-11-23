@@ -8,6 +8,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * The type Category.
+ */
 @Entity
 @Getter
 @Setter
@@ -42,6 +45,13 @@ public class Category {
     @ApiModelProperty(notes = "The category sections")
     private List<Section> sections;
 
+    /**
+     * Instantiates a new Category.
+     *
+     * @param id          the id
+     * @param name        the name
+     * @param temperature the temperature
+     */
     public Category(Long id, String name, float temperature) {
         this.id = id;
         this.name = name;

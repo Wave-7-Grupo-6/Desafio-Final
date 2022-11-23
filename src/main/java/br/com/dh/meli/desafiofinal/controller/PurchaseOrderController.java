@@ -18,6 +18,9 @@ import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * The type Purchase order controller.
+ */
 @RestController
 @RequestMapping("/api/v1/purchase-order")
 @Api(tags = "Purchase Order Controller", value = "PurchaseOrderController", description = "Controller for Purchase Order")
@@ -25,6 +28,12 @@ public class PurchaseOrderController {
     @Autowired
     private IPurchaseOrder service;
 
+    /**
+     * Save purchase order entity.
+     *
+     * @param purchaseOrderDTO the purchase order dto
+     * @return the big decimal(total price)
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Create a new Purchase Order")
@@ -37,6 +46,12 @@ public class PurchaseOrderController {
         return service.save(purchaseOrderDTO);
     }
 
+    /**
+     * Update purchase order status to delivered.
+     *
+     * @param id the id
+     * @return the response entity with updated purchase order
+     */
     @PutMapping("/{id}")
     @ApiOperation(value = "Update a status from Purchase Order by ID")
     @ApiResponses(value = {
@@ -47,6 +62,12 @@ public class PurchaseOrderController {
         return new ResponseEntity<>(service.updateStatusToDelivered(id), HttpStatus.CREATED);
     }
 
+    /**
+     * Get purchase order by id.
+     *
+     * @param id the id
+     * @return the response entity with purchase order.
+     */
     @GetMapping("/{id}")
     @ApiOperation(value = "Get a Purchase Order by ID")
     @ApiResponses(value = {

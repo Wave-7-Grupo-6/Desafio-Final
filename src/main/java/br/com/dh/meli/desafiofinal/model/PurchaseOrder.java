@@ -14,6 +14,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
+/**
+ * The type Purchase order.
+ */
 @Entity
 @Getter
 @Setter
@@ -46,12 +49,25 @@ public class PurchaseOrder {
     @ApiModelProperty(notes = "The purchase order items")
     private Set<PurchaseItem> purchaseItems;
 
+    /**
+     * Instantiates a new Purchase order.
+     *
+     * @param purchaseOrderDTO the purchase order dto
+     * @param client           the client
+     */
     public PurchaseOrder(PurchaseOrderDTO purchaseOrderDTO, Client client) {
         this.date = purchaseOrderDTO.getDate();
         this.orderStatus = OrderStatus.valueOf(purchaseOrderDTO.getOrderStatus());
         this.client = client;
     }
 
+    /**
+     * It takes the purchaseItems list, maps each item to a BigDecimal representing the price of the item multiplied by the
+     * quantity of the item, then reduces the list of BigDecimals to a single BigDecimal representing the total price of
+     * the purchase
+     *
+     * @return The total price of the purchase.
+     */
     public BigDecimal getTotalPrice() {
         this.totalPrice = this.purchaseItems != null ? purchaseItems.stream()
                 .map(item -> item.getPrice().multiply(new BigDecimal(item.getQuantity())))
