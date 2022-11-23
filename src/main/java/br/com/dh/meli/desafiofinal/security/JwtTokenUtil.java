@@ -1,19 +1,14 @@
 package br.com.dh.meli.desafiofinal.security;
 
 
-import br.com.dh.meli.desafiofinal.model.Role;
 import io.jsonwebtoken.*;
-import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
-
-import static io.jsonwebtoken.SignatureAlgorithm.HS256;
+import java.util.Date;
 
 /**
  * The type Jwt token util.

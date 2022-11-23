@@ -1,26 +1,23 @@
 package br.com.dh.meli.desafiofinal.service.impl;
 
-import br.com.dh.meli.desafiofinal.dto.ClientDTO;
 import br.com.dh.meli.desafiofinal.dto.UserDTO;
 import br.com.dh.meli.desafiofinal.exceptions.NotUniqueException;
-import br.com.dh.meli.desafiofinal.model.Client;
 import br.com.dh.meli.desafiofinal.model.User;
 import br.com.dh.meli.desafiofinal.repository.UserRepository;
 import br.com.dh.meli.desafiofinal.service.IRole;
-import br.com.dh.meli.desafiofinal.service.IUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-import static br.com.dh.meli.desafiofinal.utils.TestUtils.*;
+import static br.com.dh.meli.desafiofinal.utils.TestUtils.getAdminRole;
+import static br.com.dh.meli.desafiofinal.utils.TestUtils.getUser;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
