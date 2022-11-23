@@ -1,0 +1,1022 @@
+{
+	"info": {
+		"_postman_id": "5118809a-4423-4a9f-b1e3-a654027d2f9a",
+		"name": "MELI / DH",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19488930"
+	},
+	"item": [
+		{
+			"name": "Desafios",
+			"item": [
+				{
+					"name": "Desafio Final",
+					"item": [
+						{
+							"name": "warehouse",
+							"item": [
+								{
+									"name": "findAll",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/warehouse",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"warehouse"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "findById",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/warehouse/1",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"warehouse",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "save",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "content-type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Armazem test\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/warehouse",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"warehouse"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "client",
+							"item": [
+								{
+									"name": "findAll",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/client",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"client"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "findById",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/client/10",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"client",
+												"10"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "save",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\" : \"teste\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/client",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"client"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "fresh products",
+							"item": [
+								{
+									"name": "Announcement",
+									"item": [
+										{
+											"name": "FindAll",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "FindAllByDueDate",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/due-date?days=20&section=1&seller=1",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"due-date"
+													],
+													"query": [
+														{
+															"key": "days",
+															"value": "20"
+														},
+														{
+															"key": "section",
+															"value": "1"
+														},
+														{
+															"key": "seller",
+															"value": "1"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "FindById",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/1",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"1"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "FindByProductType",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/by_prod/1",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"by_prod",
+														"1"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Save",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"description\": \"queijo\",\n    \"categoryId\": 2,\n    \"sellerId\": 1,\n\t\"productTypeId\" : 1\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "FindByCategory",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/list?category=RF",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"list"
+													],
+													"query": [
+														{
+															"key": "category",
+															"value": "RF"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "FindBatchsByProductId",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/list?announcementId=1",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"list"
+													],
+													"query": [
+														{
+															"key": "announcementId",
+															"value": "1"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "batch",
+									"item": [
+										{
+											"name": "FindBatchsByProductId&OrderById",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/list?announcementId=1&orderBy=L",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"list"
+													],
+													"query": [
+														{
+															"key": "announcementId",
+															"value": "1"
+														},
+														{
+															"key": "orderBy",
+															"value": "L"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "FindBatchsByProductId&OrderByQuantity",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/list?announcementId=1&orderBy=Q",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"list"
+													],
+													"query": [
+														{
+															"key": "announcementId",
+															"value": "1"
+														},
+														{
+															"key": "orderBy",
+															"value": "Q"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "FindBatchsByProductId&OrderByDueDate",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{host}}/api/v1/fresh-products/list?announcementId=1&orderBy=V",
+													"host": [
+														"{{host}}"
+													],
+													"path": [
+														"api",
+														"v1",
+														"fresh-products",
+														"list"
+													],
+													"query": [
+														{
+															"key": "announcementId",
+															"value": "1"
+														},
+														{
+															"key": "orderBy",
+															"value": "V"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "category",
+							"item": [
+								{
+									"name": "FindAll",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/category",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"category"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "FindById",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/category/4",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"category",
+												"4"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "save",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\" : \"test\",\n\t\"temperature\" : -10\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/category",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"category"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "cart",
+							"item": [
+								{
+									"name": "save",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"buyerId\": 1,\n\t\"orderStatus\": \"PROCESSING\",\n\t\"products\": [\n\t\t{\n\t\t\t\"productId\": 1,\n\t\t\t\"quantity\": 2,\n            \"batchId\": 1\n\t\t}\n\t]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "by id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order/1",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "all",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order/2",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order",
+												"2"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "seller",
+							"item": [
+								{
+									"name": "findAll",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/seller",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"seller"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "findById",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/seller/1",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"seller",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "save",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\":\"Micha\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/seller",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"seller"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "discount coupon",
+							"item": [
+								{
+									"name": "save discount coupon",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"discount\": 10.0,\n    \"description\": \"Cupom de desconto para compras acima de R$ 100,00\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/discount-coupons",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"discount-coupons"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get all discount coupon",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/discount-coupons",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"discount-coupons"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get id discount coupon",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/discount-coupons/1",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"discount-coupons",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get by discount",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/discount-coupons/discount/10.0",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"discount-coupons",
+												"discount",
+												"10.0"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update discount coupon",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"discount\" : 15.0,\n\t\"description\" : \"Cupom de desconto para compras acima de R$ 100,00\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/discount-coupons/10",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"discount-coupons",
+												"10"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "get by category",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/discount-coupons/category/1",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"discount-coupons",
+												"category",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete discount coupon",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/discount-coupons/1",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"discount-coupons",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "create purchase order",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"buyerId\": 1,\n  \"date\": \"2022-12-12\",\n  \"discountCouponId\": 1,\n  \"orderStatus\": \"PROCESSING\",\n  \"products\": [\n    {\n      \"batchId\": 1,\n      \"productId\": 1,\n      \"quantity\": 2\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "inbound order",
+							"item": [
+								{
+									"name": "save",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{   \n    \"orderNumber\":123,\n    \"sectionId\":1,\n    \"warehouseId\":1,\n    \"batchStockList\":[{\n        \"productId\": 1,\n        \"currentTemperature\": 10.0,\n        \"productQuantity\": 6,\n        \"manufacturingDate\":\"2022-11-11\",\n        \"manufacturingTime\":\"00:00:00\",\n        \"volume\":0.5,\n        \"dueDate\":\"2022-12-11\",\n        \"price\": 10.0\n    }]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/fresh-products/inboundorder/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"fresh-products",
+												"inboundorder",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{   \n    \"orderNumber\":123,\n    \"sectionId\":1,\n    \"warehouseId\":1,\n    \"batchStockList\":[{\n        \"id\":4,\n        \"batchNumber\":1,\n        \"productId\": 1,\n        \"currentTemperature\": 10.0,\n        \"productQuantity\": 50,\n        \"manufacturingDate\":\"2022-12-13\",\n        \"manufacturingTime\":\"00:00:00\",\n        \"volume\":0.5,\n        \"dueDate\":\"2022-12-13\",\n        \"price\": 50.0\n    }]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/fresh-products/inboundorder/4",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"fresh-products",
+												"inboundorder",
+												"4"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "purchase order",
+							"item": [
+								{
+									"name": "findByid",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order/4",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order",
+												"4"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Save",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"buyerId\": 1,\n  \"date\": \"2022-12-12\",\n  \"discountCouponId\": 1,\n  \"orderStatus\": \"PROCESSING\",\n  \"products\": [\n    {\n      \"batchId\": 1,\n      \"productId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order/",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/purchase-order/2",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"purchase-order",
+												"2"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://localhost:8080/"
+		}
+	]
+}
