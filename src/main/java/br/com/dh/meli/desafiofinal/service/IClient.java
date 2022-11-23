@@ -9,4 +9,12 @@ public interface IClient {
     Client save(ClientDTO clientDTO);
     List<Client> findAll();
     Client findById(Long id);
+
+    /**
+     * Save client.
+     *
+     * @param client the client
+     * @return the client
+     */
+    Client save(Client client);
 }

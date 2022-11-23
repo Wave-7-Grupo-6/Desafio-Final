@@ -43,7 +43,7 @@ public class TestUtils {
     }
 
     public static Client getClient(){
-        return new Client(1L, "Client 1", null);
+        return new Client(1L, "Client 1", null,null);
     }
 
     public static Batch getBatch(){

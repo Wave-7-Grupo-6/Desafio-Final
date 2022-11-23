@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * The type Announcement.
+ */
 @Entity
 @Getter
 @Setter
@@ -58,6 +61,10 @@ public class Announcement {
     @JsonIgnoreProperties("announcements")
     @ApiModelProperty(notes = "The announcement product type")
     private ProductType productType;
+
+    @ManyToMany(mappedBy = "favorites")
+    @JsonIgnoreProperties("announcements")
+    private List<Client> favoritedBy;
 
     /**
      * Instantiates a new Announcement.
